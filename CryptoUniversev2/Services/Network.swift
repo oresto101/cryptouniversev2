@@ -6,7 +6,7 @@ class Network: ObservableObject {
     
     @Published var cryptoInfo: [String: [CryptoInfo]] = [:]
     
-    @Published var responseCode: Int = 200
+    @Published var responseCode: Int = 401
     static let shared = Network()
     
     var loginService = LoginService.shared

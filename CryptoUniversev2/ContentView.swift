@@ -31,17 +31,15 @@ struct ContentView: View {
                                 .offset(x: self.showMenu ? geometry.size.width*3/4 : 0)
                                 .disabled(self.showMenu ? true : false)
                                 .onAppear {
-                                    UIScrollView.appearance().isPagingEnabled = true
                                     network.callToGetInfoBoxes()
                                     network.callToGetCryptoInfo()
                                     if network.responseCode == 401 {
                                         showingLoginView = true
                                     }
+                                    else {
+                                        showingLoginView = false
+                                    }
                                 }
-                                .onDisappear {
-                                    UIScrollView.appearance().isPagingEnabled = false
-                                }
-                                
                             if self.showMenu {
                                 MenuView()
                                     .frame(width: geometry.size.width*3/4)
@@ -61,6 +59,16 @@ struct ContentView: View {
                                     .imageScale(.large)
                             }
                         ))
+                }
+                .refreshable(){
+                    network.callToGetInfoBoxes()
+                    network.callToGetCryptoInfo()
+                    if network.responseCode == 401 {
+                        showingLoginView = true
+                    }
+                    else {
+                        showingLoginView = false
+                    }
                 }
                 .popover(isPresented: $showingLoginView)
         {
@@ -83,13 +91,12 @@ struct MainView: View {
     @Binding var showMenu: Bool
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false){
-            LazyHStack () {
+        TabView(){
                 ForEach(network.getInfoBoxes(), id: \.self) { infobox in
                     CryptoExchangeView(infobox: infobox, cryptoInfo: network.getCryptoInfoForExchange(exchange: infobox.name))
-                }
             }
         }
+        .tabViewStyle(PageTabViewStyle())
         
     }
 }
