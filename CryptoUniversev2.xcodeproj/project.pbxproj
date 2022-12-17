@@ -20,11 +20,12 @@
 		CB72DD0C294516550087534D /* CryptoUniversev2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD0B294516550087534D /* CryptoUniversev2Tests.swift */; };
 		CB72DD16294516550087534D /* CryptoUniversev2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD15294516550087534D /* CryptoUniversev2UITests.swift */; };
 		CB72DD18294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD17294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift */; };
-		CB72DD2529451BF20087534D /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD2429451BF20087534D /* CircleImage.swift */; };
 		CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD2729451DEC0087534D /* InfoBox.swift */; };
 		CB72DD2A29451FAA0087534D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD2929451FAA0087534D /* Network.swift */; };
 		CBAD258E2946CB5F0062DF52 /* String Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD258D2946CB5F0062DF52 /* String Formatter.swift */; };
 		CBAD25912946D0440062DF52 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD25902946D0440062DF52 /* HelpView.swift */; };
+		CBE25A87294E65C60010F712 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A86294E65C60010F712 /* LoginService.swift */; };
+		CBE25A8C294E68BB0010F712 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8B294E68BB0010F712 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,11 +61,12 @@
 		CB72DD11294516550087534D /* CryptoUniversev2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoUniversev2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB72DD15294516550087534D /* CryptoUniversev2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUniversev2UITests.swift; sourceTree = "<group>"; };
 		CB72DD17294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUniversev2UITestsLaunchTests.swift; sourceTree = "<group>"; };
-		CB72DD2429451BF20087534D /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		CB72DD2729451DEC0087534D /* InfoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBox.swift; sourceTree = "<group>"; };
 		CB72DD2929451FAA0087534D /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		CBAD258D2946CB5F0062DF52 /* String Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String Formatter.swift"; sourceTree = "<group>"; };
 		CBAD25902946D0440062DF52 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		CBE25A86294E65C60010F712 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		CBE25A8B294E68BB0010F712 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		CB65253A2946A36100FD5D11 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CBE25A88294E68420010F712 /* AuthenticationViewsew */,
 				CBAD258F2946D0320062DF52 /* HelpViews */,
 				CB6525442946C1C500FD5D11 /* CryptoExchangeViews */,
 				CB6525402946BC1800FD5D11 /* MenuView.swift */,
@@ -136,14 +139,13 @@
 		CB72DCF9294516530087534D /* CryptoUniversev2 */ = {
 			isa = PBXGroup;
 			children = (
+				CBE25A85294E65AD0010F712 /* Services */,
 				CB65253A2946A36100FD5D11 /* Views */,
 				CB72DD2629451DB00087534D /* Models */,
 				CB72DCFA294516530087534D /* CryptoUniversev2App.swift */,
 				CB72DCFC294516530087534D /* ContentView.swift */,
 				CB72DCFE294516550087534D /* Assets.xcassets */,
 				CB72DD00294516550087534D /* Preview Content */,
-				CB72DD2429451BF20087534D /* CircleImage.swift */,
-				CB72DD2929451FAA0087534D /* Network.swift */,
 				CBAD258D2946CB5F0062DF52 /* String Formatter.swift */,
 			);
 			path = CryptoUniversev2;
@@ -189,6 +191,23 @@
 				CBAD25902946D0440062DF52 /* HelpView.swift */,
 			);
 			path = HelpViews;
+			sourceTree = "<group>";
+		};
+		CBE25A85294E65AD0010F712 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CB72DD2929451FAA0087534D /* Network.swift */,
+				CBE25A86294E65C60010F712 /* LoginService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CBE25A88294E68420010F712 /* AuthenticationViewsew */ = {
+			isa = PBXGroup;
+			children = (
+				CBE25A8B294E68BB0010F712 /* LoginView.swift */,
+			);
+			path = AuthenticationViewsew;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB72DD2A29451FAA0087534D /* Network.swift in Sources */,
+				CBE25A87294E65C60010F712 /* LoginService.swift in Sources */,
 				CBAD25912946D0440062DF52 /* HelpView.swift in Sources */,
 				CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */,
 				CB65253C2946A40100FD5D11 /* CryptoInfoView.swift in Sources */,
@@ -336,9 +356,9 @@
 				CB72DCFD294516530087534D /* ContentView.swift in Sources */,
 				CB6525412946BC1800FD5D11 /* MenuView.swift in Sources */,
 				CB65253529468BD900FD5D11 /* InfoBoxView.swift in Sources */,
+				CBE25A8C294E68BB0010F712 /* LoginView.swift in Sources */,
 				CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */,
 				CB72DCFB294516530087534D /* CryptoUniversev2App.swift in Sources */,
-				CB72DD2529451BF20087534D /* CircleImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

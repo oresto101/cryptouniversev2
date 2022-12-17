@@ -6,13 +6,16 @@ class Network: ObservableObject {
     
     @Published var cryptoInfo: [String: [CryptoInfo]] = [:]
     
+    @Published var responseCode: Int = 200
     static let shared = Network()
+    
+    var loginService = LoginService.shared
     
     func callToGetInfoBoxes() {
         guard let url = URL(string: "hz") else { fatalError("Missing URL") }
 
-        let urlRequest = URLRequest(url: url)
-
+        var urlRequest = URLRequest(url: url)
+        urlRequest.addValue(loginService.token, forHTTPHeaderField: "Authorization")
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 print("Request error: ", error)
@@ -32,6 +35,9 @@ class Network: ObservableObject {
                     }
                 }
             }
+            else {
+                self.responseCode = response.statusCode
+            }
         }
 
         dataTask.resume()
@@ -40,8 +46,8 @@ class Network: ObservableObject {
     func callToGetCryptoInfo() {
         guard let url = URL(string: "hz") else { fatalError("Missing URL") }
 
-        let urlRequest = URLRequest(url: url)
-
+        var urlRequest = URLRequest(url: url)
+        urlRequest.addValue(loginService.token, forHTTPHeaderField: "Authorization")
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 print("Request error: ", error)
@@ -69,14 +75,16 @@ class Network: ObservableObject {
     func getInfoBoxes() -> [InfoBox]{
         
         //todo return infoBoxes
-        return [InfoBox(id: 1, name: "All", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100), InfoBox(id: 2, name: "Binance", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100)]
+        return [InfoBox(id: 1, name: "All", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100), InfoBox(id: 2, name: "Binance", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100), InfoBox(id: 3, name: "OKX", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100)]
     }
     
     func getCryptoInfo() -> [String: [CryptoInfo]]{
-        return ["All": [CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, totalValue: 1000.0, dailyProfitLoss: -100),
-                        CryptoInfo(id: 2, name: "Binance Coin", balance:10000.0, amount:1000.0, totalValue: 1000.0, dailyProfitLoss: -100)],
-                "Binance": [CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, totalValue: 1000.0, dailyProfitLoss: -100),
-                                CryptoInfo(id: 2, name: "Binance Coin", balance:10000.0, amount:1000.0, totalValue: 1000.0, dailyProfitLoss: -100)]]
+        return ["All": [CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
+                        CryptoInfo(id: 2, name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
+                "OKX": [CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
+                                CryptoInfo(id: 2, name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
+                "Binance": [CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
+                                CryptoInfo(id: 2, name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)]]
     }
     
     func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {

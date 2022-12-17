@@ -6,6 +6,6 @@ struct CryptoInfo: Identifiable, Decodable, Hashable {
     var name: String
     var balance: Double
     var amount: Double
-    var totalValue: Double
+    var price: Double
     var dailyProfitLoss: Double
 }

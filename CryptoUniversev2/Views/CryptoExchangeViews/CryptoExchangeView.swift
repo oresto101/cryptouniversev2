@@ -21,14 +21,13 @@ struct CryptoExchangeView: View {
                 }
             }
         }
-        .frame(maxWidth: .infinity)
     }
 }
 
 struct CryptoExchangeView_Previews: PreviewProvider {
     static var previews: some View {
         CryptoExchangeView(infobox: InfoBox(id: 1, name: "All", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100),
-                           cryptoInfo: [CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, totalValue: 1000.0, dailyProfitLoss: -100),
-                                        CryptoInfo(id: 2, name: "Binance Coin", balance:10000.0, amount:1000.0, totalValue: 1000.0, dailyProfitLoss: -100)])
+                           cryptoInfo: [CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
+                                        CryptoInfo(id: 2, name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)])
     }
 }

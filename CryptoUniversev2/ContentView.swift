@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
 
-    
+    @ObservedObject var network = Network.shared
     @State var showMenu = false
-    
+    @State private var showingLoginView = false
     var body: some View {
         
         let drag = DragGesture()
@@ -30,6 +30,18 @@ struct ContentView: View {
                                 .frame(width: geometry.size.width, height: geometry.size.height)
                                 .offset(x: self.showMenu ? geometry.size.width*3/4 : 0)
                                 .disabled(self.showMenu ? true : false)
+                                .onAppear {
+                                    UIScrollView.appearance().isPagingEnabled = true
+                                    network.callToGetInfoBoxes()
+                                    network.callToGetCryptoInfo()
+                                    if network.responseCode == 401 {
+                                        showingLoginView = true
+                                    }
+                                }
+                                .onDisappear {
+                                    UIScrollView.appearance().isPagingEnabled = false
+                                }
+                                
                             if self.showMenu {
                                 MenuView()
                                     .frame(width: geometry.size.width*3/4)
@@ -50,6 +62,10 @@ struct ContentView: View {
                             }
                         ))
                 }
+                .popover(isPresented: $showingLoginView)
+        {
+            LoginView()
+        }
     }
 }
 
@@ -73,14 +89,6 @@ struct MainView: View {
                     CryptoExchangeView(infobox: infobox, cryptoInfo: network.getCryptoInfoForExchange(exchange: infobox.name))
                 }
             }
-        }
-        .frame(width: 350)
-        .onAppear {
-            UIScrollView.appearance().isPagingEnabled = true
-            network.getInfoBoxes()
-        }
-        .onDisappear {
-            UIScrollView.appearance().isPagingEnabled = false
         }
         
     }

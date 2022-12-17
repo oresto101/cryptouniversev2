@@ -9,7 +9,13 @@ import SwiftUI
 
 struct HelpView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView (showsIndicators: false) {
+            LazyVStack {
+                ForEach(1...10, id: \.self) { count in
+                    Text("Helpfield " + String(count))
+                }
+            }
+        }
     }
 }
 

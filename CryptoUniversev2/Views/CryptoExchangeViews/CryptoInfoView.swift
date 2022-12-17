@@ -40,6 +40,6 @@ struct CryptoInfoView: View {
 
 struct CryptoInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoInfoView(cryptoInfo: CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, totalValue: 1000.0, dailyProfitLoss: -100))
+        CryptoInfoView(cryptoInfo: CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100))
     }
 }
