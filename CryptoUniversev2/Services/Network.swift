@@ -12,9 +12,13 @@ class Network: ObservableObject {
     var loginService = LoginService.shared
     
     func callToGetInfoBoxes() {
+        let json: [String: Any] = ["action": "infoBoxes"]
+
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
         guard let url = URL(string: "hz") else { fatalError("Missing URL") }
 
         var urlRequest = URLRequest(url: url)
+        urlRequest.httpBody = jsonData
         urlRequest.addValue(loginService.token, forHTTPHeaderField: "Authorization")
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
@@ -43,9 +47,12 @@ class Network: ObservableObject {
     
     func callToGetCryptoInfo() {
         guard let url = URL(string: "hz") else { fatalError("Missing URL") }
-        
+        let json: [String: Any] = ["action": "cryptoInfo"]
+
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
         var urlRequest = URLRequest(url: url)
         urlRequest.addValue(loginService.token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpBody = jsonData
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 print("Request error: ", error)
