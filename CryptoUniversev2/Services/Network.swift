@@ -19,6 +19,7 @@ class Network: ObservableObject {
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpBody = jsonData
+        urlRequest.httpMethod = "POST"
         urlRequest.addValue(loginService.token, forHTTPHeaderField: "Authorization")
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
@@ -53,6 +54,7 @@ class Network: ObservableObject {
         var urlRequest = URLRequest(url: url)
         urlRequest.addValue(loginService.token, forHTTPHeaderField: "Authorization")
         urlRequest.httpBody = jsonData
+        urlRequest.httpMethod = "POST"
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 print("Request error: ", error)
