@@ -14,7 +14,6 @@ struct ContentView: View {
     @State private var showingLoginView = false
     
     var body: some View {
-        self.loa
         let drag = DragGesture()
                     .onEnded {
                         if $0.translation.width < -100 {
