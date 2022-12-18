@@ -28,31 +28,41 @@ struct AddCryptoExchangeView: View {
     @State private var exchangePassphrase: String = ""
 
     var body: some View {
-        List {
-            Picker("Exchange", selection: $selectedExchange) {
-                Text("Binance").tag(Exchange.binance)
-                Text("OKX").tag(Exchange.okx)
-                Text("WhiteBit").tag(Exchange.whitebit)
+        VStack (){
+            
+            List {
+                Section{
+                    Picker("Exchange", selection: $selectedExchange) {
+                        Text("Binance").tag(Exchange.binance)
+                        Text("OKX").tag(Exchange.okx)
+                        Text("WhiteBit").tag(Exchange.whitebit)
+                    }
+                    TextField(
+                        "Exchange API",
+                        text: $exchangeAPI)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    TextField(
+                        "Exchange Secret",
+                        text: $exchangeSecret)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    TextField(
+                        "Exchange Passphrase",
+                        text: $exchangePassphrase)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
+                }
+                Button ("Add cryptoexchange"){
+                    addCryptoExchangeService.addCryptoExchange(exchangeID: selectedExchange.id, exchangeAPI: exchangeAPI, exchangeSecret: exchangeSecret, exchangePassphrase: exchangeSecret)
+                }
+
+                .disabled(exchangeAPI.isEmpty || exchangeSecret.isEmpty || (exchangePassphrase.isEmpty && selectedExchange.requiresPassphrase) ||
+                          (!exchangePassphrase.isEmpty && !selectedExchange.requiresPassphrase))
             }
-            TextField(
-                   "Exchange API",
-                   text: $exchangeAPI)
-                   .autocapitalization(.none)
-                   .disableAutocorrection(true)
-            TextField(
-                   "Exchange Secret",
-                   text: $exchangeSecret)
-                   .autocapitalization(.none)
-                   .disableAutocorrection(true)
-            TextField(
-                   "Exchange Passphrase",
-                   text: $exchangePassphrase)
-                   .autocapitalization(.none)
-                   .disableAutocorrection(true)
-                   .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
-            Button ("Add cryptoexchange"){
-                addCryptoExchangeService.addCryptoExchange(exchangeID: selectedExchange.id, exchangeAPI: exchangeAPI, exchangeSecret: exchangeSecret, exchangePassphrase: exchangeSecret)
-            }
+            
+            
             
         }
     }

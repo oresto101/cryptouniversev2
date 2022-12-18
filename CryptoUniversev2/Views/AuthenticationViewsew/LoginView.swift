@@ -15,21 +15,24 @@ struct LoginView: View {
     
     var body: some View {
         VStack{
+            Spacer()
             Text("Please log in!")
             List {
-                
-                TextField(
-                    "User name (email address)",
-                    text: $username)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-                SecureField(
-                    "Password",
-                    text: $password
-                )
+                Section{
+                    TextField(
+                        "User name (email address)",
+                        text: $username)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    SecureField(
+                        "Password",
+                        text: $password
+                    )
+                }
                 Button("Log in") {
                     loginService.login(username: username, password: password)
                 }
+                .disabled(username.isEmpty || password.isEmpty)
             }
         }
     }
