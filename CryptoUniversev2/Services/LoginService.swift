@@ -9,10 +9,10 @@ class LoginService: ObservableObject {
     static let shared = LoginService()
     var token: String = ""
     
-    func parseToken(json: Data) -> String {
+    func parseToken(json: Data) -> [String: String] {
           let decoder = JSONDecoder()
           do {
-            let info = try decoder.decode(String.self, from: json)
+            let info = try decoder.decode([String: String].self, from: json)
             return info
           } catch {
             print("Error decoding JSON: \(error)")
@@ -76,7 +76,7 @@ class LoginService: ObservableObject {
             return
           }
           print(String(data: data, encoding: .utf8)!)
-            self.token = "Token " + self.parseToken(json: data)
+            self.token = "Token " + self.parseToken(json: data)["auth_token"]!
           semaphore.signal()
         }
 
