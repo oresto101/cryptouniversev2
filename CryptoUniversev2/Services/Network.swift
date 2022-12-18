@@ -15,7 +15,7 @@ class Network: ObservableObject {
         let json: [String: Any] = ["action": "infoBoxes"]
 
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        guard let url = URL(string: "hz") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://127.0.0.1:8000/api/v1/request_data/") else { fatalError("Missing URL") }
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpBody = jsonData
@@ -46,7 +46,7 @@ class Network: ObservableObject {
     }
     
     func callToGetCryptoInfo() {
-        guard let url = URL(string: "hz") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://127.0.0.1:8000/api/v1/request_data/") else { fatalError("Missing URL") }
         let json: [String: Any] = ["action": "cryptoInfo"]
 
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
