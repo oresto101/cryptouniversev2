@@ -96,10 +96,19 @@ struct MainView: View {
     
     var body: some View {
         TabView(){
-//            ScrollView{
-//                            Text("asdasd")
-//                        }
-//            print(self.network.getInfoBoxes())
+            ScrollView{
+                RoundedRectangle(cornerRadius: 14)
+                    .frame(width: 320.0, height: 75.0)
+                    .foregroundColor(Color(.green))
+                    .overlay(
+                        VStack(){
+                            Text("No data please refresh the page")
+                                .font(.headline)
+                                .fontWeight(.bold)
+                        }
+                    )
+                }
+            .isHidden(!network.infoBoxes.isEmpty, remove: !network.infoBoxes.isEmpty)
                 ForEach(network.getInfoBoxes(), id: \.self) { infobox in
                     CryptoExchangeView(infobox: infobox, cryptoInfo: network.getCryptoInfoForExchange(exchange: infobox.name))
             }
