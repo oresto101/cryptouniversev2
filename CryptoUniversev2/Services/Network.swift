@@ -33,7 +33,7 @@ class Network: ObservableObject {
             guard let response = response as? HTTPURLResponse else { return }
 
             if response.statusCode == 200 {
-                guard let data = data else { return }
+                guard let data = String(data: data!, encoding: .utf8).data(using: .utf8) else { return }
                 DispatchQueue.main.async {
                     do {
                         let decodedInfoBoxes = try JSONDecoder().decode([InfoBox].self, from: data)
@@ -71,7 +71,7 @@ class Network: ObservableObject {
             guard let response = response as? HTTPURLResponse else { return }
             
             if response.statusCode == 200 {
-                guard let data = data else { return }
+                guard let data = String(data: data!, encoding: .utf8).data(using: .utf8) else { return }
                 DispatchQueue.main.async {
                     do {
                         let decodedCryptoInfo = try JSONDecoder().decode([String: [CryptoInfo]].self, from: data)
