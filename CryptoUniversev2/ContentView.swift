@@ -13,7 +13,6 @@ struct ContentView: View {
     @State var showMenu = false
     @State private var showingLoginView = false
     var body: some View {
-        
         let drag = DragGesture()
                     .onEnded {
                         if $0.translation.width < -100 {
@@ -65,8 +64,9 @@ struct ContentView: View {
     
     func loadData() -> Void {
         self.network.callToGetInfoBoxes()
-        network.callToGetCryptoInfo()
-        sleep(7)
+        sleep(2)
+        self.network.callToGetCryptoInfo()
+        sleep(10)
         if network.responseCode == 401 {
             showingLoginView = true
         }
@@ -91,9 +91,10 @@ struct MainView: View {
     
     var body: some View {
         TabView(){
-            ScrollView{
-                            Text("asdasd")
-                        }
+//            ScrollView{
+//                            Text("asdasd")
+//                        }
+//            print(self.network.getInfoBoxes())
                 ForEach(network.getInfoBoxes(), id: \.self) { infobox in
                     CryptoExchangeView(infobox: infobox, cryptoInfo: network.getCryptoInfoForExchange(exchange: infobox.name))
             }
