@@ -60,9 +60,8 @@ class Network: ObservableObject {
                     return
                 }
                 let boxes = self.parseInfoBox(json: data!)
-                for boxx in boxes{
-                    print(boxx)
-                }
+                self.infoBoxes = boxes
+
             }
             self.responseCode = response.statusCode
         }
