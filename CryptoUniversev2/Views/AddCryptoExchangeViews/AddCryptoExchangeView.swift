@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-var requirePassphrase = [Exchange.binance, Exchange.okx]
+var requirePassphrase = [Exchange.okx]
+var exchangeToIdDict: [Exchange: Int] = [Exchange.binance: 1, Exchange.okx: 2, Exchange.whitebit: 10, Exchange.manual: 6, Exchange.kraken: 8, Exchange.gemini: 9]
 enum Exchange: String, CaseIterable, Identifiable, Equatable {
-    case binance, okx, whitebit
-    var id: String { return self.rawValue }
-
+    case binance, okx, whitebit, manual, kraken, gemini
+    
+    var id: Int { return exchangeToIdDict[self]! }
     var requiresPassphrase: Bool {
         return requirePassphrase.contains(self)
     }
@@ -36,6 +37,9 @@ struct AddCryptoExchangeView: View {
                         Text("Binance").tag(Exchange.binance)
                         Text("OKX").tag(Exchange.okx)
                         Text("WhiteBit").tag(Exchange.whitebit)
+                        Text("Manual").tag(Exchange.manual)
+                        Text("Kraken").tag(Exchange.kraken)
+                        Text("Gemini").tag(Exchange.gemini)
                     }
                     TextField(
                         "Exchange API",
