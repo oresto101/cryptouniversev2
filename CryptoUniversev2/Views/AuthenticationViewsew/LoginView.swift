@@ -31,7 +31,9 @@ struct LoginView: View {
                 }
                 Button("Log in") {
                     loginService.login(username: username, password: password)
+                    usleep(500000)
                     network.callToGetCryptoInfo()
+                    sleep(1)
                     network.callToGetInfoBoxes()
                 }
                 .disabled(username.isEmpty || password.isEmpty)
