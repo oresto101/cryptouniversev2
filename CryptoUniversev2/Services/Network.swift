@@ -35,9 +35,7 @@ class Network: ObservableObject {
                     }
                 }
             }
-            else {
-                self.responseCode = response.statusCode
-            }
+            self.responseCode = response.statusCode
         }
 
         dataTask.resume()
@@ -45,7 +43,7 @@ class Network: ObservableObject {
     
     func callToGetCryptoInfo() {
         guard let url = URL(string: "hz") else { fatalError("Missing URL") }
-
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.addValue(loginService.token, forHTTPHeaderField: "Authorization")
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
@@ -53,9 +51,9 @@ class Network: ObservableObject {
                 print("Request error: ", error)
                 return
             }
-
+            
             guard let response = response as? HTTPURLResponse else { return }
-
+            
             if response.statusCode == 200 {
                 guard let data = data else { return }
                 DispatchQueue.main.async {
@@ -66,25 +64,28 @@ class Network: ObservableObject {
                         print("Error decoding: ", error)
                     }
                 }
+                
             }
+            self.responseCode = response.statusCode
+            
         }
-
         dataTask.resume()
     }
     
     func getInfoBoxes() -> [InfoBox]{
         
-        //todo return infoBoxes
-        return [InfoBox(name: "All", totalBalance: 1000, dailyProfitLoss: 100,netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100), InfoBox(name: "Binance", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100), InfoBox(name: "OKX", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100)]
+        return self.infoBoxes
+//        return [InfoBox(name: "All", totalBalance: 1000, dailyProfitLoss: 100,netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100), InfoBox(name: "Binance", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100), InfoBox(name: "OKX", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100)]
     }
     
     func getCryptoInfo() -> [String: [CryptoInfo]]{
-        return ["All": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
-                        CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
-                "OKX": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
-                                CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
-                "Binance": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
-                                CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)]]
+        return self.cryptoInfo
+//        return ["All": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
+//                        CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
+//                "OKX": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
+//                                CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
+//                "Binance": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
+//                                CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)]]
     }
     
     func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
