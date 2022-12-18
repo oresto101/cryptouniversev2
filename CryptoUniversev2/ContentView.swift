@@ -12,8 +12,9 @@ struct ContentView: View {
     @ObservedObject var network = Network.shared
     @State var showMenu = false
     @State private var showingLoginView = false
+    
     var body: some View {
-        
+        self.loa
         let drag = DragGesture()
                     .onEnded {
                         if $0.translation.width < -100 {
@@ -31,7 +32,7 @@ struct ContentView: View {
                                 .offset(x: self.showMenu ? geometry.size.width*3/4 : 0)
                                 .disabled(self.showMenu ? true : false)
                                 .onAppear {
-                                    self.loadData()
+                                    
                                     self.showMenu = false
                                 }
                             if self.showMenu {
