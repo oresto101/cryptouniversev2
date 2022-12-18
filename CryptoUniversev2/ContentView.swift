@@ -65,9 +65,8 @@ struct ContentView: View {
     
     func loadData() -> Void {
         self.network.callToGetInfoBoxes()
-        sleep(10)
-        print(self.network.infoBoxes)
-//        network.callToGetCryptoInfo()
+        network.callToGetCryptoInfo()
+        sleep(7)
         if network.responseCode == 401 {
             showingLoginView = true
         }
@@ -92,6 +91,9 @@ struct MainView: View {
     
     var body: some View {
         TabView(){
+            ScrollView{
+                            Text("asdasd")
+                        }
                 ForEach(network.getInfoBoxes(), id: \.self) { infobox in
                     CryptoExchangeView(infobox: infobox, cryptoInfo: network.getCryptoInfoForExchange(exchange: infobox.name))
             }
