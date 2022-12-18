@@ -10,44 +10,65 @@ class LoginService: ObservableObject {
     var token: String = ""
     func login(username: String, password: String) -> Void {
         
-        let json = [[
+        var semaphore = DispatchSemaphore (value: 0)
+
+        let parameters = [
+          [
             "key": "username",
-            "value": username,
+            "value": "root",
             "type": "text"
-        ],
-        [
+          ],
+          [
             "key": "password",
-            "value": password,
+            "value": "root",
             "type": "text"
-        ]]
+          ]] as [[String : Any]]
 
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        guard let url = URL(string: "http://127.0.0.1:8000/auth/token/login/") else { fatalError("Missing URL") }
-
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpBody = jsonData
-        urlRequest.httpMethod = "POST"
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                print("Request error: ", error)
-                return
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var body = ""
+        var error: Error? = nil
+        for param in parameters {
+          if param["disabled"] == nil {
+            let paramName = param["key"]!
+            body += "--\(boundary)\r\n"
+            body += "Content-Disposition:form-data; name=\"\(paramName)\""
+            if param["contentType"] != nil {
+              body += "\r\nContent-Type: \(param["contentType"] as! String)"
             }
-
-            guard let response = response as? HTTPURLResponse else { return }
-
-            if response.statusCode == 200 {
-                guard let data = data else { return }
-                DispatchQueue.main.async {
-                    do {
-                        let decodedToken = try JSONDecoder().decode(String.self, from: data)
-                        self.token = decodedToken
-                    } catch let error {
-                        print("Error decoding: ", error)
-                    }
-                }
+            let paramType = param["type"] as! String
+            if paramType == "text" {
+              let paramValue = param["value"] as! String
+              body += "\r\n\r\n\(paramValue)\r\n"
+            } else {
+              let paramSrc = param["src"] as! String
+              let fileData = try? NSData(contentsOfFile:paramSrc, options:[]) as Data
+              let fileContent = String(data: fileData!, encoding: .utf8)!
+              body += "; filename=\"\(paramSrc)\"\r\n"
+                + "Content-Type: \"content-type header\"\r\n\r\n\(fileContent)\r\n"
             }
+          }
+        }
+        body += "--\(boundary)--\r\n";
+        let postData = body.data(using: .utf8)
+
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/auth/token/login/")!,timeoutInterval: Double.infinity)
+        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "POST"
+        request.httpBody = postData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          guard let data = data else {
+            print(String(describing: error))
+            semaphore.signal()
+            return
+          }
+          print(String(data: data, encoding: .utf8)!)
+            self.token = "Token " + String(data: data, encoding: .utf8)!
+          semaphore.signal()
         }
 
-        dataTask.resume()
+        task.resume()
+        semaphore.wait()
     }
 }
