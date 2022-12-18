@@ -64,8 +64,10 @@ struct ContentView: View {
     }
     
     func loadData() -> Void {
-        network.callToGetInfoBoxes()
-        network.callToGetCryptoInfo()
+        self.network.callToGetInfoBoxes()
+        sleep(10)
+        print(self.network.infoBoxes)
+//        network.callToGetCryptoInfo()
         if network.responseCode == 401 {
             showingLoginView = true
         }

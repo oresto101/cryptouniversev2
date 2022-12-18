@@ -12,16 +12,19 @@ class Network: ObservableObject {
     var loginService = LoginService.shared
     
     func callToGetInfoBoxes() {
-        let json: [String: Any] = ["action": "infoBoxes"]
+        var semaphore = DispatchSemaphore (value: 0)
 
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        guard let url = URL(string: "http://127.0.0.1:8000/api/v1/request_data/") else { fatalError("Missing URL") }
+        let parameters = "action=infoBoxes"
+        let postData =  parameters.data(using: .utf8)
 
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpBody = jsonData
-        urlRequest.httpMethod = "POST"
-        urlRequest.addValue(loginService.token, forHTTPHeaderField: "Authorization")
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/request_data/")!,timeoutInterval: Double.infinity)
+        request.addValue("Token 789c2fc55deac8da70dba632eb768fa08aed1a4d", forHTTPHeaderField: "Authorization")
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "POST"
+        request.httpBody = postData
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("Request error: ", error)
                 return
@@ -47,15 +50,19 @@ class Network: ObservableObject {
     }
     
     func callToGetCryptoInfo() {
-        guard let url = URL(string: "http://127.0.0.1:8000/api/v1/request_data/") else { fatalError("Missing URL") }
-        let json: [String: Any] = ["action": "cryptoInfo"]
+        var semaphore = DispatchSemaphore (value: 0)
 
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        var urlRequest = URLRequest(url: url)
-        urlRequest.addValue(loginService.token, forHTTPHeaderField: "Authorization")
-        urlRequest.httpBody = jsonData
-        urlRequest.httpMethod = "POST"
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+        let parameters = "action=cryptoInfo"
+        let postData =  parameters.data(using: .utf8)
+
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/request_data/")!,timeoutInterval: Double.infinity)
+        request.addValue("Token 789c2fc55deac8da70dba632eb768fa08aed1a4d", forHTTPHeaderField: "Authorization")
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "POST"
+        request.httpBody = postData
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("Request error: ", error)
                 return
