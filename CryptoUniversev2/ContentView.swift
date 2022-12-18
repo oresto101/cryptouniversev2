@@ -72,7 +72,6 @@ struct ContentView: View {
         self.network.callToGetInfoBoxes()
         sleep(2)
         self.network.callToGetCryptoInfo()
-        sleep(10)
         if network.responseCode == 401 {
             showingLoginView = true
         }

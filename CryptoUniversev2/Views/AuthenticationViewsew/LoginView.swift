@@ -12,7 +12,7 @@ struct LoginView: View {
     @ObservedObject var loginService = LoginService.shared
     @State private var username: String = ""
     @State private var password: String = ""
-    
+    @ObservedObject var network = Network.shared
     var body: some View {
         VStack{
             Spacer()
@@ -31,6 +31,8 @@ struct LoginView: View {
                 }
                 Button("Log in") {
                     loginService.login(username: username, password: password)
+                    network.callToGetCryptoInfo()
+                    network.callToGetInfoBoxes()
                 }
                 .disabled(username.isEmpty || password.isEmpty)
             }
