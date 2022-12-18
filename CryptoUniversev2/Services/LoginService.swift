@@ -26,6 +26,7 @@ class LoginService: ObservableObject {
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpBody = jsonData
+        urlRequest.httpMethod = "POST"
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 print("Request error: ", error)
