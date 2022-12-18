@@ -28,7 +28,7 @@ struct InfoBoxView: View {
                         }
                         .offset(x: -30.0)
                         VStack(alignment: .trailing){
-                            Text(String(infobox.totalBalance))
+                            Text(String(roundDoubles(val: infobox.totalBalance)))
                             Text(formatBalancePLAndPercentageToString(balance: infobox.netProfitLoss,
                                                                       percentage: infobox.netProfitLossPercentage))
                             Text(formatBalancePLAndPercentageToString(balance: infobox.dailyProfitLoss,

@@ -15,12 +15,12 @@ class LoginService: ObservableObject {
         let parameters = [
           [
             "key": "username",
-            "value": "root",
+            "value": username,
             "type": "text"
           ],
           [
             "key": "password",
-            "value": "root",
+            "value": password,
             "type": "text"
           ]] as [[String : Any]]
 
