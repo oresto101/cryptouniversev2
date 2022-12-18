@@ -32,7 +32,12 @@ struct ContentView: View {
                                 .offset(x: self.showMenu ? geometry.size.width*3/4 : 0)
                                 .disabled(self.showMenu ? true : false)
                                 .onAppear {
-                                    
+                                    if network.responseCode == 401 {
+                                        showingLoginView = true
+                                    }
+                                    else {
+                                        showingLoginView = false
+                                    }
                                     self.showMenu = false
                                 }
                             if self.showMenu {
