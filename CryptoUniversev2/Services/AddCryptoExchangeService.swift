@@ -8,7 +8,7 @@ class AddCryptoExchangeService: ObservableObject {
     
     var loginService = LoginService.shared
     static let shared = AddCryptoExchangeService()
-    func addCryptoExchange(exchangeID: Int, exchangeAPI: String, exchangeSecret: String, exchangePassphrase: String) -> Void {
+    func addCryptoExchange(exchangeID: String, exchangeAPI: String, exchangeSecret: String, exchangePassphrase: String) -> Void {
         var semaphore = DispatchSemaphore (value: 0)
 
         let parameters = [

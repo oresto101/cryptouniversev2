@@ -16,7 +16,7 @@ class LoginService: ObservableObject {
             return info
           } catch {
             print("Error decoding JSON: \(error)")
-              return ""
+              return [:]
           }
         }
     

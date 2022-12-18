@@ -39,7 +39,8 @@ class Network: ObservableObject {
         let postData =  parameters.data(using: .utf8)
 
         var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/request_data/")!,timeoutInterval: Double.infinity)
-        request.addValue("Token " + loginService.token, forHTTPHeaderField: "Authorization")
+        print(loginService.token)
+        request.addValue(loginService.token, forHTTPHeaderField: "Authorization")
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
 
         request.httpMethod = "POST"
@@ -76,7 +77,7 @@ class Network: ObservableObject {
         let postData =  parameters.data(using: .utf8)
 
         var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/request_data/")!,timeoutInterval: Double.infinity)
-        request.addValue("Token " + loginService.token, forHTTPHeaderField: "Authorization")
+        request.addValue(loginService.token, forHTTPHeaderField: "Authorization")
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
 
         request.httpMethod = "POST"

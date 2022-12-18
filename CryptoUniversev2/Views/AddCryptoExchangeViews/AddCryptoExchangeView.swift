@@ -8,11 +8,11 @@
 import SwiftUI
 
 var requirePassphrase = [Exchange.okx]
-var exchangeToIdDict: [Exchange: Int] = [Exchange.binance: 1, Exchange.okx: 2, Exchange.whitebit: 10, Exchange.manual: 6, Exchange.kraken: 8, Exchange.gemini: 9]
+var exchangeToIdDict: [Exchange: String] = [Exchange.binance: "1", Exchange.okx: "2", Exchange.whitebit: "10", Exchange.manual: "6", Exchange.kraken: "8", Exchange.gemini: "9"]
 enum Exchange: String, CaseIterable, Identifiable, Equatable {
     case binance, okx, whitebit, manual, kraken, gemini
     
-    var id: Int { return exchangeToIdDict[self]! }
+    var id: String { return exchangeToIdDict[self]! }
     var requiresPassphrase: Bool {
         return requirePassphrase.contains(self)
     }
