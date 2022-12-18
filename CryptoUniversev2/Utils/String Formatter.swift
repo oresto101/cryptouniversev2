@@ -13,3 +13,7 @@ func formatPercentageToString(percentage: Double) -> String {
     }
     return String(percentage) + "%"
 }
+
+func formatBalancePLAndPercentageToString(balance: Double, percentage: Double) -> String {
+    return String(balance) + " (" + formatPercentageToString(percentage: percentage) + ")"
+}

@@ -75,16 +75,16 @@ class Network: ObservableObject {
     func getInfoBoxes() -> [InfoBox]{
         
         //todo return infoBoxes
-        return [InfoBox(id: 1, name: "All", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100), InfoBox(id: 2, name: "Binance", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100), InfoBox(id: 3, name: "OKX", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100)]
+        return [InfoBox(name: "All", totalBalance: 1000, dailyProfitLoss: 100,netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100), InfoBox(name: "Binance", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100), InfoBox(name: "OKX", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100)]
     }
     
     func getCryptoInfo() -> [String: [CryptoInfo]]{
-        return ["All": [CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
-                        CryptoInfo(id: 2, name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
-                "OKX": [CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
-                                CryptoInfo(id: 2, name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
-                "Binance": [CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
-                                CryptoInfo(id: 2, name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)]]
+        return ["All": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
+                        CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
+                "OKX": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
+                                CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
+                "Binance": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
+                                CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)]]
     }
     
     func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {

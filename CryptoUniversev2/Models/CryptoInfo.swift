@@ -1,8 +1,7 @@
 
 import Foundation
 
-struct CryptoInfo: Identifiable, Decodable, Hashable {
-    var id: Int
+struct CryptoInfo: Decodable, Hashable {
     var name: String
     var balance: Double
     var amount: Double

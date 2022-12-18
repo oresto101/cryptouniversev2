@@ -26,13 +26,15 @@ struct InfoBoxView: View {
                             Text("Daily P/L")
                             Text("Total P/L")
                         }
-                        .offset(x: -50.0)
+                        .offset(x: -30.0)
                         VStack(alignment: .trailing){
                             Text(String(infobox.totalBalance))
-                            Text(formatPercentageToString(percentage: infobox.dailyProfitLoss))
-                            Text(formatPercentageToString(percentage: infobox.netProfitLoss))
+                            Text(formatBalancePLAndPercentageToString(balance: infobox.netProfitLoss,
+                                                                      percentage: infobox.netProfitLossPercentage))
+                            Text(formatBalancePLAndPercentageToString(balance: infobox.dailyProfitLoss,
+                                                                      percentage: infobox.dailyProfitLossPercentage))
                         }
-                        .offset(x: 40.0)
+                        .offset(x: 30.0)
                     }
                 }
             )
@@ -42,6 +44,6 @@ struct InfoBoxView: View {
 
 struct InfoBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoBoxView(infobox: InfoBox(id: 1, name: "All", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100))
+        InfoBoxView(infobox: InfoBox(name: "All", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100))
     }
 }

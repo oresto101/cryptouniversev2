@@ -26,7 +26,7 @@ struct CryptoInfoView: View {
                         }
                         .offset(x: -20.0)
                         VStack(alignment: .trailing){
-                            Text(String(cryptoInfo.balance) + " (" + formatPercentageToString(percentage: cryptoInfo.dailyProfitLoss) + ")")
+                            Text(formatBalancePLAndPercentageToString(balance: cryptoInfo.balance, percentage: cryptoInfo.dailyProfitLoss))
                             Text(String(cryptoInfo.amount))
                         }
                         .offset(x: 20.0)
@@ -40,6 +40,6 @@ struct CryptoInfoView: View {
 
 struct CryptoInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoInfoView(cryptoInfo: CryptoInfo(id: 1, name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100))
+        CryptoInfoView(cryptoInfo: CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100))
     }
 }
