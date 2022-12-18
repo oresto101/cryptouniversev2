@@ -14,23 +14,23 @@ struct LoginView: View {
     @State private var password: String = ""
     
     var body: some View {
-        VStack(alignment: .center) {
-            Text("Please log in")
-            TextField(
-                   "User name (email address)",
-                   text: $username)
-                   .autocapitalization(.none)
-                   .disableAutocorrection(true)
-                   .border(Color(UIColor.separator))
-               SecureField(
-                   "Password",
-                   text: $password
-               )
-               .border(Color(UIColor.separator))
-            Button("Log in") {
-                loginService.login(username: username, password: password)
+        VStack{
+            Text("Please log in!")
+            List {
+                
+                TextField(
+                    "User name (email address)",
+                    text: $username)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                SecureField(
+                    "Password",
+                    text: $password
+                )
+                Button("Log in") {
+                    loginService.login(username: username, password: password)
+                }
             }
-            Spacer()
         }
     }
 }

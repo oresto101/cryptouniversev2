@@ -4,25 +4,16 @@ struct MenuView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                NavigationLink(destination: ContentView(showMenu: false)){
-                    Image(systemName: "house")
+                NavigationLink(destination: AddCryptoExchangeView()){
+                    Image(systemName: "plus.square")
                         .foregroundColor(.gray)
                         .imageScale(.large)
-                    Text("Home")
+                    Text("Add Cryptoexchange")
                         .foregroundColor(.gray)
                         .font(.headline)
                 }
             }
-            .padding(.top, 100)
-            HStack {
-                Image(systemName: "plus.square")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                Text("Add Cryptoexchange")
-                    .foregroundColor(.gray)
-                    .font(.headline)
-            }
-                .padding(.top, 30)
+                .padding(.top, 100)
             HStack {
                 Image(systemName: "list.clipboard")
                     .foregroundColor(.gray)

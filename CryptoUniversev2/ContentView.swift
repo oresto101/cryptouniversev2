@@ -31,14 +31,8 @@ struct ContentView: View {
                                 .offset(x: self.showMenu ? geometry.size.width*3/4 : 0)
                                 .disabled(self.showMenu ? true : false)
                                 .onAppear {
-                                    network.callToGetInfoBoxes()
-                                    network.callToGetCryptoInfo()
-                                    if network.responseCode == 401 {
-                                        showingLoginView = true
-                                    }
-                                    else {
-                                        showingLoginView = false
-                                    }
+                                    self.loadData()
+                                    self.showMenu = false
                                 }
                             if self.showMenu {
                                 MenuView()
@@ -61,18 +55,22 @@ struct ContentView: View {
                         ))
                 }
                 .refreshable(){
-                    network.callToGetInfoBoxes()
-                    network.callToGetCryptoInfo()
-                    if network.responseCode == 401 {
-                        showingLoginView = true
-                    }
-                    else {
-                        showingLoginView = false
-                    }
+                    self.loadData()
                 }
                 .popover(isPresented: $showingLoginView)
         {
             LoginView()
+        }
+    }
+    
+    func loadData() -> Void {
+        network.callToGetInfoBoxes()
+        network.callToGetCryptoInfo()
+        if network.responseCode == 401 {
+            showingLoginView = true
+        }
+        else {
+            showingLoginView = false
         }
     }
 }
@@ -97,6 +95,5 @@ struct MainView: View {
             }
         }
         .tabViewStyle(PageTabViewStyle())
-        
     }
 }

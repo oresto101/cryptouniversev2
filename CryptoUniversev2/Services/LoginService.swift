@@ -13,13 +13,13 @@ class LoginService: ObservableObject {
         
         let parameters = [
             [
-                "key": username,
-                "value": "root",
+                "key": "username",
+                "value": username,
                 "type": "text"
             ],
             [
-                "key": password,
-                "value": "root",
+                "key": "password",
+                "value": password,
                 "type": "text"
             ]] as [[String : Any]]
         
@@ -52,7 +52,6 @@ class LoginService: ObservableObject {
         
         var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/auth/token/login/")!,timeoutInterval: Double.infinity)
         request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
         request.httpMethod = "POST"
         request.httpBody = postData
         

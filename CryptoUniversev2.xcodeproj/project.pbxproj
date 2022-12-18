@@ -26,6 +26,9 @@
 		CBAD25912946D0440062DF52 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD25902946D0440062DF52 /* HelpView.swift */; };
 		CBE25A87294E65C60010F712 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A86294E65C60010F712 /* LoginService.swift */; };
 		CBE25A8C294E68BB0010F712 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8B294E68BB0010F712 /* LoginView.swift */; };
+		CBE25A8F294E8C320010F712 /* AddCryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */; };
+		CBE25A91294E928B0010F712 /* AddCryptoExchangeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A90294E928B0010F712 /* AddCryptoExchangeService.swift */; };
+		CBE25A94294E99510010F712 /* HideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A93294E99510010F712 /* HideView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		CBAD25902946D0440062DF52 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		CBE25A86294E65C60010F712 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		CBE25A8B294E68BB0010F712 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoExchangeView.swift; sourceTree = "<group>"; };
+		CBE25A90294E928B0010F712 /* AddCryptoExchangeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoExchangeService.swift; sourceTree = "<group>"; };
+		CBE25A93294E99510010F712 /* HideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,7 @@
 		CB65253A2946A36100FD5D11 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CBE25A8D294E8C060010F712 /* AddCryptoExchangeViews */,
 				CBE25A88294E68420010F712 /* AuthenticationViewsew */,
 				CBAD258F2946D0320062DF52 /* HelpViews */,
 				CB6525442946C1C500FD5D11 /* CryptoExchangeViews */,
@@ -139,6 +146,7 @@
 		CB72DCF9294516530087534D /* CryptoUniversev2 */ = {
 			isa = PBXGroup;
 			children = (
+				CBE25A92294E99380010F712 /* Utils */,
 				CBE25A85294E65AD0010F712 /* Services */,
 				CB65253A2946A36100FD5D11 /* Views */,
 				CB72DD2629451DB00087534D /* Models */,
@@ -146,7 +154,6 @@
 				CB72DCFC294516530087534D /* ContentView.swift */,
 				CB72DCFE294516550087534D /* Assets.xcassets */,
 				CB72DD00294516550087534D /* Preview Content */,
-				CBAD258D2946CB5F0062DF52 /* String Formatter.swift */,
 			);
 			path = CryptoUniversev2;
 			sourceTree = "<group>";
@@ -198,6 +205,7 @@
 			children = (
 				CB72DD2929451FAA0087534D /* Network.swift */,
 				CBE25A86294E65C60010F712 /* LoginService.swift */,
+				CBE25A90294E928B0010F712 /* AddCryptoExchangeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -208,6 +216,23 @@
 				CBE25A8B294E68BB0010F712 /* LoginView.swift */,
 			);
 			path = AuthenticationViewsew;
+			sourceTree = "<group>";
+		};
+		CBE25A8D294E8C060010F712 /* AddCryptoExchangeViews */ = {
+			isa = PBXGroup;
+			children = (
+				CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */,
+			);
+			path = AddCryptoExchangeViews;
+			sourceTree = "<group>";
+		};
+		CBE25A92294E99380010F712 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CBAD258D2946CB5F0062DF52 /* String Formatter.swift */,
+				CBE25A93294E99510010F712 /* HideView.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,6 +375,7 @@
 				CBE25A87294E65C60010F712 /* LoginService.swift in Sources */,
 				CBAD25912946D0440062DF52 /* HelpView.swift in Sources */,
 				CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */,
+				CBE25A91294E928B0010F712 /* AddCryptoExchangeService.swift in Sources */,
 				CB65253C2946A40100FD5D11 /* CryptoInfoView.swift in Sources */,
 				CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */,
 				CBAD258E2946CB5F0062DF52 /* String Formatter.swift in Sources */,
@@ -358,6 +384,8 @@
 				CB65253529468BD900FD5D11 /* InfoBoxView.swift in Sources */,
 				CBE25A8C294E68BB0010F712 /* LoginView.swift in Sources */,
 				CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */,
+				CBE25A8F294E8C320010F712 /* AddCryptoExchangeView.swift in Sources */,
+				CBE25A94294E99510010F712 /* HideView.swift in Sources */,
 				CB72DCFB294516530087534D /* CryptoUniversev2App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
