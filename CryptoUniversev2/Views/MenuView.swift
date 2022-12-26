@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct MenuView: View {
+    
+    @ObservedObject var loginService = LoginService.shared
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -52,6 +55,31 @@ struct MenuView: View {
                     .font(.headline)
             }
             .padding(.top, 30)
+            .isHidden(loginService.token.isEmpty, remove: loginService.token.isEmpty)
+            HStack {
+                NavigationLink(destination: LoginView()){
+                    Image(systemName: "arrow.right.to.line")
+                        .foregroundColor(.gray)
+                        .imageScale(.large)
+                    Text("Log In")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                }
+            }
+            .padding(.top, 30)
+            .isHidden(!loginService.token.isEmpty, remove: !loginService.token.isEmpty)
+            HStack {
+                NavigationLink(destination: RegistrationView()){
+                    Image(systemName: "person.fill.badge.plus")
+                        .foregroundColor(.gray)
+                        .imageScale(.large)
+                    Text("Register")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                }
+            }
+            .padding(.top, 30)
+            .isHidden(!loginService.token.isEmpty, remove: !loginService.token.isEmpty)
             Spacer()
         }
             .padding()

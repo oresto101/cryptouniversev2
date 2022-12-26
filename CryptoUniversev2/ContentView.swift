@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @ObservedObject var network = Network.shared
+    @ObservedObject var network = NetworkService.shared
     @State var showMenu = false
-    @State private var showingLoginView = false
     
     var body: some View {
         let drag = DragGesture()
@@ -31,12 +30,6 @@ struct ContentView: View {
                                 .offset(x: self.showMenu ? geometry.size.width*3/4 : 0)
                                 .disabled(self.showMenu ? true : false)
                                 .onAppear {
-                                    if network.responseCode == 401 {
-                                        showingLoginView = true
-                                    }
-                                    else {
-                                        showingLoginView = false
-                                    }
                                     self.showMenu = false
                                 }
                             if self.showMenu {
@@ -62,35 +55,27 @@ struct ContentView: View {
                 .refreshable(){
                     self.loadData()
                 }
-                .popover(isPresented: $showingLoginView)
-        {
-            LoginView()
-        }
     }
     
     func loadData() -> Void {
         self.network.callToGetInfoBoxes()
         sleep(2)
         self.network.callToGetCryptoInfo()
-        if network.responseCode == 401 {
-            showingLoginView = true
-        }
-        else {
-            showingLoginView = false
-        }
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(Network())
+            .environmentObject(NetworkService())
     }
 }
 
 struct MainView: View {
     
-    @ObservedObject var network = Network.shared
+    @ObservedObject var loginService = LoginService.shared
+    @ObservedObject var network = NetworkService.shared
     
     @Binding var showMenu: Bool
     
@@ -102,9 +87,14 @@ struct MainView: View {
                     .foregroundColor(Color(.green))
                     .overlay(
                         VStack(){
+                            Text("Please log in to see your assets!")
+                                .font(.headline)
+                                .fontWeight(.bold)
+                                .isHidden(!loginService.token.isEmpty, remove: !loginService.token.isEmpty)
                             Text("No data please refresh the page")
                                 .font(.headline)
                                 .fontWeight(.bold)
+                                .isHidden(loginService.token.isEmpty, remove: loginService.token.isEmpty)
                         }
                     )
                 }

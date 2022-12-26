@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct CryptoUniversev2App: App {
-    @ObservedObject var network = Network.shared
+    @ObservedObject var network = NetworkService.shared
     init(){
         self.loadData()
     }

@@ -1,12 +1,12 @@
 import Foundation
 
-class Network: ObservableObject {
+class NetworkService: ObservableObject {
     var infoBoxes: [InfoBox] = []
     
     var cryptoInfo: [String: [CryptoInfo]] = [:]
     
     var responseCode: Int = 401
-    static let shared = Network()
+    static let shared = NetworkService()
     
     var str = "[{\"name\":\"Overall\",\"totalBalance\":533.25,\"dailyProfitLoss\":0,\"netProfitLoss\":-0.826794800807365,\"dailyProfitLossPercentage\":0,\"netProfitLossPercentage\":0},{\"name\":\"Kraken\",\"totalBalance\":14.15,\"dailyProfitLoss\":0,\"netProfitLoss\":0.030000000000001137,\"dailyProfitLossPercentage\":0,\"netProfitLossPercentage\":0},{\"name\":\"Binance\",\"totalBalance\":473.08,\"dailyProfitLoss\":0,\"netProfitLoss\":-1.1400000000000432,\"dailyProfitLossPercentage\":0,\"netProfitLossPercentage\":0},{\"name\":\"WhiteBit\",\"totalBalance\":13.64,\"dailyProfitLoss\":0,\"netProfitLoss\":0.02000000000000135,\"dailyProfitLossPercentage\":0,\"netProfitLossPercentage\":0},{\"name\":\"Gemini\",\"totalBalance\":11.78,\"dailyProfitLoss\":0,\"netProfitLoss\":-0.009999999999999787,\"dailyProfitLossPercentage\":0,\"netProfitLossPercentage\":0},{\"name\":\"OKX\",\"totalBalance\":20.28,\"dailyProfitLoss\":0,\"netProfitLoss\":0.2699999999999996,\"dailyProfitLossPercentage\":0,\"netProfitLossPercentage\":0},{\"name\":\"Manual\",\"totalBalance\":0.32,\"dailyProfitLoss\":0,\"netProfitLoss\":0.0032051991926759227,\"dailyProfitLossPercentage\":0,\"netProfitLossPercentage\":0}]"
     
