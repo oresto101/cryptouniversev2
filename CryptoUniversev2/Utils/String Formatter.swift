@@ -19,5 +19,5 @@ func formatBalancePLAndPercentageToString(balance: Double, percentage: Double) -
 }
 
 func roundDoubles(val: Double) -> Double {
-    return val.rounded() * 10 / 10.0
+    return round(val * 100) / 100
 }
