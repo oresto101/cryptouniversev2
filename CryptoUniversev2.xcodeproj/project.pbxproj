@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB404EA0295A085B0038E0A2 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404E9F295A085B0038E0A2 /* RegistrationView.swift */; };
 		CB404EA2295A09D80038E0A2 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA1295A09D80038E0A2 /* RegistrationService.swift */; };
+		CB404EA4295A0F120038E0A2 /* ListCryptoExchangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA3295A0F120038E0A2 /* ListCryptoExchangesView.swift */; };
 		CB65253529468BD900FD5D11 /* InfoBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253429468BD900FD5D11 /* InfoBoxView.swift */; };
 		CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253629469D4500FD5D11 /* CryptoInfo.swift */; };
 		CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		CB404E9F295A085B0038E0A2 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		CB404EA1295A09D80038E0A2 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		CB404EA3295A0F120038E0A2 /* ListCryptoExchangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCryptoExchangesView.swift; sourceTree = "<group>"; };
 		CB65253429468BD900FD5D11 /* InfoBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBoxView.swift; sourceTree = "<group>"; };
 		CB65253629469D4500FD5D11 /* CryptoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoInfo.swift; sourceTree = "<group>"; };
 		CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoExchangeView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				CB65253429468BD900FD5D11 /* InfoBoxView.swift */,
 				CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */,
 				CB65253B2946A40100FD5D11 /* CryptoInfoView.swift */,
+				CB404EA3295A0F120038E0A2 /* ListCryptoExchangesView.swift */,
 			);
 			path = CryptoExchangeViews;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB404EA4295A0F120038E0A2 /* ListCryptoExchangesView.swift in Sources */,
 				CB72DD2A29451FAA0087534D /* NetworkService.swift in Sources */,
 				CBE25A87294E65C60010F712 /* LoginService.swift in Sources */,
 				CBAD25912946D0440062DF52 /* HelpView.swift in Sources */,

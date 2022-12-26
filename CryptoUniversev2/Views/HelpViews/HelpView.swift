@@ -9,13 +9,18 @@ import SwiftUI
 
 struct HelpView: View {
     var body: some View {
-        ScrollView (showsIndicators: false) {
-            LazyVStack {
-                ForEach(1...10, id: \.self) { count in
-                    Text("Helpfield " + String(count))
+        RoundedRectangle(cornerRadius: 14)
+            .frame(width: 320.0, height: 75.0)
+            .foregroundColor(Color(.green))
+            .overlay(
+                VStack(alignment: .center){
+                    Text("This app doesn't have any users so no FAQ for you!")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.center)
+                    
                 }
-            }
-        }
+            )
     }
 }
 
