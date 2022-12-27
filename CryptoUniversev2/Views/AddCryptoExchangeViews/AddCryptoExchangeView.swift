@@ -7,22 +7,11 @@
 
 import SwiftUI
 
-var requirePassphrase = [Exchange.okx]
-var exchangeToIdDict: [Exchange: String] = [Exchange.binance: "1", Exchange.okx: "2", Exchange.whitebit: "10", Exchange.manual: "6", Exchange.kraken: "8", Exchange.gemini: "9"]
-enum Exchange: String, CaseIterable, Identifiable, Equatable {
-    case binance, okx, whitebit, manual, kraken, gemini
-    
-    var id: String { return exchangeToIdDict[self]! }
-    var requiresPassphrase: Bool {
-        return requirePassphrase.contains(self)
-    }
-}
+
 
 struct AddCryptoExchangeView: View {
     
-    
-    
-    @ObservedObject var addCryptoExchangeService = AddCryptoExchangeService.shared
+    @ObservedObject var cryptoExchangeManagementService = CryptoExchangeManagementService.shared
     @State private var selectedExchange: Exchange = .binance
     @State private var exchangeAPI: String = ""
     @State private var exchangeSecret: String = ""
@@ -30,16 +19,11 @@ struct AddCryptoExchangeView: View {
 
     var body: some View {
         VStack (){
-            
             List {
                 Section{
                     Picker("Exchange", selection: $selectedExchange) {
-                        Text("Binance").tag(Exchange.binance)
-                        Text("OKX").tag(Exchange.okx)
-                        Text("WhiteBit").tag(Exchange.whitebit)
-                        Text("Manual").tag(Exchange.manual)
-                        Text("Kraken").tag(Exchange.kraken)
-                        Text("Gemini").tag(Exchange.gemini)
+                        ForEach(Exchange.allCases, id: \.self) {exchange in Text(exchange.name).tag(exchange)
+                        }
                     }
                     TextField(
                         "Exchange API",
@@ -59,7 +43,7 @@ struct AddCryptoExchangeView: View {
                     .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
                 }
                 Button ("Add cryptoexchange"){
-                    addCryptoExchangeService.addCryptoExchange(exchangeID: selectedExchange.id, exchangeAPI: exchangeAPI, exchangeSecret: exchangeSecret, exchangePassphrase: exchangeSecret)
+                    cryptoExchangeManagementService.addCryptoExchange(exchangeID: selectedExchange.id, exchangeAPI: exchangeAPI, exchangeSecret: exchangeSecret, exchangePassphrase: exchangeSecret)
                 }
 
                 .disabled(exchangeAPI.isEmpty || exchangeSecret.isEmpty || (exchangePassphrase.isEmpty && selectedExchange.requiresPassphrase) ||

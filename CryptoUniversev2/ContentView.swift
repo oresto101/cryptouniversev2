@@ -87,14 +87,16 @@ struct MainView: View {
                     .foregroundColor(Color(.green))
                     .overlay(
                         VStack(){
-                            Text("Please log in to see your assets!")
-                                .font(.headline)
-                                .fontWeight(.bold)
-                                .isHidden(!loginService.token.isEmpty, remove: !loginService.token.isEmpty)
-                            Text("No data please refresh the page")
-                                .font(.headline)
-                                .fontWeight(.bold)
-                                .isHidden(loginService.token.isEmpty, remove: loginService.token.isEmpty)
+                            if loginService.token.isEmpty {
+                                Text("Please log in to see your assets!")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                            }
+                            else{
+                                Text("No data please refresh the page or add new cryptoexchange")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                            }
                         }
                     )
                 }

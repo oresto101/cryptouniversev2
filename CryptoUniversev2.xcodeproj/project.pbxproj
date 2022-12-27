@@ -10,6 +10,7 @@
 		CB404EA0295A085B0038E0A2 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404E9F295A085B0038E0A2 /* RegistrationView.swift */; };
 		CB404EA2295A09D80038E0A2 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA1295A09D80038E0A2 /* RegistrationService.swift */; };
 		CB404EA4295A0F120038E0A2 /* ListCryptoExchangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA3295A0F120038E0A2 /* ListCryptoExchangesView.swift */; };
+		CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA8295B90AA0038E0A2 /* Exchange.swift */; };
 		CB65253529468BD900FD5D11 /* InfoBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253429468BD900FD5D11 /* InfoBoxView.swift */; };
 		CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253629469D4500FD5D11 /* CryptoInfo.swift */; };
 		CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */; };
@@ -30,7 +31,7 @@
 		CBE25A87294E65C60010F712 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A86294E65C60010F712 /* LoginService.swift */; };
 		CBE25A8C294E68BB0010F712 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8B294E68BB0010F712 /* LoginView.swift */; };
 		CBE25A8F294E8C320010F712 /* AddCryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */; };
-		CBE25A91294E928B0010F712 /* AddCryptoExchangeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A90294E928B0010F712 /* AddCryptoExchangeService.swift */; };
+		CBE25A91294E928B0010F712 /* CryptoExchangeManagementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A90294E928B0010F712 /* CryptoExchangeManagementService.swift */; };
 		CBE25A94294E99510010F712 /* HideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A93294E99510010F712 /* HideView.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		CB404E9F295A085B0038E0A2 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		CB404EA1295A09D80038E0A2 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		CB404EA3295A0F120038E0A2 /* ListCryptoExchangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCryptoExchangesView.swift; sourceTree = "<group>"; };
+		CB404EA8295B90AA0038E0A2 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
 		CB65253429468BD900FD5D11 /* InfoBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBoxView.swift; sourceTree = "<group>"; };
 		CB65253629469D4500FD5D11 /* CryptoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoInfo.swift; sourceTree = "<group>"; };
 		CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoExchangeView.swift; sourceTree = "<group>"; };
@@ -77,7 +79,7 @@
 		CBE25A86294E65C60010F712 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		CBE25A8B294E68BB0010F712 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoExchangeView.swift; sourceTree = "<group>"; };
-		CBE25A90294E928B0010F712 /* AddCryptoExchangeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoExchangeService.swift; sourceTree = "<group>"; };
+		CBE25A90294E928B0010F712 /* CryptoExchangeManagementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoExchangeManagementService.swift; sourceTree = "<group>"; };
 		CBE25A93294E99510010F712 /* HideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB404EA5295B90610038E0A2 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				CB404EA8295B90AA0038E0A2 /* Exchange.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		CB65253A2946A36100FD5D11 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +163,7 @@
 		CB72DCF9294516530087534D /* CryptoUniversev2 */ = {
 			isa = PBXGroup;
 			children = (
+				CB404EA5295B90610038E0A2 /* Enums */,
 				CBE25A92294E99380010F712 /* Utils */,
 				CBE25A85294E65AD0010F712 /* Services */,
 				CB65253A2946A36100FD5D11 /* Views */,
@@ -212,7 +223,7 @@
 			children = (
 				CB72DD2929451FAA0087534D /* NetworkService.swift */,
 				CBE25A86294E65C60010F712 /* LoginService.swift */,
-				CBE25A90294E928B0010F712 /* AddCryptoExchangeService.swift */,
+				CBE25A90294E928B0010F712 /* CryptoExchangeManagementService.swift */,
 				CB404EA1295A09D80038E0A2 /* RegistrationService.swift */,
 			);
 			path = Services;
@@ -386,11 +397,12 @@
 				CBAD25912946D0440062DF52 /* HelpView.swift in Sources */,
 				CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */,
 				CB404EA2295A09D80038E0A2 /* RegistrationService.swift in Sources */,
-				CBE25A91294E928B0010F712 /* AddCryptoExchangeService.swift in Sources */,
+				CBE25A91294E928B0010F712 /* CryptoExchangeManagementService.swift in Sources */,
 				CB404EA0295A085B0038E0A2 /* RegistrationView.swift in Sources */,
 				CB65253C2946A40100FD5D11 /* CryptoInfoView.swift in Sources */,
 				CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */,
 				CBAD258E2946CB5F0062DF52 /* String Formatter.swift in Sources */,
+				CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */,
 				CB72DCFD294516530087534D /* ContentView.swift in Sources */,
 				CB6525412946BC1800FD5D11 /* MenuView.swift in Sources */,
 				CB65253529468BD900FD5D11 /* InfoBoxView.swift in Sources */,
