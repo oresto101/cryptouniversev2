@@ -115,7 +115,7 @@ class CryptoExchangeManagementService: ObservableObject {
         let postData = body.data(using: .utf8)
 
         var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/exchange/" + id + "/")!,timeoutInterval: Double.infinity)
-        request.addValue("Token 6e0e21a9458e2f24028797f2dcbe45b3bfa59447", forHTTPHeaderField: "Authorization")
+        request.addValue(loginService.token, forHTTPHeaderField: "Authorization")
         request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
         request.httpMethod = "DELETE"
