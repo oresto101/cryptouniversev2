@@ -114,7 +114,5 @@ class NetworkService: ObservableObject {
 //                                CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)]]
     }
     
-    func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
-        return self.getCryptoInfo()[exchange]!
-    }
+    
 }

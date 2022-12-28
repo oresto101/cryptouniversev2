@@ -11,7 +11,8 @@ struct ContentView: View {
 
     @ObservedObject var network = NetworkService.shared
     @State var showMenu = false
-    @State var refreshes = true
+    @State var infoBoxes: [InfoBox] = []
+    @State var cryptoInfo: [String: [CryptoInfo]] = [:]
     
     var body: some View {
         let drag = DragGesture()
@@ -26,7 +27,7 @@ struct ContentView: View {
                 return NavigationView {
                     GeometryReader { geometry in
                         ZStack(alignment: .leading) {
-                            MainView(showMenu: self.$showMenu)
+                            MainView(showMenu: self.$showMenu, infoBoxes: $infoBoxes, cryptoInfo: $cryptoInfo)
                                 .frame(width: geometry.size.width, height: geometry.size.height)
                                 .offset(x: self.showMenu ? geometry.size.width*3/4 : 0)
                                 .disabled(self.showMenu ? true : false)
@@ -55,6 +56,8 @@ struct ContentView: View {
                 }
                 .refreshable(){
                     self.loadData()
+                    self.infoBoxes = network.infoBoxes
+                    self.cryptoInfo = network.cryptoInfo
                 }
     }
     
@@ -62,9 +65,8 @@ struct ContentView: View {
         self.network.callToGetInfoBoxes()
         sleep(2)
         self.network.callToGetCryptoInfo()
-        sleep(6)
-        refreshes = !refreshes
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -80,6 +82,9 @@ struct MainView: View {
     @ObservedObject var network = NetworkService.shared
     
     @Binding var showMenu: Bool
+    
+    @Binding var infoBoxes: [InfoBox]
+    @Binding var cryptoInfo: [String: [CryptoInfo]]
     
     var body: some View {
         TabView(){
@@ -104,9 +109,13 @@ struct MainView: View {
                 }
             .isHidden(!network.infoBoxes.isEmpty, remove: !network.infoBoxes.isEmpty)
                 ForEach(network.getInfoBoxes(), id: \.self) { infobox in
-                    CryptoExchangeView(infobox: infobox, cryptoInfo: network.getCryptoInfoForExchange(exchange: infobox.name))
+                    CryptoExchangeView(infobox: infobox, cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name))
             }
         }
         .tabViewStyle(PageTabViewStyle())
+    }
+    
+    func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
+        return self.cryptoInfo[exchange]!
     }
 }
