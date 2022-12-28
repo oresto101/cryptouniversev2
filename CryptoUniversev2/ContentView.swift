@@ -64,7 +64,6 @@ struct ContentView: View {
         self.network.callToGetCryptoInfo()
         refreshes = !refreshes
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

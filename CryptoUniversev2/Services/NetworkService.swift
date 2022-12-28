@@ -16,7 +16,6 @@ class NetworkService: ObservableObject {
             let box = try decoder.decode([InfoBox].self, from: json)
             return box
           } catch {
-            print("Error decoding JSON: \(error)")
             return []
           }
         }
@@ -27,7 +26,6 @@ class NetworkService: ObservableObject {
             let info = try decoder.decode([String: [CryptoInfo]].self, from: json)
             return info
           } catch {
-            print("Error decoding JSON: \(error)")
               return [:]
           }
         }
