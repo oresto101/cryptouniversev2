@@ -11,6 +11,7 @@ struct ContentView: View {
 
     @ObservedObject var network = NetworkService.shared
     @State var showMenu = false
+    @State var refreshes = true
     
     var body: some View {
         let drag = DragGesture()
@@ -61,6 +62,7 @@ struct ContentView: View {
         self.network.callToGetInfoBoxes()
         sleep(2)
         self.network.callToGetCryptoInfo()
+        refreshes = !refreshes
     }
     
 }
