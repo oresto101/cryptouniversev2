@@ -56,15 +56,13 @@ struct ContentView: View {
                 }
                 .refreshable(){
                     self.loadData()
-                    self.infoBoxes = network.infoBoxes
-                    self.cryptoInfo = network.cryptoInfo
                 }
     }
     
     func loadData() -> Void {
-        self.network.callToGetInfoBoxes()
+        self.infoBoxes = self.network.callToGetInfoBoxes()
         sleep(2)
-        self.network.callToGetCryptoInfo()
+        self.cryptoInfo = self.network.callToGetCryptoInfo()
     }
     
 }

@@ -30,7 +30,7 @@ class NetworkService: ObservableObject {
           }
         }
     
-    func callToGetInfoBoxes() {
+    func callToGetInfoBoxes() -> [InfoBox]{
         let parameters = "action=infoBoxes"
         let postData =  parameters.data(using: .utf8)
 
@@ -65,9 +65,10 @@ class NetworkService: ObservableObject {
 
         
         dataTask.resume()
+        return self.infoBoxes
     }
     
-    func callToGetCryptoInfo() {
+    func callToGetCryptoInfo() -> [String: [CryptoInfo]]{
 
         let parameters = "action=cryptoInfo"
         let postData =  parameters.data(using: .utf8)
@@ -96,6 +97,7 @@ class NetworkService: ObservableObject {
             
         }
         dataTask.resume()
+        return self.cryptoInfo
     }
     
     func getInfoBoxes() -> [InfoBox]{
