@@ -62,6 +62,7 @@ struct ContentView: View {
         self.network.callToGetInfoBoxes()
         sleep(2)
         self.network.callToGetCryptoInfo()
+        sleep(6)
         refreshes = !refreshes
     }
 }
