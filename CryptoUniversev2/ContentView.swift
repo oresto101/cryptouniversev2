@@ -1,119 +1,124 @@
-//
-//  ContentView.swift
-//  CryptoUniversev2
-//
-//  Created by Orest Haman on 10/12/2022.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-
-    @ObservedObject var network = NetworkService.shared
-    @State var showMenu = false
-    @State var infoBoxes: [InfoBox] = []
-    @State var cryptoInfo: [String: [CryptoInfo]] = [:]
+    @State private var loginFail = false
+    @State private var userVerified = false
+    @State private var registration = false
+    @State private var registrationFail = false
+    @State private var username: String = ""
+    @State private var email: String = ""
+    @State private var password: String = ""
+    @State private var repeatedPassword: String = ""
+    @ObservedObject var loginService = LoginService.shared
+    @ObservedObject var registrationService = RegistrationService.shared
+    
     
     var body: some View {
-        let drag = DragGesture()
-                    .onEnded {
-                        if $0.translation.width < -100 {
-                            withAnimation {
-                                self.showMenu = false
-                            }
-                        }
-                    }
-                
-                return NavigationView {
-                    GeometryReader { geometry in
-                        ZStack(alignment: .leading) {
-                            MainView(showMenu: self.$showMenu, infoBoxes: $infoBoxes, cryptoInfo: $cryptoInfo)
-                                .frame(width: geometry.size.width, height: geometry.size.height)
-                                .offset(x: self.showMenu ? geometry.size.width*3/4 : 0)
-                                .disabled(self.showMenu ? true : false)
-                                .onAppear {
-                                    self.showMenu = false
-                                }
-                            if self.showMenu {
-                                MenuView()
-                                    .frame(width: geometry.size.width*3/4)
-                                    .transition(.move(edge: .leading))
-                            }
-                        }
-                            .gesture(drag)
-                    }
-                        .navigationBarTitle("Crypto Universe", displayMode: .inline)
-                        .navigationBarItems(leading: (
-                            Button(action: {
-                                withAnimation {
-                                    self.showMenu.toggle()
-                                }
-                            }) {
-                                Image(systemName: "line.horizontal.3")
-                                    .imageScale(.large)
-                            }
-                        ))
-                }
-                .refreshable(){
-                    self.loadData()
-                }
+        if userVerified && !(loginService.token=="") {
+            MainView()
+        }else if registration{
+            registrationPage
+        }else{
+            loginPage
+        }
     }
     
-    func loadData() -> Void {
-        self.infoBoxes = self.network.callToGetInfoBoxes()
-        sleep(2)
-        self.cryptoInfo = self.network.callToGetCryptoInfo()
+    var loginPage : some View{
+        VStack(alignment: .leading, spacing: 20) {
+            Spacer()
+            Text("Log In")
+                .foregroundColor(.black)
+                .font(.system(size: 40, weight: .bold))
+            TextField("Username", text: self.$username)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+            SecureField("Password", text: self.$password)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+                .privacySensitive()
+                    HStack {
+                        Spacer()
+                        Button("Register!"){
+                            registration = true
+                        }
+                        .tint(.red.opacity(0.80))
+                        Spacer()
+                        Button("Log In",role: .cancel){
+                            loginService.login(username: username, password: password)
+                            if loginService.token != ""{
+                                userVerified=true
+                                loginFail=false
+                            }else{
+                                loginFail=true
+                            }
+                        }
+                        .disabled(username.isEmpty ||  password.isEmpty)
+                        .buttonStyle(.bordered)
+                        Spacer()
+                        }
+                    Spacer()
+        }
+        .alert("Access denied", isPresented: self.$loginFail) {
+            Button("Dismiss"){
+            }
+        }
+        .frame(width: 300)
+        .padding()
     }
     
+    var registrationPage : some View{
+        VStack(alignment: .leading, spacing: 20) {
+            Spacer()
+            Text("Registration")
+                .foregroundColor(.black)
+                .font(.system(size: 40, weight: .bold))
+            TextField("Username", text: self.$username)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+            TextField("Email", text: self.$email)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+            SecureField("Password", text: self.$password)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+                .privacySensitive()
+            SecureField("Repeat Password", text: self.$repeatedPassword)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+                .privacySensitive()
+            HStack {
+                Spacer()
+                Button("Log In!"){
+                    registration = false
+                }
+                .tint(.red.opacity(0.80))
+                Spacer()
+                Button("Register") {
+                    registrationService.register(username: username, password: password, email: email)
+                    if !registrationService.fail{
+                        registration = false
+                    }else{
+                        registrationFail = true
+                    }
+                }
+                .disabled(username.isEmpty || email.isEmpty || password.isEmpty || password != repeatedPassword)
+                .buttonStyle(.bordered)
+                Spacer()
+                }
+            Spacer()
+        }
+        .alert("Registration Failed", isPresented: self.$registrationFail) {
+            Button("Dismiss"){
+            }
+        }
+        .frame(width: 300)
+        .padding()
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(NetworkService())
     }
 }
 
-struct MainView: View {
-    
-    @ObservedObject var loginService = LoginService.shared
-    @ObservedObject var network = NetworkService.shared
-    
-    @Binding var showMenu: Bool
-    
-    @Binding var infoBoxes: [InfoBox]
-    @Binding var cryptoInfo: [String: [CryptoInfo]]
-    
-    var body: some View {
-        TabView(){
-            ScrollView{
-                RoundedRectangle(cornerRadius: 14)
-                    .frame(width: 320.0, height: 75.0)
-                    .foregroundColor(Color(.green))
-                    .overlay(
-                        VStack(){
-                            if loginService.token.isEmpty {
-                                Text("Please log in to see your assets!")
-                                    .font(.headline)
-                                    .fontWeight(.bold)
-                            }
-                            else{
-                                Text("No data please refresh the page or add new cryptoexchange")
-                                    .font(.headline)
-                                    .fontWeight(.bold)
-                            }
-                        }
-                    )
-                }
-            .isHidden(!network.infoBoxes.isEmpty, remove: !network.infoBoxes.isEmpty)
-                ForEach(network.getInfoBoxes(), id: \.self) { infobox in
-                    CryptoExchangeView(infobox: infobox, cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name))
-            }
-        }
-        .tabViewStyle(PageTabViewStyle())
-    }
-    
-    func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
-        return self.cryptoInfo[exchange]!
-    }
-}

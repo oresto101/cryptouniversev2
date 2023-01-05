@@ -65,38 +65,13 @@ struct MenuView: View {
             .background(Color(red: 32/255, green: 32/255, blue: 32/255))
             .edgesIgnoringSafeArea(.all)
         }
-        else {
-            VStack(alignment: .leading) {
-                HStack {
-                    NavigationLink(destination: LoginView()){
-                        Image(systemName: "arrow.right.to.line")
-                            .foregroundColor(.gray)
-                            .imageScale(.large)
-                        Text("Log In")
-                            .foregroundColor(.gray)
-                            .font(.headline)
-                    }
-                }
-                .padding(.top, 100)
-                HStack {
-                    NavigationLink(destination: RegistrationView()){
-                        Image(systemName: "person.fill.badge.plus")
-                            .foregroundColor(.gray)
-                            .imageScale(.large)
-                        Text("Register")
-                            .foregroundColor(.gray)
-                            .font(.headline)
-                    }
-                }
-                .padding(.top, 30)
-                Spacer()
-            }
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(red: 32/255, green: 32/255, blue: 32/255))
-            .edgesIgnoringSafeArea(.all)
-        }
     }
+    
+//    func logout(){
+//        PresentationLink(destination: ContentView()) {
+//                    EmptyView()
+//                }
+//    }
 }
 
 struct MenuView_Previews: PreviewProvider {

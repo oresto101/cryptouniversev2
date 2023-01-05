@@ -22,7 +22,7 @@ class LoginService: ObservableObject {
     
     func login(username: String, password: String) -> Void {
         
-        var semaphore = DispatchSemaphore (value: 0)
+        let semaphore = DispatchSemaphore (value: 0)
 
         let parameters = [
           [
@@ -38,7 +38,7 @@ class LoginService: ObservableObject {
 
         let boundary = "Boundary-\(UUID().uuidString)"
         var body = ""
-        var error: Error? = nil
+        var _: Error? = nil
         for param in parameters {
           if param["disabled"] == nil {
             let paramName = param["key"]!
@@ -70,16 +70,16 @@ class LoginService: ObservableObject {
         request.httpBody = postData
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-          guard let data = data else {
-            print(String(describing: error))
-            semaphore.signal()
-            return
-          }
-          print(String(data: data, encoding: .utf8)!)
-            self.token = "Token " + self.parseToken(json: data)["auth_token"]!
+            if let httpResponse = response as? HTTPURLResponse {
+                let statusCode = httpResponse.statusCode
+                if statusCode == 400{
+                    self.token = ""
+                }else if statusCode == 200{
+                    self.token = "Token " + self.parseToken(json: data!)["auth_token"]!
+                }
+            }
           semaphore.signal()
         }
-
         task.resume()
         semaphore.wait()
     }

@@ -9,7 +9,7 @@ class CryptoExchangeManagementService: ObservableObject {
     var loginService = LoginService.shared
     static let shared = CryptoExchangeManagementService()
     func addCryptoExchange(exchangeID: String, exchangeAPI: String, exchangeSecret: String, exchangePassphrase: String) -> Void {
-        var semaphore = DispatchSemaphore (value: 0)
+        let semaphore = DispatchSemaphore (value: 0)
 
         let parameters = [
           [
@@ -35,7 +35,7 @@ class CryptoExchangeManagementService: ObservableObject {
 
         let boundary = "Boundary-\(UUID().uuidString)"
         var body = ""
-        var error: Error? = nil
+        var _: Error? = nil
         for param in parameters {
           if param["disabled"] == nil {
             let paramName = param["key"]!
@@ -82,14 +82,14 @@ class CryptoExchangeManagementService: ObservableObject {
     }
     
     func removeCryptoExchange(id: String) {
-        var semaphore = DispatchSemaphore (value: 0)
+        let semaphore = DispatchSemaphore (value: 0)
 
         let parameters = [
         ] as [[String : Any]]
 
         let boundary = "Boundary-\(UUID().uuidString)"
         var body = ""
-        var error: Error? = nil
+        var _: Error? = nil
         for param in parameters {
           if param["disabled"] == nil {
             let paramName = param["key"]!

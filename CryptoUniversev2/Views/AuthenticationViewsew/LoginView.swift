@@ -13,36 +13,10 @@ struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @ObservedObject var network = NetworkService.shared
-    var body: some View {
-        VStack{
-            Spacer()
-            Text("Please log in!")
-            List {
-                Section{
-                    TextField(
-                        "User name (email address)",
-                        text: $username)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                    SecureField(
-                        "Password",
-                        text: $password
-                    )
-                }
-                Button("Log in") {
-                    loginService.login(username: username, password: password)
-                    network.callToGetCryptoInfo()
-                    sleep(1)
-                    network.callToGetInfoBoxes()
-                }
-                .disabled(username.isEmpty || password.isEmpty)
-            }
-        }
-    }
-}
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
+    error in
+      guard let data = data else {
+        print(String(describing: error))
+        semaphore.signal()
+        return
+      }

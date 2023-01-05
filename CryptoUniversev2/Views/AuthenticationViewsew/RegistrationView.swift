@@ -13,7 +13,7 @@ struct RegistrationView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var repeatedPassword: String = ""
-    @ObservedObject var network = NetworkService.shared
+    
     var body: some View {
         VStack{
             Spacer()

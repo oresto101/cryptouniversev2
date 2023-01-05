@@ -1,14 +1,13 @@
 import Foundation
 
 class NetworkService: ObservableObject {
-    var infoBoxes: [InfoBox] = []
-    
-    var cryptoInfo: [String: [CryptoInfo]] = [:]
+    @Published var infoBoxes: [InfoBox] = []
+    @Published var cryptoInfo: [String: [CryptoInfo]] = [:]
     
     var responseCode: Int = 401
     static let shared = NetworkService()
-    
     var loginService = LoginService.shared
+    
     
     func parseInfoBox(json: Data) -> [InfoBox] {
           let decoder = JSONDecoder()
@@ -57,7 +56,7 @@ class NetworkService: ObservableObject {
                     return
                 }
                 let boxes = self.parseInfoBox(json: data!)
-                self.infoBoxes = boxes
+//                self.infoBoxes = boxes
 
             }
             self.responseCode = response.statusCode
@@ -90,7 +89,7 @@ class NetworkService: ObservableObject {
                     return
                 }
                 let cryptoBoxes = self.parseCryptoInfo(json: data!)
-                self.cryptoInfo = cryptoBoxes
+//                self.cryptoInfo = cryptoBoxes
                 
             }
             self.responseCode = response.statusCode
@@ -116,5 +115,11 @@ class NetworkService: ObservableObject {
 //                                CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)]]
     }
     
+    
+    func loadData() -> Void {
+        self.infoBoxes = callToGetInfoBoxes()
+        sleep(1)
+        self.cryptoInfo = callToGetCryptoInfo()
+    }
     
 }

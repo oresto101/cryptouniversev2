@@ -7,12 +7,10 @@ import FoundationNetworking
 class RegistrationService: ObservableObject {
     
     static let shared = RegistrationService()
-    var responseCode: Int = 401
+    var fail: Bool = true
     
     func register(username: String, password: String, email: String) -> Void {
-        
-        var semaphore = DispatchSemaphore (value: 0)
-
+        let semaphore = DispatchSemaphore (value: 0)
         let parameters = [
           [
             "key": "username",
@@ -32,7 +30,7 @@ class RegistrationService: ObservableObject {
 
         let boundary = "Boundary-\(UUID().uuidString)"
         var body = ""
-        var error: Error? = nil
+        var _: Error? = nil
         for param in parameters {
           if param["disabled"] == nil {
             let paramName = param["key"]!
@@ -64,19 +62,18 @@ class RegistrationService: ObservableObject {
         request.httpBody = postData
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-          guard let data = data else {
-            print(String(describing: error))
-            semaphore.signal()
-            return
-          }
-            guard let response = response as? HTTPURLResponse else { return }
-            self.responseCode = response.statusCode
-          print(String(data: data, encoding: .utf8)!)
+            if let httpResponse = response as? HTTPURLResponse {
+                let statusCode = httpResponse.statusCode
+                if statusCode == 400{
+                    self.fail = true
+                }else if statusCode == 201{
+                    self.fail = false
+                }
+            }
           semaphore.signal()
         }
 
         task.resume()
         semaphore.wait()
-
     }
 }

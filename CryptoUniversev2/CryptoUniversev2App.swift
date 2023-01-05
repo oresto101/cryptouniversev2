@@ -9,19 +9,14 @@ import SwiftUI
 
 @main
 struct CryptoUniversev2App: App {
-    @ObservedObject var network = NetworkService.shared
+    
     init(){
-        self.loadData()
-    }
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+        
     }
     
-    func loadData() -> Void {
-        network.callToGetInfoBoxes()
-        network.callToGetCryptoInfo()
-        sleep(7)
-    }
+    var body: some Scene {
+            WindowGroup {
+                ContentView()
+            }
+        }
 }
