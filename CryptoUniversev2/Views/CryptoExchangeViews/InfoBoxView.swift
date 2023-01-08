@@ -9,17 +9,31 @@ import SwiftUI
 
 struct InfoBoxView: View {
     
+    @ObservedObject var cryptoExchangeManagementService = CryptoExchangeManagementService.shared
+    
     var infobox: InfoBox
     var body: some View {
         RoundedRectangle(cornerRadius: 14)
             .padding()
             .frame(width: 350.0, height: 250.0)
-            .foregroundColor(Color(.green))
+            .foregroundColor(Color("MainColor"))
             .overlay(
                 VStack(){
-                    Text(infobox.name)
-                        .font(.headline)
-                        .fontWeight(.bold)
+                    HStack{
+                        Text(infobox.name)
+                            .font(.headline)
+                            .fontWeight(.bold)
+                        if (infobox.name != "Overall"){
+                            Menu{
+                                Button(action:{ cryptoExchangeManagementService.removeCryptoExchange(id: getExchangeByName(name: infobox.name).id)
+                                }) {
+                                    Label("Delete", systemImage: "minus.circle")
+                                }
+                            }label: {
+                                Image("RemoveExchange")
+                            }
+                        }
+                    }
                     HStack(){
                         VStack(alignment: .leading){
                             Text("Total balance")
@@ -44,6 +58,6 @@ struct InfoBoxView: View {
 
 struct InfoBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoBoxView(infobox: InfoBox(name: "All", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100))
+        InfoBoxView(infobox: InfoBox(name: "Oerall", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100))
     }
 }

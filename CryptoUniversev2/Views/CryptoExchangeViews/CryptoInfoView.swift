@@ -13,7 +13,7 @@ struct CryptoInfoView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 14)
             .frame(width: 320.0, height: 75.0)
-            .foregroundColor(Color(.green))
+            .foregroundColor(calculateColorForBox(profitLoss: cryptoInfo.dailyProfitLoss))
             .overlay(
                 VStack(){
                     Text(cryptoInfo.name)
@@ -35,6 +35,15 @@ struct CryptoInfoView: View {
                     
                 }
             )
+    }
+    
+    func calculateColorForBox(profitLoss: Double) -> Color {
+        if profitLoss>=0 {
+            return Color("ProfitColor")
+        }
+        else {
+                return Color("LossColor")
+        }
     }
 }
 

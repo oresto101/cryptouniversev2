@@ -14,12 +14,15 @@ struct ContentView: View {
     
     
     var body: some View {
-        if userVerified && !(loginService.token=="") {
-            MainView()
-        }else if registration{
-            registrationPage
-        }else{
-            loginPage
+        ZStack{
+            Color("BackgroundColor").ignoresSafeArea()
+            if userVerified && !(loginService.token=="") {
+                MainView()
+            }else if registration{
+                registrationPage
+            }else{
+                loginPage
+            }
         }
     }
     

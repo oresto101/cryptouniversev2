@@ -19,15 +19,6 @@ struct MenuView: View {
                 }
                 .padding(.top, 100)
                 HStack {
-                    Image(systemName: "list.clipboard")
-                        .foregroundColor(.gray)
-                        .imageScale(.large)
-                    Text("My Cryptoexchanges")
-                        .foregroundColor(.gray)
-                        .font(.headline)
-                }
-                .padding(.top, 30)
-                HStack {
                     NavigationLink(destination: HelpView()){
                         Image(systemName: "info.circle")
                             .foregroundColor(.gray)
@@ -36,15 +27,6 @@ struct MenuView: View {
                             .foregroundColor(.gray)
                             .font(.headline)
                     }
-                }
-                .padding(.top, 30)
-                HStack {
-                    Image(systemName: "gear")
-                        .foregroundColor(.gray)
-                        .imageScale(.large)
-                    Text("Settings")
-                        .foregroundColor(.gray)
-                        .font(.headline)
                 }
                 .padding(.top, 30)
                 Button (action: {self.loginService.token = ""}){
