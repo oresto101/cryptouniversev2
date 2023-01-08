@@ -49,12 +49,14 @@ struct MenuView: View {
                 .padding(.top, 30)
                 Button (action: {self.loginService.token = ""}){
                     HStack {
+                        NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true)){
                         Image(systemName: "rectangle.portrait.and.arrow.right")
                             .foregroundColor(.gray)
                             .imageScale(.large)
                         Text("Log Out")
                             .foregroundColor(.gray)
                             .font(.headline)
+                        }
                     }
                 }
                 .padding(.top, 30)

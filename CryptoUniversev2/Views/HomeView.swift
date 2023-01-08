@@ -15,16 +15,20 @@ struct HomeView: View {
     var body: some View {
         TabView(){
             if (infoBoxes != nil && cryptoInfo != nil) {
-                ScrollView{
-                    VStack{
-                        ForEach(infoBoxes!, id: \.self) {infobox in
+                ForEach(infoBoxes!, id: \.self) {infobox in
+                    ScrollView{
+                        VStack{
                             CryptoExchangeView(infobox: infobox, cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name))
                         }
                     }
                 }
                 .refreshable {
-                    loadData()
+                    updateData()
                 }
+            }else{
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .black))
+                    .scaleEffect(2)
             }
         }
             .tabViewStyle(PageTabViewStyle())
@@ -102,9 +106,13 @@ struct HomeView: View {
     private func loadData() {
         if (infoBoxes == nil || cryptoInfo == nil) {
             self.loadInfoBoxes()
-            sleep(2)
             self.loadCryptoInfo()
         }
+    }
+    
+    private func updateData() {
+        self.loadInfoBoxes()
+        self.loadCryptoInfo()
     }
     
     private func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
