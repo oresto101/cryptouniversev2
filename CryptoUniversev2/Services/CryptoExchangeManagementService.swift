@@ -114,7 +114,7 @@ class CryptoExchangeManagementService: ObservableObject {
         body += "--\(boundary)--\r\n";
         let postData = body.data(using: .utf8)
 
-        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/exchange/" + id + "/")!,timeoutInterval: Double.infinity)
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/credentials/" + id + "/")!,timeoutInterval: Double.infinity)
         request.addValue(loginService.token, forHTTPHeaderField: "Authorization")
         request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 

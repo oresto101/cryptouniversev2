@@ -20,36 +20,39 @@ struct MainView: View {
                         }
                     }
                 
-                return NavigationView {
-                    GeometryReader { geometry in
-                        ZStack(alignment: .leading) {
-                            HomeView()
-                                .frame(width: geometry.size.width, height: geometry.size.height)
-                                .offset(x: self.showMenu ? geometry.size.width*3/4 : 0)
-                                .disabled(self.showMenu ? true : false)
-                                .onAppear {
-                                    self.showMenu = false
-                                }
-                            if self.showMenu {
-                                MenuView()
-                                    .frame(width: geometry.size.width*3/4)
-                                    .transition(.move(edge: .leading))
-                            }
+        return ZStack{
+            Color("BackgroundColor").ignoresSafeArea()
+            NavigationView {
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    HomeView()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .offset(x: self.showMenu ? geometry.size.width*3/4 : 0)
+                        .disabled(self.showMenu ? true : false)
+                        .onAppear {
+                            self.showMenu = false
                         }
-                            .gesture(drag)
+                    if self.showMenu {
+                        MenuView()
+                            .frame(width: geometry.size.width*3/4)
+                            .transition(.move(edge: .leading))
                     }
-                        .navigationBarTitle("Crypto Universe", displayMode: .inline)
-                        .navigationBarItems(leading: (
-                            Button(action: {
-                                withAnimation {
-                                    self.showMenu.toggle()
-                                }
-                            }) {
-                                Image(systemName: "line.horizontal.3")
-                                    .imageScale(.large)
-                            }
-                        ))
                 }
+                .gesture(drag)
+            }
+            .navigationBarTitle("Crypto Universe", displayMode: .inline)
+            .navigationBarItems(leading: (
+                Button(action: {
+                    withAnimation {
+                        self.showMenu.toggle()
+                    }
+                }) {
+                    Image(systemName: "line.horizontal.3")
+                        .imageScale(.large)
+                }
+            ))
+        }
+        }
     }
     
 }
