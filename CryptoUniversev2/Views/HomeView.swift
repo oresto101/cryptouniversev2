@@ -13,27 +13,30 @@ struct HomeView: View {
     @ObservedObject var loginService = LoginService.shared
     
     var body: some View {
-        TabView(){
-            if (infoBoxes != nil && cryptoInfo != nil) {
-                ForEach(infoBoxes!, id: \.self) {infobox in
-                    ScrollView{
-                        VStack{
-                            CryptoExchangeView(infobox: infobox, cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name))
+        ZStack{
+            Color("BackgroundColor").ignoresSafeArea()
+            TabView(){
+                if (infoBoxes != nil && cryptoInfo != nil) {
+                    ForEach(infoBoxes!, id: \.self) {infobox in
+                        ScrollView{
+                            VStack{
+                                CryptoExchangeView(infobox: infobox, cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name))
+                            }
                         }
                     }
+                    .refreshable {
+                        updateData()
+                    }
+                }else{
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .black))
+                        .scaleEffect(2)
                 }
-                .refreshable {
-                    updateData()
-                }
-            }else{
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .black))
-                    .scaleEffect(2)
             }
-        }
             .tabViewStyle(PageTabViewStyle())
             .onAppear(perform: loadData)
         }
+    }
     
     private func parseInfoBox(json: Data) -> [InfoBox] {
           let decoder = JSONDecoder()

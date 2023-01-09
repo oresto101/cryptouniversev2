@@ -5,49 +5,49 @@ struct MenuView: View {
     @ObservedObject var loginService = LoginService.shared
     
     var body: some View {
-        if !loginService.token.isEmpty {
-            VStack(alignment: .leading) {
-                HStack {
-                    NavigationLink(destination: AddCryptoExchangeView()){
-                        Image(systemName: "plus.square")
-                            .foregroundColor(.gray)
-                            .imageScale(.large)
-                        Text("Add Cryptoexchange")
-                            .foregroundColor(.gray)
-                            .font(.headline)
-                    }
-                }
-                .padding(.top, 100)
-                HStack {
-                    NavigationLink(destination: HelpView()){
-                        Image(systemName: "info.circle")
-                            .foregroundColor(.gray)
-                            .imageScale(.large)
-                        Text("Help")
-                            .foregroundColor(.gray)
-                            .font(.headline)
-                    }
-                }
-                .padding(.top, 30)
-                Button (action: {self.loginService.token = ""}){
+        ZStack{
+            Color("MainColor").ignoresSafeArea()
+                VStack(alignment: .leading) {
                     HStack {
-                        NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true)){
-                        Image(systemName: "rectangle.portrait.and.arrow.right")
-                            .foregroundColor(.gray)
-                            .imageScale(.large)
-                        Text("Log Out")
-                            .foregroundColor(.gray)
-                            .font(.headline)
+                        NavigationLink(destination: AddCryptoExchangeView()){
+                            Image(systemName: "plus.square")
+                                .foregroundColor(Color("BackgroundColor"))
+                                .imageScale(.large)
+                            Text("Add Cryptoexchange")
+                                .foregroundColor(Color("BackgroundColor"))
+                                .font(.headline)
                         }
                     }
+                    .padding(.top, 100)
+                    HStack {
+                        NavigationLink(destination: HelpView()){
+                            Image(systemName: "info.circle")
+                                .foregroundColor(Color("BackgroundColor"))
+                                .imageScale(.large)
+                            Text("Help")
+                                .foregroundColor(Color("BackgroundColor"))
+                                .font(.headline)
+                        }
+                    }
+                    .padding(.top, 30)
+                    Button (action: {self.loginService.token = ""}){
+                        HStack {
+                            NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true)){
+                                Image(systemName: "rectangle.portrait.and.arrow.right")
+                                    .foregroundColor(Color("BackgroundColor"))
+                                    .imageScale(.large)
+                                Text("Log Out")
+                                    .foregroundColor(Color("BackgroundColor"))
+                                    .font(.headline)
+                            }
+                        }
+                    }
+                    .padding(.top, 30)
+                    Spacer()
                 }
-                .padding(.top, 30)
-                Spacer()
-            }
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(red: 32/255, green: 32/255, blue: 32/255))
-            .edgesIgnoringSafeArea(.all)
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .edgesIgnoringSafeArea(.all)
         }
     }
     
