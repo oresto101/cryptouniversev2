@@ -24,6 +24,7 @@ struct AddCryptoExchangeView: View {
         }
         else{
             ZStack (){
+                Color("BackgroundColor").ignoresSafeArea()
                 List {
                     Section{
                         Picker("Exchange", selection: $selectedExchange) {
@@ -54,9 +55,8 @@ struct AddCryptoExchangeView: View {
                     .disabled(exchangeAPI.isEmpty || exchangeSecret.isEmpty || (exchangePassphrase.isEmpty && selectedExchange.requiresPassphrase) ||
                               (!exchangePassphrase.isEmpty && !selectedExchange.requiresPassphrase))
                 }
-                
+                .scrollContentBackground(.hidden)
             }
-            .foregroundColor(Color("BackgroundColor"))
             .alert("Fake credentials", isPresented: self.$loadedWithError) {
                 Button("Dismiss"){
                 }
