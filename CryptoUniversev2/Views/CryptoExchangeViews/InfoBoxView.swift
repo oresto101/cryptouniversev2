@@ -9,8 +9,6 @@ import SwiftUI
 
 struct InfoBoxView: View {
     
-    @ObservedObject var cryptoExchangeManagementService = CryptoExchangeManagementService.shared
-    
     var infobox: InfoBox
     var body: some View {
         RoundedRectangle(cornerRadius: 14)
@@ -25,7 +23,7 @@ struct InfoBoxView: View {
                             .fontWeight(.bold)
                         if (infobox.name != "Overall"){
                             Menu{
-                                Button(action:{ cryptoExchangeManagementService.removeCryptoExchange(id: getExchangeByName(name: infobox.name).id)
+                                Button(action:{ HomeView().removeCryptoExchange(id: getExchangeByName(name: infobox.name).id)
                                 }) {
                                     Label("Delete", systemImage: "minus.circle")
                                 }

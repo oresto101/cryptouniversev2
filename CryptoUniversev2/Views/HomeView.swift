@@ -20,7 +20,48 @@ struct HomeView: View {
                     ForEach(infoBoxes!, id: \.self) {infobox in
                         ScrollView{
                             VStack{
-                                CryptoExchangeView(infobox: infobox, cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name))
+                                ScrollView(showsIndicators: false) {
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .padding()
+                                        .frame(width: 350.0, height: 250.0)
+                                        .foregroundColor(Color("MainColor"))
+                                        .overlay(
+                                            VStack(){
+                                                HStack{
+                                                    Text(infobox.name)
+                                                        .font(.headline)
+                                                        .fontWeight(.bold)
+                                                    if (infobox.name != "Overall"){
+                                                        Menu{
+                                                            Button(action:{ removeCryptoExchange(id: getExchangeByName(name: infobox.name).id)
+                                                            }) {
+                                                                Label("Delete", systemImage: "minus.circle")
+                                                            }
+                                                        }label: {
+                                                            Image("RemoveExchange")
+                                                        }
+                                                    }
+                                                }
+                                                HStack(){
+                                                    VStack(alignment: .leading){
+                                                        Text("Total balance")
+                                                        Text("Daily P/L")
+                                                        Text("Total P/L")
+                                                    }
+                                                    .offset(x: -30.0)
+                                                    VStack(alignment: .trailing){
+                                                        Text(String(roundDoubles(val: infobox.totalBalance)))
+                                                        Text(formatBalancePLAndPercentageToString(balance: infobox.dailyProfitLoss,
+                                                                                                  percentage: infobox.dailyProfitLossPercentage))
+                                                        Text(formatBalancePLAndPercentageToString(balance: infobox.netProfitLoss,
+                                                                                                  percentage: infobox.netProfitLossPercentage))
+                                                    }
+                                                    .offset(x: 30.0)
+                                                }
+                                            }
+                                        )
+                                    CryptoExchangeView(cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name))
+                                }
                             }
                         }
                     }
@@ -106,9 +147,7 @@ struct HomeView: View {
         }.resume()
     }
     
-    private func removeCryptoExchange(id: String) {
-        let semaphore = DispatchSemaphore (value: 0)
-
+    func removeCryptoExchange(id: String) {
         let parameters = [
         ] as [[String : Any]]
 
@@ -146,28 +185,30 @@ struct HomeView: View {
         request.httpMethod = "DELETE"
         request.httpBody = postData
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-          guard let data = data else {
-            print(String(describing: error))
-            semaphore.signal()
-            return
-          }
-          print(String(data: data, encoding: .utf8)!)
-          semaphore.signal()
-        }
-
-        task.resume()
-        semaphore.wait()
+        let _: Void = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let response = response as? HTTPURLResponse else { return }
+            if response.statusCode == 200 {
+                if let error = error {
+                    print("Request error: ", error)
+                    return
+                }
+                self.cryptoInfo = nil
+                self.infoBoxes = nil
+                updateData()
+            }
+        }.resume()
     }
     
     private func loadData() {
         if (infoBoxes == nil || cryptoInfo == nil) {
+            print("Loading")
             self.loadInfoBoxes()
             self.loadCryptoInfo()
         }
     }
     
     private func updateData() {
+        print("Updating")
         self.loadInfoBoxes()
         self.loadCryptoInfo()
     }
