@@ -30,7 +30,7 @@ struct ContentView: View {
         VStack(alignment: .leading, spacing: 20) {
             Spacer()
             Text("Log In")
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .font(.system(size: 40, weight: .bold))
             TextField("Username", text: self.$username)
                 .textFieldStyle(.roundedBorder)
@@ -44,7 +44,7 @@ struct ContentView: View {
                         Button("Register!"){
                             registration = true
                         }
-                        .tint(.red.opacity(0.80))
+                        .tint(.green.opacity(0.80))
                         Spacer()
                         Button("Log In",role: .cancel){
                             loginService.login(username: username, password: password)
@@ -57,6 +57,7 @@ struct ContentView: View {
                         }
                         .disabled(username.isEmpty ||  password.isEmpty)
                         .buttonStyle(.bordered)
+                        .tint(.white)
                         Spacer()
                         }
                     Spacer()
@@ -73,7 +74,7 @@ struct ContentView: View {
         VStack(alignment: .leading, spacing: 20) {
             Spacer()
             Text("Registration")
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .font(.system(size: 40, weight: .bold))
             TextField("Username", text: self.$username)
                 .textFieldStyle(.roundedBorder)
@@ -94,7 +95,7 @@ struct ContentView: View {
                 Button("Log In!"){
                     registration = false
                 }
-                .tint(.red.opacity(0.80))
+                .tint(.green.opacity(0.80))
                 Spacer()
                 Button("Register") {
                     registrationService.register(username: username, password: password, email: email)
@@ -106,6 +107,7 @@ struct ContentView: View {
                 }
                 .disabled(username.isEmpty || email.isEmpty || password.isEmpty || password != repeatedPassword)
                 .buttonStyle(.bordered)
+                .tint(.white)
                 Spacer()
                 }
             Spacer()
