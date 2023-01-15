@@ -20,6 +20,17 @@ struct MenuView: View {
                     }
                     .padding(.top, 100)
                     HStack {
+                        NavigationLink(destination: AddCryptoCurrencyView()){
+                            Image(systemName: "plus.square")
+                                .foregroundColor(Color("BackgroundColor"))
+                                .imageScale(.large)
+                            Text("Add Cryptocurrency")
+                                .foregroundColor(Color("BackgroundColor"))
+                                .font(.headline)
+                        }
+                    }
+                    .padding(.top, 30)
+                    HStack {
                         NavigationLink(destination: HelpView()){
                             Image(systemName: "info.circle")
                                 .foregroundColor(Color("BackgroundColor"))
