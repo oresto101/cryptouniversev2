@@ -18,51 +18,49 @@ struct HomeView: View {
             TabView(){
                 if (infoBoxes != nil && cryptoInfo != nil) {
                     ForEach(infoBoxes!, id: \.self) {infobox in
-                        ScrollView{
-                            VStack{
-                                ScrollView(showsIndicators: false) {
-                                    RoundedRectangle(cornerRadius: 14)
-                                        .padding()
-                                        .frame(width: 350.0, height: 250.0)
-                                        .foregroundColor(Color("MainColor"))
-                                        .overlay(
+                                ScrollView{
+                                    VStack{
+                                        ScrollView(showsIndicators: false) {
+                                            RoundedRectangle(cornerRadius: 14)
+                                                .padding()
+                                                .frame(width: 350.0, height: 250.0)
+                                                .foregroundColor(Color("MainColor"))
+                                                .overlay(
                                             VStack(){
                                                 HStack{
                                                     Text(infobox.name)
-                                                        .font(.headline)
-                                                        .fontWeight(.bold)
-                                                    if (infobox.name != "Overall"){
-                                                        Menu{
-                                                            Button(action:{ removeCryptoExchange(id: getExchangeByName(name: infobox.name).id)
-                                                            }) {
-                                                                Label("Delete", systemImage: "minus.circle")
-                                                            }
-                                                        }label: {
-                                                            Image("RemoveExchange")
-                                                        }
+                                                    .font(.headline)
+                                                    .fontWeight(.bold)
+                                                    if (infobox.name != "Overall" && infobox.name != "Manual"){
+                                                    Menu{
+                                                        Button(action:{ removeCryptoExchange(id: getExchangeByName(name: infobox.name).id, infobox: infobox)}) {
+                                                    Label("Delete", systemImage: "minus.circle")
                                                     }
-                                                }
-                                                HStack(){
-                                                    VStack(alignment: .leading){
-                                                        Text("Total balance")
-                                                        Text("Daily P/L")
-                                                        Text("Total P/L")
+                                                    }label: {
+                                                        Image("RemoveExchange")
                                                     }
-                                                    .offset(x: -30.0)
-                                                    VStack(alignment: .trailing){
-                                                        Text(String(roundDoubles(val: infobox.totalBalance)))
-                                                        Text(formatBalancePLAndPercentageToString(balance: infobox.dailyProfitLoss,
-                                                                                                  percentage: infobox.dailyProfitLossPercentage))
-                                                        Text(formatBalancePLAndPercentageToString(balance: infobox.netProfitLoss,
-                                                                                                  percentage: infobox.netProfitLossPercentage))
-                                                    }
-                                                    .offset(x: 30.0)
                                                 }
                                             }
-                                        )
-                                    CryptoExchangeView(cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name))
-                                }
-                            }
+                                            HStack(){
+                                                VStack(alignment: .leading){
+                                                    Text("Total balance")
+                                                    Text("Daily P/L")
+                                                    Text("Total P/L")
+                                                }
+                                                .offset(x: -30.0)
+                                                VStack(alignment: .trailing){
+                                                    Text(String(roundDoubles(val: infobox.totalBalance)))
+                                                    Text(formatBalancePLAndPercentageToString(balance: infobox.dailyProfitLoss,
+                                                                                                    percentage: infobox.dailyProfitLossPercentage))
+                                                                                        Text(formatBalancePLAndPercentageToString(balance: infobox.netProfitLoss,
+                                                                                                                                  percentage: infobox.netProfitLossPercentage))
+                                                                                    }
+                                                                                    .offset(x: 30.0)
+                                                    }
+                                                })
+                                                    CryptoExchangeView(cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name), cryptoExchange: infobox.name)
+                                                }
+                                            }
                         }
                     }
                     .refreshable {
@@ -147,7 +145,7 @@ struct HomeView: View {
         }.resume()
     }
     
-    func removeCryptoExchange(id: String) {
+    func removeCryptoExchange(id: String, infobox: InfoBox) {
         let parameters = [
         ] as [[String : Any]]
 
@@ -192,9 +190,12 @@ struct HomeView: View {
                     print("Request error: ", error)
                     return
                 }
-                self.cryptoInfo = nil
-                self.infoBoxes = nil
-                updateData()
+                if let index = infoBoxes!.firstIndex(of: infobox) {
+                    infoBoxes?.remove(at: index)
+                }
+//                self.cryptoInfo = nil
+//                self.infoBoxes = nil
+//                updateData()
             }
         }.resume()
     }

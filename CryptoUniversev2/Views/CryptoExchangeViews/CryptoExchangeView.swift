@@ -10,12 +10,13 @@ import SwiftUI
 struct CryptoExchangeView: View {
     
     var cryptoInfo: [CryptoInfo]
+    var cryptoExchange: String
     
     var body: some View {
         
             LazyVStack (spacing: 10.0){
                 ForEach(cryptoInfo, id: \.self) { cryptoInfo in
-                    CryptoInfoView(cryptoInfo: cryptoInfo)
+                    CryptoInfoView(cryptoInfo: cryptoInfo, cryptoExchange: cryptoExchange)
                 }
             }
         }

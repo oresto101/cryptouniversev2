@@ -43,7 +43,7 @@ struct AddCryptoCurrencyView: View {
                 }
                 .scrollContentBackground(.hidden)
             }
-            .alert("Fake credentials", isPresented: self.$loadedWithError) {
+            .alert("Cryptocurrency doesn't exist", isPresented: self.$loadedWithError) {
                 Button("Dismiss"){
                 }
             }

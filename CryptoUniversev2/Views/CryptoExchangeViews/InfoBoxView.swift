@@ -56,6 +56,6 @@ struct InfoBoxView: View {
 
 struct InfoBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoBoxView(infobox: InfoBox(name: "Oerall", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100))
+        InfoBoxView(infobox: InfoBox(name: "Overall", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100))
     }
 }
