@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    var logout : Bool = false
     @State private var loginFail = false
     @State private var userVerified = false
     @State private var registration = false
@@ -24,6 +25,7 @@ struct ContentView: View {
                 loginPage
             }
         }
+        .onAppear(perform: updateToken)
     }
     
     var loginPage : some View{
@@ -119,7 +121,23 @@ struct ContentView: View {
         .frame(width: 300)
         .padding()
     }
+    
+    private func updateToken(){
+        if logout{
+            print("Logout")
+            loginService.token = ""
+            UserDefaults.standard.set("", forKey: "token")
+            UserDefaults.standard.set(nil, forKey: "infoBoxes")
+            UserDefaults.standard.set(nil, forKey: "cryptoInfo")
+        }
+        if UserDefaults.standard.string(forKey: "token") != ""{
+            print("Updating Token")
+            loginService.token = UserDefaults.standard.string(forKey: "token") ?? ""
+            userVerified = true
+        }
+    }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

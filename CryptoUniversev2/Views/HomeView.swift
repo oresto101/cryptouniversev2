@@ -10,6 +10,9 @@ import SwiftUI
 struct HomeView: View {
     @State private var infoBoxes: [InfoBox]?
     @State private var cryptoInfo: [String: [CryptoInfo]]?
+    @State private var loadingBoxes = true
+    @State private var loadingInfo = true
+    
     @ObservedObject var loginService = LoginService.shared
     
     var body: some View {
@@ -18,49 +21,37 @@ struct HomeView: View {
             TabView(){
                 if (infoBoxes != nil && cryptoInfo != nil) {
                     ForEach(infoBoxes!, id: \.self) {infobox in
-                                ScrollView{
-                                    VStack{
-                                        ScrollView(showsIndicators: false) {
-                                            RoundedRectangle(cornerRadius: 14)
-                                                .padding()
-                                                .frame(width: 350.0, height: 250.0)
-                                                .foregroundColor(Color("MainColor"))
-                                                .overlay(
-                                            VStack(){
-                                                HStack{
-                                                    Text(infobox.name)
-                                                    .font(.headline)
-                                                    .fontWeight(.bold)
-                                                    if (infobox.name != "Overall" && infobox.name != "Manual"){
-                                                    Menu{
-                                                        Button(action:{ removeCryptoExchange(id: getExchangeByName(name: infobox.name).id, infobox: infobox)}) {
-                                                    Label("Delete", systemImage: "minus.circle")
+                        ScrollView{
+                            VStack{
+                                if loadingBoxes || loadingInfo{
+                                    loading_view
+                                }
+                                ScrollView(showsIndicators: false) {
+                                        RoundedRectangle(cornerRadius: 14)
+                                            .padding()
+                                            .frame(width: 350.0, height: 250.0)
+                                            .foregroundColor(Color("MainColor"))
+                                            .overlay(
+                                                VStack(){
+                                                    HStack{
+                                                        Text(infobox.name)
+                                                            .font(.headline)
+                                                            .fontWeight(.bold)
+                                                        if (infobox.name != "Overall" && infobox.name != "Manual"){
+                                                            Menu{
+                                                                Button(action:{ removeCryptoExchange(id: getExchangeByName(name: infobox.name).id, infobox: infobox)}) {
+                                                                    Label("Delete", systemImage: "minus.circle")
+                                                                }
+                                                            }label: {
+                                                                Image("RemoveExchange")
+                                                            }
+                                                        }
                                                     }
-                                                    }label: {
-                                                        Image("RemoveExchange")
-                                                    }
-                                                }
-                                            }
-                                            HStack(){
-                                                VStack(alignment: .leading){
-                                                    Text("Total balance")
-                                                    Text("Daily P/L")
-                                                    Text("Total P/L")
-                                                }
-                                                .offset(x: -30.0)
-                                                VStack(alignment: .trailing){
-                                                    Text(String(roundDoubles(val: infobox.totalBalance)))
-                                                    Text(formatBalancePLAndPercentageToString(balance: infobox.dailyProfitLoss,
-                                                                                                    percentage: infobox.dailyProfitLossPercentage))
-                                                                                        Text(formatBalancePLAndPercentageToString(balance: infobox.netProfitLoss,
-                                                                                                                                  percentage: infobox.netProfitLossPercentage))
-                                                                                    }
-                                                                                    .offset(x: 30.0)
-                                                    }
+                                                    CryptoBoxView(infobox: infobox)
                                                 })
-                                                    CryptoExchangeView(cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name), cryptoExchange: infobox.name)
-                                                }
-                                            }
+                                        CryptoExchangeView(cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name), cryptoExchange: infobox.name)
+                                }
+                            }
                         }
                     }
                     .refreshable {
@@ -76,6 +67,17 @@ struct HomeView: View {
             .onAppear(perform: loadData)
         }
     }
+    
+    var loading_view: some View{
+        ZStack{
+            RoundedRectangle(cornerRadius: 3).fill(Color.white.opacity(0.1))
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+        }.frame(width: 30, height: 30, alignment: .center)
+        .background(RoundedRectangle(cornerRadius: 5).stroke(Color.white,lineWidth: 2))
+    }
+    
+
     
     private func parseInfoBox(json: Data) -> [InfoBox] {
           let decoder = JSONDecoder()
@@ -119,28 +121,9 @@ struct HomeView: View {
                     return
                 }
                 let boxes = self.parseInfoBox(json: data!)
+                UserDefaults.standard.set(data!, forKey: "infoBoxes")
                 self.infoBoxes = boxes
-            }
-        }.resume()
-    }
-    
-    private func loadCryptoInfo(){
-        let parameters = "action=cryptoInfo"
-        let postData =  parameters.data(using: .utf8)
-        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/request_data/")!,timeoutInterval: Double.infinity)
-        request.addValue(loginService.token, forHTTPHeaderField: "Authorization")
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        request.httpBody = postData
-        let _: Void = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let response = response as? HTTPURLResponse else { return }
-            if response.statusCode == 200 {
-                if let error = error {
-                    print("Request error: ", error)
-                    return
-                }
-                let cryptoBoxes = self.parseCryptoInfo(json: data!)
-                self.cryptoInfo = cryptoBoxes
+                self.loadingBoxes = false
             }
         }.resume()
     }
@@ -190,22 +173,54 @@ struct HomeView: View {
                     print("Request error: ", error)
                     return
                 }
+                
                 if let index = infoBoxes!.firstIndex(of: infobox) {
                     infoBoxes?.remove(at: index)
                 }
-//                self.cryptoInfo = nil
-//                self.infoBoxes = nil
-//                updateData()
             }
         }.resume()
     }
     
+    private func loadCryptoInfo(){
+        let parameters = "action=cryptoInfo"
+        let postData =  parameters.data(using: .utf8)
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/request_data/")!,timeoutInterval: Double.infinity)
+        request.addValue(loginService.token, forHTTPHeaderField: "Authorization")
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = postData
+        let _: Void = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let response = response as? HTTPURLResponse else { return }
+            if response.statusCode == 200 {
+                if let error = error {
+                    print("Request error: ", error)
+                    return
+                }
+                let cryptoBoxes = self.parseCryptoInfo(json: data!)
+                UserDefaults.standard.set(data!, forKey: "cryptoInfo")
+                self.cryptoInfo = cryptoBoxes
+                self.loadingInfo = false
+            }
+        }.resume()
+    }
+    
+    
+    private func loadDefaults() {
+        print("Loading defaults")
+        if (UserDefaults.standard.object(forKey: "infoBoxes") != nil && UserDefaults.standard.object(forKey: "cryptoInfo") != nil){
+            self.infoBoxes = self.parseInfoBox(json: UserDefaults.standard.object(forKey: "infoBoxes") as! Data)
+            self.cryptoInfo = self.parseCryptoInfo(json: UserDefaults.standard.object(forKey: "cryptoInfo") as! Data)
+        }
+      }
+    
     private func loadData() {
         if (infoBoxes == nil || cryptoInfo == nil) {
-            print("Loading")
+            self.loadDefaults()
+            print("Loading from server")
             self.loadInfoBoxes()
             self.loadCryptoInfo()
         }
+        
     }
     
     private func updateData() {

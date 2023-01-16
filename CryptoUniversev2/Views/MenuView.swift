@@ -43,7 +43,7 @@ struct MenuView: View {
                     .padding(.top, 30)
                     Button (action: {self.loginService.token = ""}){
                         HStack {
-                            NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true)){
+                            NavigationLink(destination: ContentView(logout: true).navigationBarBackButtonHidden(true)){
                                 Image(systemName: "rectangle.portrait.and.arrow.right")
                                     .foregroundColor(Color("BackgroundColor"))
                                     .imageScale(.large)
@@ -62,11 +62,12 @@ struct MenuView: View {
         }
     }
     
-//    func logout(){
-//        PresentationLink(destination: ContentView()) {
-//                    EmptyView()
-//                }
-//    }
+    func logout(){
+        self.loginService.token = ""
+        UserDefaults.standard.set("", forKey: "token")
+        print("Logout comlete")
+        print(UserDefaults.standard.string(forKey: "token")!)
+    }
 }
 
 struct MenuView_Previews: PreviewProvider {

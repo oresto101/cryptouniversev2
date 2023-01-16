@@ -11,6 +11,7 @@
 		1B0385432967042500E76092 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0385422967042500E76092 /* HomeView.swift */; };
 		1B03854729675ED400E76092 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B03854629675ED400E76092 /* MainView.swift */; };
 		1BF40394296809BF0093B6C2 /* HomeViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF40393296809BF0093B6C2 /* HomeViewPreview.swift */; };
+		1BFB9C5C29759E910097589E /* CryptoBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB9C5B29759E910097589E /* CryptoBoxView.swift */; };
 		CB404EA2295A09D80038E0A2 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA1295A09D80038E0A2 /* RegistrationService.swift */; };
 		CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA8295B90AA0038E0A2 /* Exchange.swift */; };
 		CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253629469D4500FD5D11 /* CryptoInfo.swift */; };
@@ -56,6 +57,7 @@
 		1B0385422967042500E76092 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1B03854629675ED400E76092 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1BF40393296809BF0093B6C2 /* HomeViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewPreview.swift; sourceTree = "<group>"; };
+		1BFB9C5B29759E910097589E /* CryptoBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoBoxView.swift; sourceTree = "<group>"; };
 		CB404EA1295A09D80038E0A2 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		CB404EA8295B90AA0038E0A2 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
 		CB65253629469D4500FD5D11 /* CryptoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoInfo.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */,
 				CB65253B2946A40100FD5D11 /* CryptoInfoView.swift */,
+				1BFB9C5B29759E910097589E /* CryptoBoxView.swift */,
 			);
 			path = CryptoExchangeViews;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				1B03854729675ED400E76092 /* MainView.swift in Sources */,
 				1B0385432967042500E76092 /* HomeView.swift in Sources */,
 				1B038541296700BE00E76092 /* ContentView.swift in Sources */,
+				1BFB9C5C29759E910097589E /* CryptoBoxView.swift in Sources */,
 				CBE25A87294E65C60010F712 /* LoginService.swift in Sources */,
 				CBAD25912946D0440062DF52 /* HelpView.swift in Sources */,
 				CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */,

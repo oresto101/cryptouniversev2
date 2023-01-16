@@ -7,6 +7,7 @@ import FoundationNetworking
 class LoginService: ObservableObject {
     
     static let shared = LoginService()
+//    var token: String = UserDefaults.standard.string(forKey: "token") ?? ""
     var token: String = ""
     
     func parseToken(json: Data) -> [String: String] {
@@ -76,6 +77,7 @@ class LoginService: ObservableObject {
                     self.token = ""
                 }else if statusCode == 200{
                     self.token = "Token " + self.parseToken(json: data!)["auth_token"]!
+                    UserDefaults.standard.set(self.token, forKey: "token")
                 }
             }
           semaphore.signal()
