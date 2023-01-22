@@ -208,28 +208,32 @@ struct HomeView: View {
     private func loadDefaults() {
         print("Loading defaults")
         if (UserDefaults.standard.object(forKey: "infoBoxes") != nil && UserDefaults.standard.object(forKey: "cryptoInfo") != nil){
-            self.infoBoxes = self.parseInfoBox(json: UserDefaults.standard.object(forKey: "infoBoxes") as! Data)
             self.cryptoInfo = self.parseCryptoInfo(json: UserDefaults.standard.object(forKey: "cryptoInfo") as! Data)
+            self.infoBoxes = self.parseInfoBox(json: UserDefaults.standard.object(forKey: "infoBoxes") as! Data)
         }
       }
     
     private func loadData() {
         if (infoBoxes == nil || cryptoInfo == nil) {
-            self.loadDefaults()
+            //self.loadDefaults()
             print("Loading from server")
-            self.loadInfoBoxes()
             self.loadCryptoInfo()
+            self.loadInfoBoxes()
         }
         
     }
     
     private func updateData() {
         print("Updating")
-        self.loadInfoBoxes()
         self.loadCryptoInfo()
+        self.loadInfoBoxes()
     }
     
     private func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
-        return self.cryptoInfo![exchange]!
+        var info = self.cryptoInfo![exchange]
+        while info==nil{
+            info = self.cryptoInfo![exchange]
+        }
+        return info!
     }
 }
