@@ -27,29 +27,31 @@ struct HomeView: View {
                                     loading_view
                                 }
                                 ScrollView(showsIndicators: false) {
-                                        RoundedRectangle(cornerRadius: 14)
-                                            .padding()
-                                            .frame(width: 350.0, height: 250.0)
-                                            .foregroundColor(Color("MainColor"))
-                                            .overlay(
-                                                VStack(){
-                                                    HStack{
-                                                        Text(infobox.name)
-                                                            .font(.headline)
-                                                            .fontWeight(.bold)
-                                                        if (infobox.name != "Overall" && infobox.name != "Manual"){
-                                                            Menu{
-                                                                Button(action:{ removeCryptoExchange(id: getExchangeByName(name: infobox.name).id, infobox: infobox)}) {
-                                                                    Label("Delete", systemImage: "minus.circle")
-                                                                }
-                                                            }label: {
-                                                                Image("RemoveExchange")
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .padding()
+                                        .frame(width: 350.0, height: 250.0)
+                                        .foregroundColor(Color("MainColor"))
+                                        .overlay(
+                                            VStack(){
+                                                HStack{
+                                                    Text(infobox.name)
+                                                        .font(.headline)
+                                                        .fontWeight(.bold)
+                                                    if (infobox.name != "Overall" && infobox.name != "Manual"){
+                                                        Menu{
+                                                            Button(action:{ removeCryptoExchange(id: getExchangeByName(name: infobox.name).id, infobox: infobox)}) {
+                                                                Label("Delete", systemImage: "minus.circle")
                                                             }
+                                                        }label: {
+                                                            Image("RemoveExchange")
                                                         }
                                                     }
-                                                    CryptoBoxView(infobox: infobox)
-                                                })
-                                        CryptoExchangeView(cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name), cryptoExchange: infobox.name)
+                                                }
+                                                CryptoBoxView(infobox: infobox)
+                                            })
+                                    if !loadingBoxes && !loadingInfo{
+                                    CryptoExchangeView(cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name), cryptoExchange: infobox.name)
+                                    }
                                 }
                             }
                         }
@@ -215,7 +217,7 @@ struct HomeView: View {
     
     private func loadData() {
         if (infoBoxes == nil || cryptoInfo == nil) {
-            //self.loadDefaults()
+            self.loadDefaults()
             print("Loading from server")
             self.loadCryptoInfo()
             self.loadInfoBoxes()
@@ -233,6 +235,7 @@ struct HomeView: View {
         var info = self.cryptoInfo![exchange]
         while info==nil{
             info = self.cryptoInfo![exchange]
+            sleep(1)
         }
         return info!
     }

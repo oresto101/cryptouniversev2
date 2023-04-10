@@ -10,7 +10,45 @@
 		1B038541296700BE00E76092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B038540296700BE00E76092 /* ContentView.swift */; };
 		1B0385432967042500E76092 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0385422967042500E76092 /* HomeView.swift */; };
 		1B03854729675ED400E76092 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B03854629675ED400E76092 /* MainView.swift */; };
-		1BF40394296809BF0093B6C2 /* HomeViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF40393296809BF0093B6C2 /* HomeViewPreview.swift */; };
+		1BD76225297D5A250044D8BC /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A86294E65C60010F712 /* LoginService.swift */; };
+		1BD76227297D5A2E0044D8BC /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA1295A09D80038E0A2 /* RegistrationService.swift */; };
+		1BD76228297D64630044D8BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B038540296700BE00E76092 /* ContentView.swift */; };
+		1BD76229297D64990044D8BC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B03854629675ED400E76092 /* MainView.swift */; };
+		1BD7622A297D64A00044D8BC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0385422967042500E76092 /* HomeView.swift */; };
+		1BD7622B297D64A60044D8BC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0385422967042500E76092 /* HomeView.swift */; };
+		1BD7622C297D64D20044D8BC /* CryptoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253B2946A40100FD5D11 /* CryptoInfoView.swift */; };
+		1BD7622D297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */; };
+		1BD7622E297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */; };
+		1BD7622F297D65360044D8BC /* AddCryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */; };
+		1BD76230297D65360044D8BC /* AddCryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */; };
+		1BD76232297D6D670044D8BC /* ContentView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD76231297D6D670044D8BC /* ContentView_UITests.swift */; };
+		1BD76233297D7D590044D8BC /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525402946BC1800FD5D11 /* MenuView.swift */; };
+		1BD76234297D7D5C0044D8BC /* CryptoBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB9C5B29759E910097589E /* CryptoBoxView.swift */; };
+		1BD76235297D7D5F0044D8BC /* CryptoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253B2946A40100FD5D11 /* CryptoInfoView.swift */; };
+		1BD76236297D7D610044D8BC /* CryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */; };
+		1BD76237297D7D660044D8BC /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD25902946D0440062DF52 /* HelpView.swift */; };
+		1BD76238297D7D6E0044D8BC /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A86294E65C60010F712 /* LoginService.swift */; };
+		1BD76239297D7D700044D8BC /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA1295A09D80038E0A2 /* RegistrationService.swift */; };
+		1BD7623A297D7DA50044D8BC /* CryptoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253629469D4500FD5D11 /* CryptoInfo.swift */; };
+		1BD7623B297D7DA60044D8BC /* CryptoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253629469D4500FD5D11 /* CryptoInfo.swift */; };
+		1BD7623C297D7DA80044D8BC /* InfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD2729451DEC0087534D /* InfoBox.swift */; };
+		1BD7623D297D7DA80044D8BC /* InfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD2729451DEC0087534D /* InfoBox.swift */; };
+		1BD7623E297D7DAC0044D8BC /* CryptoUniversev2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DCFA294516530087534D /* CryptoUniversev2App.swift */; };
+		1BD7623F297D7DAC0044D8BC /* CryptoUniversev2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DCFA294516530087534D /* CryptoUniversev2App.swift */; };
+		1BD76240297D7DB00044D8BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B038540296700BE00E76092 /* ContentView.swift */; };
+		1BD76241297D7ED10044D8BC /* String Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD258D2946CB5F0062DF52 /* String Formatter.swift */; };
+		1BD76242297D7ED50044D8BC /* String Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD258D2946CB5F0062DF52 /* String Formatter.swift */; };
+		1BD76243297D7EE80044D8BC /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA8295B90AA0038E0A2 /* Exchange.swift */; };
+		1BD76244297D7EF10044D8BC /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA8295B90AA0038E0A2 /* Exchange.swift */; };
+		1BD76245297D7F450044D8BC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B03854629675ED400E76092 /* MainView.swift */; };
+		1BD76248297D80790044D8BC /* HideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A93294E99510010F712 /* HideView.swift */; };
+		1BD76249297D807A0044D8BC /* HideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A93294E99510010F712 /* HideView.swift */; };
+		1BD7624A297D80840044D8BC /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD25902946D0440062DF52 /* HelpView.swift */; };
+		1BD7624B297D80870044D8BC /* CryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */; };
+		1BD7624C297D808D0044D8BC /* CryptoBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB9C5B29759E910097589E /* CryptoBoxView.swift */; };
+		1BD7624D297D80900044D8BC /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525402946BC1800FD5D11 /* MenuView.swift */; };
+		1BD76250297DA64C0044D8BC /* ContentView_Login_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD7624F297DA64C0044D8BC /* ContentView_Login_UITests.swift */; };
+		1BD76252297DA8960044D8BC /* HomeView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD76251297DA8960044D8BC /* HomeView_UITests.swift */; };
 		1BFB9C5C29759E910097589E /* CryptoBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB9C5B29759E910097589E /* CryptoBoxView.swift */; };
 		CB404EA2295A09D80038E0A2 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA1295A09D80038E0A2 /* RegistrationService.swift */; };
 		CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA8295B90AA0038E0A2 /* Exchange.swift */; };
@@ -31,7 +69,6 @@
 		CBAD25912946D0440062DF52 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD25902946D0440062DF52 /* HelpView.swift */; };
 		CBE25A87294E65C60010F712 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A86294E65C60010F712 /* LoginService.swift */; };
 		CBE25A8F294E8C320010F712 /* AddCryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */; };
-		CBE25A91294E928B0010F712 /* CryptoExchangeManagementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A90294E928B0010F712 /* CryptoExchangeManagementService.swift */; };
 		CBE25A94294E99510010F712 /* HideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A93294E99510010F712 /* HideView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +93,10 @@
 		1B038540296700BE00E76092 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B0385422967042500E76092 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1B03854629675ED400E76092 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		1BF40393296809BF0093B6C2 /* HomeViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewPreview.swift; sourceTree = "<group>"; };
+		1BD76231297D6D670044D8BC /* ContentView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_UITests.swift; sourceTree = "<group>"; };
+		1BD7624E297D9F830044D8BC /* CryptoUniversev2Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CryptoUniversev2Release.entitlements; sourceTree = "<group>"; };
+		1BD7624F297DA64C0044D8BC /* ContentView_Login_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_Login_UITests.swift; sourceTree = "<group>"; };
+		1BD76251297DA8960044D8BC /* HomeView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView_UITests.swift; sourceTree = "<group>"; };
 		1BFB9C5B29759E910097589E /* CryptoBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoBoxView.swift; sourceTree = "<group>"; };
 		CB404EA1295A09D80038E0A2 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		CB404EA8295B90AA0038E0A2 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
@@ -79,7 +119,6 @@
 		CBAD25902946D0440062DF52 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		CBE25A86294E65C60010F712 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoExchangeView.swift; sourceTree = "<group>"; };
-		CBE25A90294E928B0010F712 /* CryptoExchangeManagementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoExchangeManagementService.swift; sourceTree = "<group>"; };
 		CBE25A93294E99510010F712 /* HideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,7 +165,6 @@
 				CB6525402946BC1800FD5D11 /* MenuView.swift */,
 				1B0385422967042500E76092 /* HomeView.swift */,
 				1B03854629675ED400E76092 /* MainView.swift */,
-				1BF40393296809BF0093B6C2 /* HomeViewPreview.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +202,7 @@
 		CB72DCF9294516530087534D /* CryptoUniversev2 */ = {
 			isa = PBXGroup;
 			children = (
+				1BD7624E297D9F830044D8BC /* CryptoUniversev2Release.entitlements */,
 				CB404EA5295B90610038E0A2 /* Enums */,
 				CBE25A92294E99380010F712 /* Utils */,
 				CBE25A85294E65AD0010F712 /* Services */,
@@ -198,6 +237,9 @@
 			children = (
 				CB72DD15294516550087534D /* CryptoUniversev2UITests.swift */,
 				CB72DD17294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift */,
+				1BD76231297D6D670044D8BC /* ContentView_UITests.swift */,
+				1BD7624F297DA64C0044D8BC /* ContentView_Login_UITests.swift */,
+				1BD76251297DA8960044D8BC /* HomeView_UITests.swift */,
 			);
 			path = CryptoUniversev2UITests;
 			sourceTree = "<group>";
@@ -223,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				CBE25A86294E65C60010F712 /* LoginService.swift */,
-				CBE25A90294E928B0010F712 /* CryptoExchangeManagementService.swift */,
 				CB404EA1295A09D80038E0A2 /* RegistrationService.swift */,
 			);
 			path = Services;
@@ -391,12 +432,10 @@
 				CBAD25912946D0440062DF52 /* HelpView.swift in Sources */,
 				CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */,
 				CB404EA2295A09D80038E0A2 /* RegistrationService.swift in Sources */,
-				CBE25A91294E928B0010F712 /* CryptoExchangeManagementService.swift in Sources */,
 				CB65253C2946A40100FD5D11 /* CryptoInfoView.swift in Sources */,
 				CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */,
 				CB77AF1C29749761006D711E /* AddCryptoCurrencyView.swift in Sources */,
 				CBAD258E2946CB5F0062DF52 /* String Formatter.swift in Sources */,
-				1BF40394296809BF0093B6C2 /* HomeViewPreview.swift in Sources */,
 				CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */,
 				CB6525412946BC1800FD5D11 /* MenuView.swift in Sources */,
 				CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */,
@@ -410,7 +449,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BD7623B297D7DA60044D8BC /* CryptoInfo.swift in Sources */,
+				1BD76245297D7F450044D8BC /* MainView.swift in Sources */,
+				1BD76240297D7DB00044D8BC /* ContentView.swift in Sources */,
+				1BD7624D297D80900044D8BC /* MenuView.swift in Sources */,
+				1BD7623F297D7DAC0044D8BC /* CryptoUniversev2App.swift in Sources */,
+				1BD76248297D80790044D8BC /* HideView.swift in Sources */,
+				1BD76227297D5A2E0044D8BC /* RegistrationService.swift in Sources */,
+				1BD76244297D7EF10044D8BC /* Exchange.swift in Sources */,
+				1BD76242297D7ED50044D8BC /* String Formatter.swift in Sources */,
+				1BD7622B297D64A60044D8BC /* HomeView.swift in Sources */,
+				1BD7622C297D64D20044D8BC /* CryptoInfoView.swift in Sources */,
 				CB72DD0C294516550087534D /* CryptoUniversev2Tests.swift in Sources */,
+				1BD7622D297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */,
+				1BD7622F297D65360044D8BC /* AddCryptoExchangeView.swift in Sources */,
+				1BD7624C297D808D0044D8BC /* CryptoBoxView.swift in Sources */,
+				1BD7624A297D80840044D8BC /* HelpView.swift in Sources */,
+				1BD7623D297D7DA80044D8BC /* InfoBox.swift in Sources */,
+				1BD76225297D5A250044D8BC /* LoginService.swift in Sources */,
+				1BD7624B297D80870044D8BC /* CryptoExchangeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +476,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB72DD18294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift in Sources */,
+				1BD76239297D7D700044D8BC /* RegistrationService.swift in Sources */,
+				1BD76237297D7D660044D8BC /* HelpView.swift in Sources */,
+				1BD7623E297D7DAC0044D8BC /* CryptoUniversev2App.swift in Sources */,
+				1BD76229297D64990044D8BC /* MainView.swift in Sources */,
+				1BD76232297D6D670044D8BC /* ContentView_UITests.swift in Sources */,
+				1BD76250297DA64C0044D8BC /* ContentView_Login_UITests.swift in Sources */,
+				1BD76234297D7D5C0044D8BC /* CryptoBoxView.swift in Sources */,
 				CB72DD16294516550087534D /* CryptoUniversev2UITests.swift in Sources */,
+				1BD76243297D7EE80044D8BC /* Exchange.swift in Sources */,
+				1BD76235297D7D5F0044D8BC /* CryptoInfoView.swift in Sources */,
+				1BD76249297D807A0044D8BC /* HideView.swift in Sources */,
+				1BD76252297DA8960044D8BC /* HomeView_UITests.swift in Sources */,
+				1BD7623A297D7DA50044D8BC /* CryptoInfo.swift in Sources */,
+				1BD76233297D7D590044D8BC /* MenuView.swift in Sources */,
+				1BD7622A297D64A00044D8BC /* HomeView.swift in Sources */,
+				1BD7623C297D7DA80044D8BC /* InfoBox.swift in Sources */,
+				1BD7622E297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */,
+				1BD76230297D65360044D8BC /* AddCryptoExchangeView.swift in Sources */,
+				1BD76241297D7ED10044D8BC /* String Formatter.swift in Sources */,
+				1BD76236297D7D610044D8BC /* CryptoExchangeView.swift in Sources */,
+				1BD76228297D64630044D8BC /* ContentView.swift in Sources */,
+				1BD76238297D7D6E0044D8BC /* LoginService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CryptoUniversev2/CryptoUniversev2Release.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CryptoUniversev2/Preview Content\"";

@@ -31,6 +31,7 @@ struct AddCryptoExchangeView: View {
                             ForEach(Exchange.allCases, id: \.self) {exchange in Text(exchange.name).tag(exchange)
                             }
                         }
+                        .accessibility(identifier: "picker")
                         TextField(
                             "Exchange API",
                             text: $exchangeAPI)
@@ -41,12 +42,14 @@ struct AddCryptoExchangeView: View {
                             text: $exchangeSecret)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
-                        TextField(
-                            "Exchange Passphrase",
-                            text: $exchangePassphrase)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                        .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
+                        if selectedExchange.requiresPassphrase{
+                            TextField(
+                                "Exchange Passphrase",
+                                text: $exchangePassphrase)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
+                        }
+//                        .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
                     }
                     Button ("Add cryptoexchange"){
                         addCryptoExchange(exchangeID: selectedExchange.id, exchangeAPI: exchangeAPI, exchangeSecret: exchangeSecret, exchangePassphrase: exchangePassphrase)
