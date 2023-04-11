@@ -1,4 +1,5 @@
 import Foundation
+// import NetworkService
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
@@ -61,7 +62,8 @@ struct AddCryptoExchangeView: View {
                     .disabled(
                         exchangeAPI.isEmpty || exchangeSecret
                             .isEmpty || (exchangePassphrase.isEmpty && selectedExchange.requiresPassphrase) ||
-                            (!exchangePassphrase.isEmpty && !selectedExchange.requiresPassphrase))
+                            (!exchangePassphrase.isEmpty && !selectedExchange.requiresPassphrase)
+                    )
                 }
                 .scrollContentBackground(.hidden)
             }
@@ -70,14 +72,12 @@ struct AddCryptoExchangeView: View {
             }
         }
     }
-    
 
-    func addCryptoExchange(
-        exchangeID: String,
-        exchangeAPI: String,
-        exchangeSecret: String,
-        exchangePassphrase: String
-    ) {
+    func addCryptoExchange(exchangeID: String,
+                           exchangeAPI: String,
+                           exchangeSecret: String,
+                           exchangePassphrase: String)
+    {
         let
             parameters = [
                 [
@@ -102,7 +102,40 @@ struct AddCryptoExchangeView: View {
                 ],
             ] as [[String: Any]]
 
-        print(parameters)
+        switch exchangeID {
+        case "1":
+            print("case1")
+        case "2":
+            parseOKX(apiKey: exchangeAPI, secretKey: exchangeSecret, passphrase: exchangePassphrase) { isValid in
+                if isValid {
+                    print("The exchange is valid.")
+                } else {
+                    loadedWithError = true
+                    loading = false
+                }
+            }
+        case "3":
+            parseGemini(apiKey: exchangeAPI, secretKey: exchangeSecret){ isValid in
+                if isValid {
+                    print("The exchange is valid.")
+                } else {
+                    loadedWithError = true
+                    loading = false
+                }
+            }
+        case "4":
+            print(exchangeID)
+            print("case1")
+        case "5":
+            print(exchangeID)
+            print("case1")
+        case "6":
+            print(exchangeID)
+            print("case1")
+        default:
+            loadedWithError = true
+            loading = false
+        }
     }
 }
 

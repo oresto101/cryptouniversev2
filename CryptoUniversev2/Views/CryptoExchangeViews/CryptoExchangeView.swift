@@ -1,10 +1,3 @@
-//
-//  CryptoExchangeView.swift
-//  CryptoUniversev2
-//
-//  Created by Orest Haman on 12/12/2022.
-//
-
 import SwiftUI
 
 struct CryptoExchangeView: View {

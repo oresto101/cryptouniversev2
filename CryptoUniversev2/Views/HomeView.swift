@@ -56,7 +56,8 @@ struct HomeView: View {
                     VStack {
                         infoBoxHeader(infobox: infobox)
                         CryptoBoxView(infobox: infobox)
-                    })
+                    }
+                )
             if !loadingBoxes && !loadingInfo {
                 CryptoExchangeView(
                     cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name),

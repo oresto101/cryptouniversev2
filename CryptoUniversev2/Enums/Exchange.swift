@@ -4,10 +4,10 @@ private var requirePassphrase = [Exchange.okx]
 private var exchangeToIdDict: [Exchange: String] = [
     Exchange.binance: "1",
     Exchange.okx: "2",
-    Exchange.whitebit: "10",
-    Exchange.manual: "6",
-    Exchange.kraken: "8",
-    Exchange.gemini: "9",
+    Exchange.whitebit: "3",
+    Exchange.manual: "4",
+    Exchange.kraken: "5",
+    Exchange.gemini: "6",
 ]
 private var exchangeToNameDict: [Exchange: String] = [
     Exchange.binance: "Binance",
