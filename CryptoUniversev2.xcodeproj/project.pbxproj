@@ -10,8 +10,15 @@
 		1B038541296700BE00E76092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B038540296700BE00E76092 /* ContentView.swift */; };
 		1B0385432967042500E76092 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0385422967042500E76092 /* HomeView.swift */; };
 		1B03854729675ED400E76092 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B03854629675ED400E76092 /* MainView.swift */; };
-		1BD76225297D5A250044D8BC /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A86294E65C60010F712 /* LoginService.swift */; };
-		1BD76227297D5A2E0044D8BC /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA1295A09D80038E0A2 /* RegistrationService.swift */; };
+		1BC7D4DD29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
+		1BC7D4DE29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
+		1BC7D4DF29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
+		1BC7D4E229E5AB7900BB14A5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */; };
+		1BC7D4E329E5AB7900BB14A5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */; };
+		1BC7D4E429E5AB7900BB14A5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */; };
+		1BC7D4E629E5ACD000BB14A5 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4E529E5ACD000BB14A5 /* NetworkUtils.swift */; };
+		1BC7D4E729E5ACD000BB14A5 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4E529E5ACD000BB14A5 /* NetworkUtils.swift */; };
+		1BC7D4E829E5ACD000BB14A5 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4E529E5ACD000BB14A5 /* NetworkUtils.swift */; };
 		1BD76228297D64630044D8BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B038540296700BE00E76092 /* ContentView.swift */; };
 		1BD76229297D64990044D8BC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B03854629675ED400E76092 /* MainView.swift */; };
 		1BD7622A297D64A00044D8BC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0385422967042500E76092 /* HomeView.swift */; };
@@ -27,8 +34,6 @@
 		1BD76235297D7D5F0044D8BC /* CryptoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253B2946A40100FD5D11 /* CryptoInfoView.swift */; };
 		1BD76236297D7D610044D8BC /* CryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */; };
 		1BD76237297D7D660044D8BC /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD25902946D0440062DF52 /* HelpView.swift */; };
-		1BD76238297D7D6E0044D8BC /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A86294E65C60010F712 /* LoginService.swift */; };
-		1BD76239297D7D700044D8BC /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA1295A09D80038E0A2 /* RegistrationService.swift */; };
 		1BD7623A297D7DA50044D8BC /* CryptoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253629469D4500FD5D11 /* CryptoInfo.swift */; };
 		1BD7623B297D7DA60044D8BC /* CryptoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253629469D4500FD5D11 /* CryptoInfo.swift */; };
 		1BD7623C297D7DA80044D8BC /* InfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD2729451DEC0087534D /* InfoBox.swift */; };
@@ -50,7 +55,6 @@
 		1BD76250297DA64C0044D8BC /* ContentView_Login_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD7624F297DA64C0044D8BC /* ContentView_Login_UITests.swift */; };
 		1BD76252297DA8960044D8BC /* HomeView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD76251297DA8960044D8BC /* HomeView_UITests.swift */; };
 		1BFB9C5C29759E910097589E /* CryptoBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB9C5B29759E910097589E /* CryptoBoxView.swift */; };
-		CB404EA2295A09D80038E0A2 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA1295A09D80038E0A2 /* RegistrationService.swift */; };
 		CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA8295B90AA0038E0A2 /* Exchange.swift */; };
 		CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253629469D4500FD5D11 /* CryptoInfo.swift */; };
 		CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */; };
@@ -67,7 +71,6 @@
 		CB77AF1C29749761006D711E /* AddCryptoCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */; };
 		CBAD258E2946CB5F0062DF52 /* String Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD258D2946CB5F0062DF52 /* String Formatter.swift */; };
 		CBAD25912946D0440062DF52 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD25902946D0440062DF52 /* HelpView.swift */; };
-		CBE25A87294E65C60010F712 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A86294E65C60010F712 /* LoginService.swift */; };
 		CBE25A8F294E8C320010F712 /* AddCryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */; };
 		CBE25A94294E99510010F712 /* HideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A93294E99510010F712 /* HideView.swift */; };
 /* End PBXBuildFile section */
@@ -93,12 +96,14 @@
 		1B038540296700BE00E76092 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B0385422967042500E76092 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1B03854629675ED400E76092 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsService.swift; sourceTree = "<group>"; };
+		1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		1BC7D4E529E5ACD000BB14A5 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
 		1BD76231297D6D670044D8BC /* ContentView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_UITests.swift; sourceTree = "<group>"; };
 		1BD7624E297D9F830044D8BC /* CryptoUniversev2Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CryptoUniversev2Release.entitlements; sourceTree = "<group>"; };
 		1BD7624F297DA64C0044D8BC /* ContentView_Login_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_Login_UITests.swift; sourceTree = "<group>"; };
 		1BD76251297DA8960044D8BC /* HomeView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView_UITests.swift; sourceTree = "<group>"; };
 		1BFB9C5B29759E910097589E /* CryptoBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoBoxView.swift; sourceTree = "<group>"; };
-		CB404EA1295A09D80038E0A2 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		CB404EA8295B90AA0038E0A2 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
 		CB65253629469D4500FD5D11 /* CryptoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoInfo.swift; sourceTree = "<group>"; };
 		CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoExchangeView.swift; sourceTree = "<group>"; };
@@ -117,7 +122,6 @@
 		CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoCurrencyView.swift; sourceTree = "<group>"; };
 		CBAD258D2946CB5F0062DF52 /* String Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String Formatter.swift"; sourceTree = "<group>"; };
 		CBAD25902946D0440062DF52 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
-		CBE25A86294E65C60010F712 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoExchangeView.swift; sourceTree = "<group>"; };
 		CBE25A93294E99510010F712 /* HideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -264,8 +268,8 @@
 		CBE25A85294E65AD0010F712 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CBE25A86294E65C60010F712 /* LoginService.swift */,
-				CB404EA1295A09D80038E0A2 /* RegistrationService.swift */,
+				1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */,
+				1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -284,6 +288,7 @@
 			children = (
 				CBAD258D2946CB5F0062DF52 /* String Formatter.swift */,
 				CBE25A93294E99510010F712 /* HideView.swift */,
+				1BC7D4E529E5ACD000BB14A5 /* NetworkUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 				CB72DCF3294516530087534D /* Sources */,
 				CB72DCF4294516530087534D /* Frameworks */,
 				CB72DCF5294516530087534D /* Resources */,
+				1BC7D4E029E598EF00BB14A5 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -419,23 +425,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1BC7D4E029E598EF00BB14A5 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/usr/local/Cellar\"\nif which swiftformat >/dev/null; then\n  swiftformat .\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CB72DCF3294516530087534D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1B03854729675ED400E76092 /* MainView.swift in Sources */,
+				1BC7D4DD29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
 				1B0385432967042500E76092 /* HomeView.swift in Sources */,
 				1B038541296700BE00E76092 /* ContentView.swift in Sources */,
+				1BC7D4E229E5AB7900BB14A5 /* NetworkService.swift in Sources */,
 				1BFB9C5C29759E910097589E /* CryptoBoxView.swift in Sources */,
-				CBE25A87294E65C60010F712 /* LoginService.swift in Sources */,
 				CBAD25912946D0440062DF52 /* HelpView.swift in Sources */,
 				CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */,
-				CB404EA2295A09D80038E0A2 /* RegistrationService.swift in Sources */,
 				CB65253C2946A40100FD5D11 /* CryptoInfoView.swift in Sources */,
 				CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */,
 				CB77AF1C29749761006D711E /* AddCryptoCurrencyView.swift in Sources */,
 				CBAD258E2946CB5F0062DF52 /* String Formatter.swift in Sources */,
+				1BC7D4E629E5ACD000BB14A5 /* NetworkUtils.swift in Sources */,
 				CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */,
 				CB6525412946BC1800FD5D11 /* MenuView.swift in Sources */,
 				CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */,
@@ -455,19 +483,20 @@
 				1BD7624D297D80900044D8BC /* MenuView.swift in Sources */,
 				1BD7623F297D7DAC0044D8BC /* CryptoUniversev2App.swift in Sources */,
 				1BD76248297D80790044D8BC /* HideView.swift in Sources */,
-				1BD76227297D5A2E0044D8BC /* RegistrationService.swift in Sources */,
 				1BD76244297D7EF10044D8BC /* Exchange.swift in Sources */,
 				1BD76242297D7ED50044D8BC /* String Formatter.swift in Sources */,
 				1BD7622B297D64A60044D8BC /* HomeView.swift in Sources */,
 				1BD7622C297D64D20044D8BC /* CryptoInfoView.swift in Sources */,
 				CB72DD0C294516550087534D /* CryptoUniversev2Tests.swift in Sources */,
 				1BD7622D297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */,
+				1BC7D4E729E5ACD000BB14A5 /* NetworkUtils.swift in Sources */,
 				1BD7622F297D65360044D8BC /* AddCryptoExchangeView.swift in Sources */,
 				1BD7624C297D808D0044D8BC /* CryptoBoxView.swift in Sources */,
 				1BD7624A297D80840044D8BC /* HelpView.swift in Sources */,
+				1BC7D4E329E5AB7900BB14A5 /* NetworkService.swift in Sources */,
 				1BD7623D297D7DA80044D8BC /* InfoBox.swift in Sources */,
-				1BD76225297D5A250044D8BC /* LoginService.swift in Sources */,
 				1BD7624B297D80870044D8BC /* CryptoExchangeView.swift in Sources */,
+				1BC7D4DE29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,12 +505,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB72DD18294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift in Sources */,
-				1BD76239297D7D700044D8BC /* RegistrationService.swift in Sources */,
 				1BD76237297D7D660044D8BC /* HelpView.swift in Sources */,
+				1BC7D4E429E5AB7900BB14A5 /* NetworkService.swift in Sources */,
 				1BD7623E297D7DAC0044D8BC /* CryptoUniversev2App.swift in Sources */,
 				1BD76229297D64990044D8BC /* MainView.swift in Sources */,
 				1BD76232297D6D670044D8BC /* ContentView_UITests.swift in Sources */,
 				1BD76250297DA64C0044D8BC /* ContentView_Login_UITests.swift in Sources */,
+				1BC7D4DF29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
 				1BD76234297D7D5C0044D8BC /* CryptoBoxView.swift in Sources */,
 				CB72DD16294516550087534D /* CryptoUniversev2UITests.swift in Sources */,
 				1BD76243297D7EE80044D8BC /* Exchange.swift in Sources */,
@@ -490,6 +520,7 @@
 				1BD76252297DA8960044D8BC /* HomeView_UITests.swift in Sources */,
 				1BD7623A297D7DA50044D8BC /* CryptoInfo.swift in Sources */,
 				1BD76233297D7D590044D8BC /* MenuView.swift in Sources */,
+				1BC7D4E829E5ACD000BB14A5 /* NetworkUtils.swift in Sources */,
 				1BD7622A297D64A00044D8BC /* HomeView.swift in Sources */,
 				1BD7623C297D7DA80044D8BC /* InfoBox.swift in Sources */,
 				1BD7622E297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */,
@@ -497,7 +528,6 @@
 				1BD76241297D7ED10044D8BC /* String Formatter.swift in Sources */,
 				1BD76236297D7D610044D8BC /* CryptoExchangeView.swift in Sources */,
 				1BD76228297D64630044D8BC /* ContentView.swift in Sources */,
-				1BD76238297D7D6E0044D8BC /* LoginService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

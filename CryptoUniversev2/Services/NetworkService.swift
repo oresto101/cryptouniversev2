@@ -1,125 +1,100 @@
 import Foundation
+import CryptoKit
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
 
-class NetworkService: ObservableObject {
-    @Published var infoBoxes: [InfoBox] = []
-    @Published var cryptoInfo: [String: [CryptoInfo]] = [:]
+func parseOKX(apiKey: String, secretKey: String, passphrase: String, completion: @escaping ([String: Double]) -> Void) {
+    let dateFormatter = ISO8601DateFormatter()
+    dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+    let timestamp = dateFormatter.string(from: Date())
     
-    var responseCode: Int = 401
-    static let shared = NetworkService()
-    var loginService = LoginService.shared
+    let method = "GET"
+    let path = "/api/v5/account/balance"
+    let message = "\(timestamp)\(method)\(path)"
     
+    guard let secretKeyData = secretKey.data(using: .utf8),
+          let messageData = message.data(using: .utf8) else {
+        print("Error converting strings to data")
+        return
+    }
     
-    func parseInfoBox(json: Data) -> [InfoBox] {
-          let decoder = JSONDecoder()
-          do {
-            let box = try decoder.decode([InfoBox].self, from: json)
-            return box
-          } catch {
-            return []
-          }
+    let signature = HMAC<SHA256>.authenticationCode(for: messageData, using: SymmetricKey(data: secretKeyData))
+    let signatureBase64 = Data(signature).base64EncodedString()
+    
+    guard let url = URL(string: "https://www.okx.com/api/v5/account/balance") else {
+        print("Error creating URL")
+        return
+    }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+    request.addValue(apiKey, forHTTPHeaderField: "OK-ACCESS-KEY")
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "accept")
+    request.addValue(signatureBase64, forHTTPHeaderField: "OK-ACCESS-SIGN")
+    request.addValue(passphrase, forHTTPHeaderField: "OK-ACCESS-PASSPHRASE")
+    request.addValue(timestamp, forHTTPHeaderField: "OK-ACCESS-TIMESTAMP")
+    
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        if let error = error {
+            print("Error making request: \(error.localizedDescription)")
+            return
         }
-    
-    func parseCryptoInfo(json: Data) -> [String: [CryptoInfo]] {
-          let decoder = JSONDecoder()
-          do {
-            let info = try decoder.decode([String: [CryptoInfo]].self, from: json)
-            return info
-          } catch {
-              return [:]
-          }
-        }
-    
-    func callToGetInfoBoxes() -> [InfoBox]{
-        let parameters = "action=infoBoxes"
-        let postData =  parameters.data(using: .utf8)
-
-        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/request_data/")!,timeoutInterval: Double.infinity)
-        print(loginService.token)
-        request.addValue(loginService.token, forHTTPHeaderField: "Authorization")
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-
-        request.httpMethod = "POST"
-        request.httpBody = postData
-
-        let dataTask = URLSession.shared
-            .dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("Request error: ", error)
-                return
-            }
-
-            guard let response = response as? HTTPURLResponse else { return }
-
-            if response.statusCode == 200 {
-                if let error = error {
-                    print("Request error: ", error)
-                    return
-                }
-                let boxes = self.parseInfoBox(json: data!)
-//                self.infoBoxes = boxes
-
-            }
-            self.responseCode = response.statusCode
-        }
-
         
-        dataTask.resume()
-        return self.infoBoxes
-    }
-    
-    func callToGetCryptoInfo() -> [String: [CryptoInfo]]{
-
-        let parameters = "action=cryptoInfo"
-        let postData =  parameters.data(using: .utf8)
-
-        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/api/v1/request_data/")!,timeoutInterval: Double.infinity)
-        request.addValue(loginService.token, forHTTPHeaderField: "Authorization")
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-
-        request.httpMethod = "POST"
-        request.httpBody = postData
-        
-        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            guard let response = response as? HTTPURLResponse else { return }
-            
-            if response.statusCode == 200 {
-                if let error = error {
-                    print("Request error: ", error)
-                    return
-                }
-                let cryptoBoxes = self.parseCryptoInfo(json: data!)
-//                self.cryptoInfo = cryptoBoxes
-                
-            }
-            self.responseCode = response.statusCode
-            
+        guard let data = data,
+              let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+              let responseData = json["data"] as? [[String: Any]],
+              let details = responseData.first?["details"] as? [[String: Any]] else {
+            print("Error parsing JSON")
+            return
         }
-        dataTask.resume()
-        return self.cryptoInfo
-    }
-    
-    func getInfoBoxes() -> [InfoBox]{
         
-        return self.infoBoxes
-//        return [InfoBox(name: "All", totalBalance: 1000, dailyProfitLoss: 100,netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100), InfoBox(name: "Binance", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100), InfoBox(name: "OKX", totalBalance: 1000, dailyProfitLoss: 100, netProfitLoss: 100, dailyProfitLossPercentage: 100, netProfitLossPercentage: 100)]
+        var result: [String: Double] = [:]
+        
+        for currency in details {
+            if let ccy = currency["ccy"] as? String,
+               let availBal = currency["availBal"] as? String,
+               let availBalDouble = Double(availBal) {
+                result[ccy] = availBalDouble
+            }
+        }
+        
+        completion(result)
     }
     
-    func getCryptoInfo() -> [String: [CryptoInfo]]{
-        return self.cryptoInfo
-//        return ["All": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
-//                        CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
-//                "OKX": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
-//                                CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)],
-//                "Binance": [CryptoInfo(name: "Ethereum", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100),
-//                                CryptoInfo(name: "Binance Coin", balance:10000.0, amount:1000.0, price: 1000.0, dailyProfitLoss: -100)]]
-    }
-    
-    
-    func loadData() -> Void {
-        self.infoBoxes = callToGetInfoBoxes()
-        sleep(1)
-        self.cryptoInfo = callToGetCryptoInfo()
-    }
-    
+    task.resume()
 }
+
+
+func coinIsValid(name: String, completion: @escaping (Bool) -> Void) {
+    let apiKey = "50e5b41c-ec5c-47f5-88fd-9ab5f51ed210"
+    let urlString = "https://pro-api.coinmarketcap.com/v2/tools/price-conversion?symbol=\(name)&amount=1&convert=USD"
+    
+    guard let url = URL(string: urlString) else {
+        print("Error creating URL")
+        return
+    }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+    request.addValue(apiKey, forHTTPHeaderField: "X-CMC_PRO_API_KEY")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
+    
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        if let error = error {
+            print("Error making request: \(error.localizedDescription)")
+            completion(false)
+            return
+        }
+        
+        if let httpResponse = response as? HTTPURLResponse {
+            completion(httpResponse.statusCode != 400)
+        } else {
+            completion(false)
+        }
+    }
+    
+    task.resume()
+}
+

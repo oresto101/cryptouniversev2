@@ -1,30 +1,21 @@
-//
-//  HelpView.swift
-//  CryptoUniversev2
-//
-//  Created by Orest Haman on 12/12/2022.
-//
-
 import SwiftUI
 
 struct HelpView: View {
     var body: some View {
-        ZStack{
+        ZStack {
             Color("BackgroundColor").ignoresSafeArea()
-            ScrollView{
+            ScrollView {
                 RoundedRectangle(cornerRadius: 14)
                     .frame(width: 320.0, height: 75.0)
                     .foregroundColor(Color("MainColor"))
                     .overlay(
-                        VStack(alignment: .center){
+                        VStack(alignment: .center) {
                             Text("This app doesn't have any users so no FAQ for you!")
                                 .font(.headline)
                                 .fontWeight(.bold)
                                 .multilineTextAlignment(.center)
-                            
                         }
                     )
-
             }
         }
     }

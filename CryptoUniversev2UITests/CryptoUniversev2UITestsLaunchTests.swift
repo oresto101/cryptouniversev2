@@ -8,7 +8,6 @@
 import XCTest
 
 final class CryptoUniversev2UITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }

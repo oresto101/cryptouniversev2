@@ -1,22 +1,12 @@
-//
-//  CryptoUniversev2App.swift
-//  CryptoUniversev2
-//
-//  Created by Orest Haman on 10/12/2022.
-//
-
 import SwiftUI
 
 @main
 struct CryptoUniversev2App: App {
-    
-    init(){
-        
-    }
-    
+    init() {}
+
     var body: some Scene {
-            WindowGroup {
-                ContentView()
-            }
+        WindowGroup {
+            ContentView()
         }
+    }
 }
