@@ -8,9 +8,14 @@ class CalculationsService: ObservableObject {
 
     func collectCredentials() -> [String: [String: String]] {
         let binanceAPI = UserDefaults.standard.string(forKey: "BinanceAPI")
-        let binancePassphrase = UserDefaults.standard.string(forKey: "BinancePassphrase")
+        let binancePassphrase = UserDefaults.standard.string(forKey: "BinanceSecret")
         let okxAPI = UserDefaults.standard.string(forKey: "OKXAPI")
+        let okxSecret = UserDefaults.standard.string(forKey: "OKXSecret")
         let okxPassphrase = UserDefaults.standard.string(forKey: "OKXPassphrase")
+        let geminiAPI = UserDefaults.standard.string(forKey: "GeminiAPI")
+        let geminiSecret = UserDefaults.standard.string(forKey: "GeminiSecret")
+        let krakenAPI = UserDefaults.standard.string(forKey: "KrakenAPI")
+        let krakenSecret = UserDefaults.standard.string(forKey: "KrakenSecret")
 
         var resultDict: [String: [String: String]] = [:]
 

@@ -45,7 +45,10 @@ func parseBinance(apiKey: String, secretKey: String, completion: @escaping (Bool
                         }
                     }
                 }
-                print(result)
+                saveDataToUserDefaults(key: "BinanceAPI", data: apiKey)
+                saveDataToUserDefaults(key: "BinanceSecret", data: secretKey)
+                saveDataToUserDefaults(key: "BinanceData", data: result)
+                saveDataToUserDefaults(key: "BinanceHistoricData", data: result)
                 completion(true)
             } else {
                 print("Error: Unable to parse JSON")
@@ -120,7 +123,11 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, comp
                 result[ccy] = availBalDouble
             }
         }
-        print(result)
+        saveDataToUserDefaults(key: "OKXAPI", data: apiKey)
+        saveDataToUserDefaults(key: "OKXSecret", data: secretKey)
+        saveDataToUserDefaults(key: "OKXPassphrase", data: passphrase)
+        saveDataToUserDefaults(key: "OKXData", data: result)
+        saveDataToUserDefaults(key: "OKXHistoricData", data: result)
         completion(true)
     }
 
@@ -220,6 +227,10 @@ func parseWhiteBit(apiKey: String, secretKey: String, completion: @escaping (Boo
             if finalResult.isEmpty {
                 completion(false)
             } else {
+                saveDataToUserDefaults(key: "WhiteBitAPI", data: apiKey)
+                saveDataToUserDefaults(key: "WhiteBitSecret", data: secretKey)
+                saveDataToUserDefaults(key: "WhiteBitData", data: finalResult)
+                saveDataToUserDefaults(key: "WhiteBitHistoricData", data: finalResult)
                 completion(true)
             }
         }
@@ -262,7 +273,10 @@ public func parseGemini(apiKey: String, secretKey: String, completion: @escaping
                         res[currency] = amount
                     }
                 }
-                print(res)
+                saveDataToUserDefaults(key: "GeminiAPI", data: apiKey)
+                saveDataToUserDefaults(key: "GeminiSecret", data: secretKey)
+                saveDataToUserDefaults(key: "GeminiData", data: res)
+                saveDataToUserDefaults(key: "GeminiHistoricData", data: res)
                 completion(true)
             } else {
                 completion(false)
@@ -320,7 +334,10 @@ func parseKraken(apiKey: String, secretKey: String, completion: @escaping (Bool)
                         res[ccy] = doubleValue
                     }
                 }
-                print(res)
+                saveDataToUserDefaults(key: "KrakenAPI", data: apiKey)
+                saveDataToUserDefaults(key: "KrakenSecret", data: secretKey)
+                saveDataToUserDefaults(key: "KrakenData", data: res)
+                saveDataToUserDefaults(key: "KrakenHistoricData", data: res)
                 completion(true)
             }
         } catch {
