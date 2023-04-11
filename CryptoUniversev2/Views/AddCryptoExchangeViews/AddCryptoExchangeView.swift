@@ -11,7 +11,7 @@ struct AddCryptoExchangeView: View {
     @State private var exchangeAPI: String = ""
     @State private var exchangeSecret: String = ""
     @State private var exchangePassphrase: String = ""
-    @State private var loading = false
+//    @State private var loading = false
     @State private var loaded = false
     @State private var loadedWithError = false
 
@@ -104,37 +104,57 @@ struct AddCryptoExchangeView: View {
 
         switch exchangeID {
         case "1":
-            print("case1")
+            parseBinance(apiKey: exchangeAPI, secretKey: exchangeSecret) { isValid in
+                if isValid {
+                    print("The exchange is valid.")
+                    loaded = true
+                } else {
+                    loadedWithError = true
+//                    loading = false
+                }
+            }
         case "2":
             parseOKX(apiKey: exchangeAPI, secretKey: exchangeSecret, passphrase: exchangePassphrase) { isValid in
                 if isValid {
                     print("The exchange is valid.")
+                    loaded = true
                 } else {
                     loadedWithError = true
-                    loading = false
+//                    loading = false
                 }
             }
         case "3":
-            parseGemini(apiKey: exchangeAPI, secretKey: exchangeSecret){ isValid in
+            parseWhiteBit(apiKey: exchangeAPI, secretKey: exchangeSecret) { isValid in
                 if isValid {
                     print("The exchange is valid.")
+                    loaded = true
                 } else {
                     loadedWithError = true
-                    loading = false
+//                    loading = false
                 }
             }
         case "4":
-            print(exchangeID)
-            print("case1")
+            parseGemini(apiKey: exchangeAPI, secretKey: exchangeSecret) { isValid in
+                if isValid {
+                    print("The exchange is valid.")
+                    loaded = true
+                } else {
+                    loadedWithError = true
+//                    loading = false
+                }
+            }
         case "5":
-            print(exchangeID)
-            print("case1")
-        case "6":
-            print(exchangeID)
-            print("case1")
+            parseKraken(apiKey: exchangeAPI, secretKey: exchangeSecret) { isValid in
+                if isValid {
+                    print("The exchange is valid.")
+                    loaded = true
+                } else {
+                    loadedWithError = true
+//                    loading = false
+                }
+            }
         default:
             loadedWithError = true
-            loading = false
         }
     }
 }

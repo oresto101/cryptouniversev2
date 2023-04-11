@@ -46,7 +46,6 @@ struct HomeView: View {
     }
 
     func infoBoxOverlay(infobox: InfoBox) -> some View {
-        let _ = print(infobox)
         return ScrollView(showsIndicators: false) {
             RoundedRectangle(cornerRadius: 14)
                 .padding()
@@ -124,7 +123,6 @@ struct HomeView: View {
     }
 
     private func loadDefaults() {
-        print("Loading defaults")
         if UserDefaults.standard.object(forKey: "infoBoxes") != nil && UserDefaults.standard
             .object(forKey: "cryptoInfo") != nil
         {
@@ -227,8 +225,6 @@ struct HomeView: View {
             """
             cryptoInfo = parseCryptoInfo(json: tstCryptoInfo.data(using: .utf8)!)
             infoBoxes = parseInfoBox(json: tstInfoBoxes.data(using: .utf8)!)
-            print("data loaded")
-            print(cryptoInfo!)
         }
     }
 
