@@ -15,7 +15,7 @@ struct HomeView: View {
 
     var mainTabView: some View {
         TabView {
-            if infoBoxes != nil && cryptoInfo != nil {
+            if infoBoxes != nil, cryptoInfo != nil {
                 contentForEachInfoBox
                     .refreshable {
                         updateData()
@@ -46,7 +46,7 @@ struct HomeView: View {
     }
 
     func infoBoxOverlay(infobox: InfoBox) -> some View {
-        return ScrollView(showsIndicators: false) {
+        ScrollView(showsIndicators: false) {
             RoundedRectangle(cornerRadius: 14)
                 .padding()
                 .frame(width: 350.0, height: 250.0)
@@ -57,7 +57,7 @@ struct HomeView: View {
                         CryptoBoxView(infobox: infobox)
                     }
                 )
-            if !loadingBoxes && !loadingInfo {
+            if !loadingBoxes, !loadingInfo {
                 CryptoExchangeView(
                     cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name),
                     cryptoExchange: infobox.name
@@ -71,7 +71,7 @@ struct HomeView: View {
             Text(infobox.name)
                 .font(.headline)
                 .fontWeight(.bold)
-            if infobox.name != "Overall" && infobox.name != "Manual" {
+            if infobox.name != "Overall", infobox.name != "Manual" {
                 Menu {
                     Button(action: {
                         removeCryptoExchange(id: getExchangeByName(name: infobox.name).id, infobox: infobox)
@@ -122,15 +122,6 @@ struct HomeView: View {
         }
     }
 
-    private func loadDefaults() {
-        if UserDefaults.standard.object(forKey: "infoBoxes") != nil && UserDefaults.standard
-            .object(forKey: "cryptoInfo") != nil
-        {
-            cryptoInfo = parseCryptoInfo(json: UserDefaults.standard.object(forKey: "cryptoInfo") as! Data)
-            infoBoxes = parseInfoBox(json: UserDefaults.standard.object(forKey: "infoBoxes") as! Data)
-        }
-    }
-
     private func loadData() {
         if infoBoxes == nil || cryptoInfo == nil {
             let tstCryptoInfo = """
@@ -175,15 +166,6 @@ struct HomeView: View {
                         "balance": 6.91,
                         "dailyProfitLoss": 0.0
                     }
-                ],
-                "Manual": [
-                    {
-                        "name": "SOL",
-                        "amount": 6.0,
-                        "price": 22.79,
-                        "balance": 136.74,
-                        "dailyProfitLoss": 0.02
-                    }
                 ]
             }
             """
@@ -212,14 +194,6 @@ struct HomeView: View {
                     "dailyProfitLossPercentage": 0.0,
                     "netProfitLoss": 2.1499999999999986,
                     "netProfitLossPercentage": 15.379113018597987
-                },
-                {
-                    "name": "Manual",
-                    "totalBalance": 138.66,
-                    "dailyProfitLoss": 0.02,
-                    "dailyProfitLossPercentage": 0.014423770373575652,
-                    "netProfitLoss": -5.319920545844582,
-                    "netProfitLossPercentage": -3.694904487845351
                 }
             ]
             """
@@ -230,6 +204,8 @@ struct HomeView: View {
 
     private func updateData() {
         print("Updating")
+        print(UserDefaults.standard.dictionary(forKey: "BinanceData") as Any)
+        print(UserDefaults.standard.integer(forKey: "BinanceHistoricData") as Any)
     }
 
     private func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {

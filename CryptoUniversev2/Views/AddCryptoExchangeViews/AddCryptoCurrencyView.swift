@@ -40,7 +40,7 @@ struct AddCryptoCurrencyView: View {
                 }
                 .scrollContentBackground(.hidden)
             }
-            .alert("Cryptocurrency doesn't exist", isPresented: self.$loadedWithError) {
+            .alert("Cryptocurrency doesn't exist", isPresented: $loadedWithError) {
                 Button("Dismiss") {}
             }
         }

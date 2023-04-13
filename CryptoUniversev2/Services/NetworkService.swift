@@ -4,7 +4,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-func parseBinance(apiKey: String, secretKey: String, completion: @escaping (Bool) -> Void) {
+func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: @escaping (Bool) -> Void) {
     let baseURL = "https://api.binance.com"
     let endpoint = "/api/v3/account"
 
@@ -21,7 +21,7 @@ func parseBinance(apiKey: String, secretKey: String, completion: @escaping (Bool
     request.addValue(apiKey, forHTTPHeaderField: "X-MBX-APIKEY")
 
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
-        guard let data = data, error == nil else {
+        guard let data, error == nil else {
             print("Error: \(error?.localizedDescription ?? "Unknown error")")
             completion(false)
             return
@@ -48,10 +48,15 @@ func parseBinance(apiKey: String, secretKey: String, completion: @escaping (Bool
                 saveDataToUserDefaults(key: "BinanceAPI", data: apiKey)
                 saveDataToUserDefaults(key: "BinanceSecret", data: secretKey)
                 saveDataToUserDefaults(key: "BinanceData", data: result)
-                saveDataToUserDefaults(key: "BinanceHistoricData", data: result)
+                calculateTotalValueInUSD(exchange: "BinanceData") { historicData in
+                    if newData {
+                        saveDataToUserDefaults(key: "BinanceHistoricData", data: historicData!)
+                    }
+                }
+
                 completion(true)
             } else {
-                print("Error: Unable to parse JSON")
+                print("Binance - Error: Unable to parse JSON")
                 completion(false)
             }
         } catch {
@@ -63,7 +68,7 @@ func parseBinance(apiKey: String, secretKey: String, completion: @escaping (Bool
     task.resume()
 }
 
-public func parseOKX(apiKey: String, secretKey: String, passphrase: String, completion: @escaping (Bool) -> Void) {
+public func parseOKX(apiKey: String, secretKey: String, passphrase: String, newData: Bool, completion: @escaping (Bool) -> Void) {
     let dateFormatter = ISO8601DateFormatter()
     dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
     let timestamp = dateFormatter.string(from: Date())
@@ -75,7 +80,7 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, comp
     guard let secretKeyData = secretKey.data(using: .utf8),
           let messageData = message.data(using: .utf8)
     else {
-        print("Error converting strings to data")
+        print("OKX - Error converting strings to data")
         return
     }
 
@@ -83,7 +88,7 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, comp
     let signatureBase64 = Data(signature).base64EncodedString()
 
     guard let url = URL(string: "https://www.okx.com/api/v5/account/balance") else {
-        print("Error creating URL")
+        print("OKX - Error creating URL")
         return
     }
 
@@ -103,12 +108,12 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, comp
             return
         }
 
-        guard let data = data,
+        guard let data,
               let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
               let responseData = json["data"] as? [[String: Any]],
               let details = responseData.first?["details"] as? [[String: Any]]
         else {
-            print("Error parsing JSON")
+            print("OKX - Error parsing JSON")
             completion(false)
             return
         }
@@ -127,7 +132,13 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, comp
         saveDataToUserDefaults(key: "OKXSecret", data: secretKey)
         saveDataToUserDefaults(key: "OKXPassphrase", data: passphrase)
         saveDataToUserDefaults(key: "OKXData", data: result)
-        saveDataToUserDefaults(key: "OKXHistoricData", data: result)
+        calculateTotalValueInUSD(exchange: "OKXData") {
+            historicData in
+            if newData {
+                saveDataToUserDefaults(key: "OKXHistoricData", data: historicData!)
+            }
+        }
+
         completion(true)
     }
 
@@ -135,7 +146,7 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, comp
 }
 
 // TODO: Fix
-func parseWhiteBit(apiKey: String, secretKey: String, completion: @escaping (Bool) -> Void) {
+func parseWhiteBit(apiKey: String, secretKey: String, newData: Bool, completion: @escaping (Bool) -> Void) {
     func requestWhiteBitBalance(requestPath: String, completion: @escaping ([String: Double]) -> Void) {
         func wb_hmac(key: String, input: String) -> String? {
             guard let keyData = key.data(using: .utf8), let inputData = input.data(using: .utf8) else {
@@ -156,13 +167,13 @@ func parseWhiteBit(apiKey: String, secretKey: String, completion: @escaping (Boo
         ]
 
         guard let dataJson = try? JSONSerialization.data(withJSONObject: data, options: []) else {
-            print("Error: Cannot create JSON data")
+            print("WhiteBit - Error: Cannot create JSON data")
             return
         }
 
         let payload = dataJson.base64EncodedString()
         guard let signature = wb_hmac(key: secretKey, input: payload) else {
-            print("Error: Cannot create HMAC signature")
+            print("WhiteBit - Error: Cannot create HMAC signature")
             return
         }
 
@@ -181,19 +192,19 @@ func parseWhiteBit(apiKey: String, secretKey: String, completion: @escaping (Boo
         request.httpBody = dataJson
 
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
-            guard let data = data, error == nil else {
-                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+            guard let data, error == nil else {
+                print("WhiteBit - Error: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
 
             if let content = String(data: data, encoding: .utf8) {
-                print("Content of data: \(content)")
+                print("WhiteBit - Content of data: \(content)")
             } else {
-                print("Unable to convert data to a String.")
+                print("WhiteBit - Unable to convert data to a String.")
             }
 
             guard let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: [String: Any]] else {
-                print("Error: Cannot parse JSON response")
+                print("WhiteBit - Error: Cannot parse JSON response")
                 return
             }
 
@@ -230,14 +241,16 @@ func parseWhiteBit(apiKey: String, secretKey: String, completion: @escaping (Boo
                 saveDataToUserDefaults(key: "WhiteBitAPI", data: apiKey)
                 saveDataToUserDefaults(key: "WhiteBitSecret", data: secretKey)
                 saveDataToUserDefaults(key: "WhiteBitData", data: finalResult)
-                saveDataToUserDefaults(key: "WhiteBitHistoricData", data: finalResult)
+                if newData {
+                    saveDataToUserDefaults(key: "WhiteBitHistoricData", data: finalResult)
+                }
                 completion(true)
             }
         }
     }
 }
 
-public func parseGemini(apiKey: String, secretKey: String, completion: @escaping (Bool) -> Void) {
+public func parseGemini(apiKey: String, secretKey: String, newData: Bool, completion: @escaping (Bool) -> Void) {
     let url = URL(string: "https://api.gemini.com/v1/balances")!
     let payloadNonce = Int(Date().timeIntervalSince1970)
     let payload: [String: Any] = ["request": "/v1/balances", "nonce": payloadNonce]
@@ -257,13 +270,13 @@ public func parseGemini(apiKey: String, secretKey: String, completion: @escaping
     request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
     request.httpMethod = "POST"
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
-        if let error = error {
-            print("Request error: ", error)
+        if let error {
+            print("Gemini - Request error: ", error)
             completion(false)
             return
         }
 
-        guard let data = data else { return }
+        guard let data else { return }
 
         do {
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
@@ -276,13 +289,18 @@ public func parseGemini(apiKey: String, secretKey: String, completion: @escaping
                 saveDataToUserDefaults(key: "GeminiAPI", data: apiKey)
                 saveDataToUserDefaults(key: "GeminiSecret", data: secretKey)
                 saveDataToUserDefaults(key: "GeminiData", data: res)
-                saveDataToUserDefaults(key: "GeminiHistoricData", data: res)
+                calculateTotalValueInUSD(exchange: "GeminiData") {
+                    historicData in
+                    if newData {
+                        saveDataToUserDefaults(key: "GeminiHistoricData", data: historicData!)
+                    }
+                }
                 completion(true)
             } else {
                 completion(false)
             }
         } catch {
-            print("JSON parsing error: ", error)
+            print("Gemini - JSON parsing error: ", error)
             completion(false)
         }
     }
@@ -290,7 +308,7 @@ public func parseGemini(apiKey: String, secretKey: String, completion: @escaping
     task.resume()
 }
 
-func parseKraken(apiKey: String, secretKey: String, completion: @escaping (Bool) -> Void) {
+func parseKraken(apiKey: String, secretKey: String, newData: Bool, completion: @escaping (Bool) -> Void) {
     let url = URL(string: "https://api.kraken.com/0/private/Balance")!
     let urlPath = "/0/private/Balance"
     let payloadNonce = "\(Int(Date().timeIntervalSince1970 * 1000))"
@@ -303,7 +321,7 @@ func parseKraken(apiKey: String, secretKey: String, completion: @escaping (Bool)
 
     let message = urlPath.data(using: .utf8)! + SHA256.hash(data: encoded)
     guard let secretKeyData = Data(base64Encoded: secretKey) else {
-        print("Error: Unable to decode base64-encoded secret key")
+        print("Kraken - Error: Unable to decode base64-encoded secret key")
         completion(false)
         return
     }
@@ -318,7 +336,7 @@ func parseKraken(apiKey: String, secretKey: String, completion: @escaping (Bool)
     request.httpBody = postData.data(using: .utf8)
 
     URLSession.shared.dataTask(with: request) { data, _, error in
-        guard let data = data, error == nil else {
+        guard let data, error == nil else {
             print("Error: \(error?.localizedDescription ?? "Unknown error")")
             completion(false)
             return
@@ -337,43 +355,79 @@ func parseKraken(apiKey: String, secretKey: String, completion: @escaping (Bool)
                 saveDataToUserDefaults(key: "KrakenAPI", data: apiKey)
                 saveDataToUserDefaults(key: "KrakenSecret", data: secretKey)
                 saveDataToUserDefaults(key: "KrakenData", data: res)
-                saveDataToUserDefaults(key: "KrakenHistoricData", data: res)
+                calculateTotalValueInUSD(exchange: "KrakenData") { historicData in
+                    if newData {
+                        saveDataToUserDefaults(key: "KrakenHistoricData", data: historicData!)
+                    }
+                }
                 completion(true)
             }
         } catch {
-            print("Error: \(error.localizedDescription)")
+            print("Kraken - Error: \(error.localizedDescription)")
             completion(false)
         }
     }.resume()
 }
 
-public func coinIsValid(name: String, completion: @escaping (Bool) -> Void) {
-    let apiKey = "50e5b41c-ec5c-47f5-88fd-9ab5f51ed210"
-    let urlString = "https://pro-api.coinmarketcap.com/v2/tools/price-conversion?symbol=\(name)&amount=1&convert=USD"
+// public func coinIsValid(name: String, completion: @escaping (Bool) -> Void) {
+//    let apiKey = "50e5b41c-ec5c-47f5-88fd-9ab5f51ed210"
+//    let urlString = "https://pro-api.coinmarketcap.com/v2/tools/price-conversion?symbol=\(name)&amount=1&convert=USD"
+//
+//    guard let url = URL(string: urlString) else {
+//        print("Error creating URL")
+//        return
+//    }
+//
+//    var request = URLRequest(url: url)
+//    request.httpMethod = "GET"
+//    request.addValue(apiKey, forHTTPHeaderField: "X-CMC_PRO_API_KEY")
+//    request.addValue("application/json", forHTTPHeaderField: "Accept")
+//
+//    let task = URLSession.shared.dataTask(with: request) { _, response, error in
+//        if let error {
+//            print("coinIsValid - Error making request: \(error.localizedDescription)")
+//            completion(false)
+//            return
+//        }
+//
+//        if let httpResponse = response as? HTTPURLResponse {
+//            completion(httpResponse.statusCode != 400)
+//        } else {
+//            completion(false)
+//        }
+//    }
+//
+//    task.resume()
+// }
 
-    guard let url = URL(string: urlString) else {
-        print("Error creating URL")
-        return
-    }
-
-    var request = URLRequest(url: url)
-    request.httpMethod = "GET"
-    request.addValue(apiKey, forHTTPHeaderField: "X-CMC_PRO_API_KEY")
-    request.addValue("application/json", forHTTPHeaderField: "Accept")
-
-    let task = URLSession.shared.dataTask(with: request) { _, response, error in
-        if let error = error {
-            print("Error making request: \(error.localizedDescription)")
-            completion(false)
-            return
-        }
-
-        if let httpResponse = response as? HTTPURLResponse {
-            completion(httpResponse.statusCode != 400)
-        } else {
-            completion(false)
-        }
-    }
-
-    task.resume()
-}
+// public func convertCoinToUSD(name: String, amount: Double, completion: @escaping (Double) -> Void) {
+//    let apiKey = "8add797c9e72bef06bde41650b18ece2cb3a547c34f44ba6b32775ee769fac9a"
+//    let url = "https://min-api.cryptocompare.com/data/price?fsym=\(name)&tsyms=USD"
+//    var request = URLRequest(url: URL(string: url)!)
+//    request.setValue(apiKey, forHTTPHeaderField: "Apikey")
+//
+//    let task = URLSession.shared.dataTask(with: request) { data, _, error in
+//        guard let data, error == nil else {
+//            print("Error: \(error?.localizedDescription ?? "Unknown error")")
+//            completion(-1.0)
+//            return
+//        }
+//
+//        if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Double] {
+//            if let price = jsonResponse["USD"] {
+//                completion(round(price * amount * 100) / 100)
+//            } else {
+//                print("coinToUSD - Error: Unable to get price for \(name)")
+//                completion(-1.0)
+//            }
+//        } else {
+//            if let content = String(data: data, encoding: .utf8) {
+//                print(content)
+//            }
+//            print("coinToUSD - Error: Cannot parse JSON response")
+//            completion(-1.0)
+//        }
+//    }
+//
+//    task.resume()
+// }

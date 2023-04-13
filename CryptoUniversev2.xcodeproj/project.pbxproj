@@ -10,6 +10,9 @@
 		1B038541296700BE00E76092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B038540296700BE00E76092 /* ContentView.swift */; };
 		1B0385432967042500E76092 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0385422967042500E76092 /* HomeView.swift */; };
 		1B03854729675ED400E76092 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B03854629675ED400E76092 /* MainView.swift */; };
+		1B6D2CB229E73CED007100D7 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */; };
+		1B6D2CB329E73CED007100D7 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */; };
+		1B6D2CB429E73CED007100D7 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */; };
 		1BC7D4DD29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
 		1BC7D4DE29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
 		1BC7D4DF29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
@@ -96,6 +99,7 @@
 		1B038540296700BE00E76092 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B0385422967042500E76092 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1B03854629675ED400E76092 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoinGecoService.swift; path = /Users/kr1sel/Documents/Code/cryptouniversev2/CryptoUniversev2/Services/CoinGecoService.swift; sourceTree = "<absolute>"; };
 		1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalculationsService.swift; path = CryptoUniversev2/Services/CalculationsService.swift; sourceTree = SOURCE_ROOT; };
 		1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = /Users/kr1sel/Documents/Code/cryptouniversev2/CryptoUniversev2/Services/NetworkService.swift; sourceTree = "<absolute>"; };
 		1BC7D50129E5C9EB00BB14A5 /* String Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String Formatter.swift"; path = "CryptoUniversev2/Utils/String Formatter.swift"; sourceTree = SOURCE_ROOT; };
@@ -270,6 +274,7 @@
 			children = (
 				1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */,
 				1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */,
+				1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B6D2CB229E73CED007100D7 /* CoinGecoService.swift in Sources */,
 				1B03854729675ED400E76092 /* MainView.swift in Sources */,
 				1BC7D4DD29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
 				1B0385432967042500E76092 /* HomeView.swift in Sources */,
@@ -490,6 +496,7 @@
 				1BD7622D297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */,
 				1BD7622F297D65360044D8BC /* AddCryptoExchangeView.swift in Sources */,
 				1BC7D50B29E5CA2500BB14A5 /* NetworkUtils.swift in Sources */,
+				1B6D2CB329E73CED007100D7 /* CoinGecoService.swift in Sources */,
 				1BD7624C297D808D0044D8BC /* CryptoBoxView.swift in Sources */,
 				1BC7D50729E5CA0700BB14A5 /* HideView.swift in Sources */,
 				1BD7624A297D80840044D8BC /* HelpView.swift in Sources */,
@@ -519,6 +526,7 @@
 				1BD76235297D7D5F0044D8BC /* CryptoInfoView.swift in Sources */,
 				1BD76252297DA8960044D8BC /* HomeView_UITests.swift in Sources */,
 				1BD7623A297D7DA50044D8BC /* CryptoInfo.swift in Sources */,
+				1B6D2CB429E73CED007100D7 /* CoinGecoService.swift in Sources */,
 				1BD76233297D7D590044D8BC /* MenuView.swift in Sources */,
 				1BC7D50C29E5CA2500BB14A5 /* NetworkUtils.swift in Sources */,
 				1BD7622A297D64A00044D8BC /* HomeView.swift in Sources */,

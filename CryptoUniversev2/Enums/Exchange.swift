@@ -25,13 +25,13 @@ private var nameToExchangeDict: [String: Exchange] = [
 enum Exchange: String, CaseIterable, Identifiable, Equatable {
     case binance, okx, whitebit, gemini, kraken
 
-    var name: String { return exchangeToNameDict[self]! }
-    var id: String { return exchangeToIdDict[self]! }
+    var name: String { exchangeToNameDict[self]! }
+    var id: String { exchangeToIdDict[self]! }
     var requiresPassphrase: Bool {
-        return requirePassphrase.contains(self)
+        requirePassphrase.contains(self)
     }
 }
 
 func getExchangeByName(name: String) -> Exchange {
-    return nameToExchangeDict[name]!
+    nameToExchangeDict[name]!
 }

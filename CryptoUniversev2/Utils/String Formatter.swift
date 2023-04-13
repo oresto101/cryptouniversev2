@@ -8,10 +8,10 @@ func formatPercentageToString(percentage: Double) -> String {
 }
 
 func formatBalancePLAndPercentageToString(balance: Double, percentage: Double) -> String {
-    return String(roundDoubles(val: balance)) + " (" +
+    String(roundDoubles(val: balance)) + " (" +
         formatPercentageToString(percentage: roundDoubles(val: percentage)) + ")"
 }
 
 func roundDoubles(val: Double) -> Double {
-    return round(val * 100) / 100
+    round(val * 100) / 100
 }

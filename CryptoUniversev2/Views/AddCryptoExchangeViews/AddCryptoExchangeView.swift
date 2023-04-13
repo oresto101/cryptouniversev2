@@ -11,7 +11,6 @@ struct AddCryptoExchangeView: View {
     @State private var exchangeAPI: String = ""
     @State private var exchangeSecret: String = ""
     @State private var exchangePassphrase: String = ""
-//    @State private var loading = false
     @State private var loaded = false
     @State private var loadedWithError = false
 
@@ -67,7 +66,7 @@ struct AddCryptoExchangeView: View {
                 }
                 .scrollContentBackground(.hidden)
             }
-            .alert("Fake credentials", isPresented: self.$loadedWithError) {
+            .alert("Fake credentials", isPresented: $loadedWithError) {
                 Button("Dismiss") {}
             }
         }
@@ -78,79 +77,50 @@ struct AddCryptoExchangeView: View {
                            exchangeSecret: String,
                            exchangePassphrase: String)
     {
-        let
-            parameters = [
-                [
-                    "key": "exchange",
-                    "value": exchangeID,
-                    "type": "text",
-                ],
-                [
-                    "key": "exchangeAPI",
-                    "value": exchangeAPI,
-                    "type": "text",
-                ],
-                [
-                    "key": "exchangeSecret",
-                    "value": exchangeSecret,
-                    "type": "text",
-                ],
-                [
-                    "key": "exchangePassphrase",
-                    "value": exchangePassphrase,
-                    "type": "text",
-                ],
-            ] as [[String: Any]]
-
         switch exchangeID {
         case "1":
-            parseBinance(apiKey: exchangeAPI, secretKey: exchangeSecret) { isValid in
+            parseBinance(apiKey: exchangeAPI, secretKey: exchangeSecret, newData: true) { isValid in
                 if isValid {
                     print("The exchange is valid.")
                     loaded = true
                 } else {
                     loadedWithError = true
-//                    loading = false
                 }
             }
         case "2":
-            parseOKX(apiKey: exchangeAPI, secretKey: exchangeSecret, passphrase: exchangePassphrase) { isValid in
+            parseOKX(apiKey: exchangeAPI, secretKey: exchangeSecret, passphrase: exchangePassphrase, newData: true) { isValid in
                 if isValid {
                     print("The exchange is valid.")
                     loaded = true
                 } else {
                     loadedWithError = true
-//                    loading = false
                 }
             }
         case "3":
-            parseWhiteBit(apiKey: exchangeAPI, secretKey: exchangeSecret) { isValid in
+            parseWhiteBit(apiKey: exchangeAPI, secretKey: exchangeSecret, newData: true) { isValid in
                 if isValid {
                     print("The exchange is valid.")
                     loaded = true
                 } else {
                     loadedWithError = true
-//                    loading = false
                 }
             }
         case "4":
-            parseGemini(apiKey: exchangeAPI, secretKey: exchangeSecret) { isValid in
+            parseGemini(apiKey: exchangeAPI, secretKey: exchangeSecret, newData: true) { isValid in
                 if isValid {
                     print("The exchange is valid.")
                     loaded = true
                 } else {
                     loadedWithError = true
-//                    loading = false
                 }
             }
         case "5":
-            parseKraken(apiKey: exchangeAPI, secretKey: exchangeSecret) { isValid in
+            parseKraken(apiKey: exchangeAPI, secretKey: exchangeSecret, newData: true) { isValid in
                 if isValid {
                     print("The exchange is valid.")
                     loaded = true
                 } else {
                     loadedWithError = true
-//                    loading = false
                 }
             }
         default:

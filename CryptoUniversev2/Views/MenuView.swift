@@ -15,7 +15,7 @@ struct MenuView: View {
                             .font(.headline)
                     }
                 }
-                .padding(.top, 0)
+                .padding(.top, 100)
                 HStack {
                     NavigationLink(destination: AddCryptoCurrencyView()) {
                         Image(systemName: "plus.square")
@@ -38,9 +38,10 @@ struct MenuView: View {
                     }
                 }
                 .padding(.top, 30)
+                Spacer()
             }
             .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .edgesIgnoringSafeArea(.all)
         }
     }

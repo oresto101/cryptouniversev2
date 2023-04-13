@@ -8,7 +8,7 @@ struct MainView: View {
             .onEnded {
                 if $0.translation.width < -100 {
                     withAnimation {
-                        self.showMenu = false
+                        showMenu = false
                     }
                 }
             }
@@ -20,12 +20,12 @@ struct MainView: View {
                     ZStack(alignment: .leading) {
                         HomeView()
                             .frame(width: geometry.size.width, height: geometry.size.height)
-                            .offset(x: self.showMenu ? geometry.size.width * 3 / 4 : 0)
-                            .disabled(self.showMenu ? true : false)
+                            .offset(x: showMenu ? geometry.size.width * 3 / 4 : 0)
+                            .disabled(showMenu ? true : false)
                             .onAppear {
-                                self.showMenu = false
+                                showMenu = false
                             }
-                        if self.showMenu {
+                        if showMenu {
                             MenuView()
                                 .frame(width: geometry.size.width * 3 / 4)
                                 .transition(.move(edge: .leading))
@@ -37,7 +37,7 @@ struct MainView: View {
                 .navigationBarItems(leading: (
                     Button(action: {
                         withAnimation {
-                            self.showMenu.toggle()
+                            showMenu.toggle()
                         }
                     }) {
                         Image(systemName: "line.horizontal.3")

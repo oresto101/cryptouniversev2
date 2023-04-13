@@ -3,4 +3,54 @@
    uuid = "E2A49BA7-27B4-4EDA-9A22-DB1C918E9A3A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F84AD75B-DF9A-4A1A-ACA6-CB191573132A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CryptoUniversev2/Services/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "parseBinance(apiKey:secretKey:newData:completion:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "F84AD75B-DF9A-4A1A-ACA6-CB191573132A - 1d4b1c07266587b1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CryptoUniversev2.parseBinance(apiKey: Swift.String, secretKey: Swift.String, newData: Swift.Bool, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "CryptoUniversev2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kr1sel/Documents/Code/cryptouniversev2/CryptoUniversev2/Services/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "2081">
+               </Location>
+               <Location
+                  uuid = "F84AD75B-DF9A-4A1A-ACA6-CB191573132A - 2ff023aa60ced0be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Double&gt;) -&gt; () in closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CryptoUniversev2.parseBinance(apiKey: Swift.String, secretKey: Swift.String, newData: Swift.Bool, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "CryptoUniversev2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kr1sel/Documents/Code/cryptouniversev2/CryptoUniversev2/Services/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "83">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
