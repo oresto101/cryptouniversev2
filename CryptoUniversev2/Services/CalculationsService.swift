@@ -79,6 +79,7 @@ public func parseCredentials() {
             }
         }
     }
+    storeChangesForCryptoInUsd()
 }
 
 public func parseExchanges(username _: String, password _: String) {}

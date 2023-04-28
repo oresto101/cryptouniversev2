@@ -124,90 +124,73 @@ struct HomeView: View {
 
     private func loadData() {
         if infoBoxes == nil || cryptoInfo == nil {
-            let tstCryptoInfo = """
-            {
-                "Overall": [
-                    {
-                        "name": "OAS",
-                        "amount": 165.46437,
-                        "price": 0.09154860630755665,
-                        "balance": 15.15,
-                        "dailyProfitLoss": 0.0
-                    },
-                ],
-                "OKX": [
-                    {
-                        "name": "OAS",
-                        "amount": 165.46437,
-                        "price": 0.09154860630755665,
-                        "balance": 15.15,
-                        "dailyProfitLoss": 0
-                    },
-                    {
-                        "name": "USDT",
-                        "amount": 12.02116,
-                        "price": 1,
-                        "balance": 12.02,
-                        "dailyProfitLoss": 0.0
-                    }
-                ],
-                "Kraken": [
-                    {
-                        "name": "USDT",
-                        "amount": 9.2,
-                        "price": 1,
-                        "balance": 9.2,
-                        "dailyProfitLoss": 0.0
-                    },
-                    {
-                        "name": "MATIC",
-                        "amount": 6.13005,
-                        "price": 1.128,
-                        "balance": 6.91,
-                        "dailyProfitLoss": 0.0
-                    }
-                ]
-            }
-            """
-            let tstInfoBoxes = """
-            [
-                {
-                    "name": "Overall",
-                    "totalBalance": 181.95999999999998,
-                    "dailyProfitLoss": 0.02,
-                    "netProfitLoss": -3.1199205458445824,
-                    "dailyProfitLossPercentage": 0.010991426687183998,
-                    "netProfitLossPercentage": -1.6857153043091853
-                },
-                {
-                    "name": "OKX",
-                    "totalBalance": 27.17,
-                    "dailyProfitLoss": 0.0,
-                    "dailyProfitLossPercentage": 0.0,
-                    "netProfitLoss": 0.05000000000000071,
-                    "netProfitLossPercentage": 0.18436578171091708
-                },
-                {
-                    "name": "Kraken",
-                    "totalBalance": 16.13,
-                    "dailyProfitLoss": 0.0,
-                    "dailyProfitLossPercentage": 0.0,
-                    "netProfitLoss": 2.1499999999999986,
-                    "netProfitLossPercentage": 15.379113018597987
-                }
-            ]
-            """
-            cryptoInfo = parseCryptoInfo(json: tstCryptoInfo.data(using: .utf8)!)
-            infoBoxes = parseInfoBox(json: tstInfoBoxes.data(using: .utf8)!)
+            cryptoInfo = [:]
+            infoBoxes = []
+            parseCryptoInfo()
         }
     }
-
+    
+    private func getData() {
+    }
     private func updateData() {
+        parseCredentials()
         print("Updating")
         print(UserDefaults.standard.dictionary(forKey: "BinanceData") as Any)
         print(UserDefaults.standard.integer(forKey: "BinanceHistoricData") as Any)
+        parseCryptoInfo()
+        
     }
-
+    
+    private func parseCryptoInfo() {
+        let cryptoPrices = UserDefaults.standard.dictionary(forKey: "CurrentPrices")!
+        let priceChanges = UserDefaults.standard.dictionary(forKey: "PriceChanges")!
+        var exchangeTotals:[String: Double] = [:]
+        var exchangeDailyPL: [String: Double] = [:]
+        var overalls:[String: Double] = [:]
+        exchanges.forEach {
+            exchangeName in
+            if let data = (UserDefaults.standard.dictionary(forKey: "\(exchangeName)Data")){
+                var totalForExchange = 0.0
+                var dailyPLForExchange = 0.0
+                cryptoInfo![exchangeName] = data.compactMap { (symbol, values) in
+                    let arr = values as! [Double]
+                    overalls[symbol] = overalls[symbol] ?? 0 + arr[0]
+                    totalForExchange += arr[1]
+                    if ((priceChanges[symbol]as! Double) != 0.0){
+                        dailyPLForExchange += arr[1]/(priceChanges[symbol] as! Double)
+                    }
+                    let cryptoIn = CryptoInfo(name: symbol, balance: roundDoubles(val: arr[1]), amount: roundDoubles(val: arr[0]), price: cryptoPrices[symbol] as! Double, dailyProfitLoss: priceChanges[symbol] as! Double)
+                    return cryptoIn
+                }
+                exchangeDailyPL[exchangeName] = dailyPLForExchange
+                exchangeTotals[exchangeName] = totalForExchange
+            }
+        }
+        cryptoInfo!["Overall"] = overalls.compactMap{(symbol, values) in
+            return CryptoInfo(name: symbol, balance: cryptoPrices[symbol] as! Double * values, amount: values, price: cryptoPrices[symbol] as! Double, dailyProfitLoss: priceChanges[symbol] as! Double)
+        }
+        infoBoxes = exchangeTotals.compactMap{
+            (name, value ) in
+            let netprofitLoss = Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData")) - value
+            let netProfitLossPercentage = (Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData"))/value) - 1
+            let dailyProfitLossPercentage = ((value - exchangeDailyPL[name]!)/value)-1
+            print(dailyProfitLossPercentage)
+            return InfoBox(name: name, totalBalance: value, dailyProfitLoss: exchangeDailyPL[name]!, netProfitLoss: netprofitLoss, dailyProfitLossPercentage: dailyProfitLossPercentage, netProfitLossPercentage: netProfitLossPercentage)
+        }
+        var overallProfitLoss = 0.0
+        var overallDailyProfitLoss = 0.0
+        var overallSum = 0.0
+        infoBoxes?.forEach{
+            infobox in
+            overallProfitLoss += infobox.netProfitLoss
+            overallSum += infobox.totalBalance
+            overallDailyProfitLoss += infobox.dailyProfitLoss
+        }
+        let netProfitLossPercentage = ((overallSum-overallProfitLoss)/overallSum)-1
+        let dailyProfitLossPercentage = ((overallSum-overallDailyProfitLoss)/overallSum)-1
+        infoBoxes?.insert(InfoBox(name: "Overall", totalBalance: overallSum, dailyProfitLoss: overallDailyProfitLoss, netProfitLoss: overallProfitLoss, dailyProfitLossPercentage: dailyProfitLossPercentage, netProfitLossPercentage: netProfitLossPercentage), at: 0)
+    }
+    
     private func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
         var info = cryptoInfo![exchange]
         while info == nil {

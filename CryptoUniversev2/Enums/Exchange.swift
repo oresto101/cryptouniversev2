@@ -8,7 +8,7 @@ private var exchangeToIdDict: [Exchange: String] = [
     Exchange.gemini: "4",
     Exchange.kraken: "5",
 ]
-private var exchangeToNameDict: [Exchange: String] = [
+ var exchangeToNameDict: [Exchange: String] = [
     Exchange.binance: "Binance",
     Exchange.okx: "OKX",
     Exchange.whitebit: "WhiteBit",
@@ -22,6 +22,7 @@ private var nameToExchangeDict: [String: Exchange] = [
     "Gemini": Exchange.gemini,
     "Kraken": Exchange.kraken,
 ]
+var exchanges: [String] = ["Binance", "OKX", "WhiteBit", "Gemini", "Kraken"]
 enum Exchange: String, CaseIterable, Identifiable, Equatable {
     case binance, okx, whitebit, gemini, kraken
 

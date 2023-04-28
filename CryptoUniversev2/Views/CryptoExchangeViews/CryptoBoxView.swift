@@ -4,13 +4,14 @@ struct CryptoBoxView: View {
     var infobox: InfoBox
 
     var body: some View {
+        
         HStack {
             VStack(alignment: .leading) {
                 Text("Total balance")
                 Text("Daily P/L")
                 Text("Total P/L")
             }
-            .offset(x: -30.0)
+            .offset(x: -5.0)
             VStack(alignment: .trailing) {
                 Text(String(roundDoubles(val: infobox.totalBalance)))
                 Text(formatBalancePLAndPercentageToString(
@@ -22,7 +23,16 @@ struct CryptoBoxView: View {
                     percentage: infobox.netProfitLossPercentage
                 ))
             }
-            .offset(x: 30.0)
+            .offset(x: 5.0)
         }
+    }
+}
+
+struct CryptoBoxView_Previews: PreviewProvider {
+    static var previews: some View {
+        CryptoBoxView(
+            infobox: InfoBox(name: "Binance", totalBalance: 123123123, dailyProfitLoss: 12313, netProfitLoss: 123123123, dailyProfitLossPercentage: 123312, netProfitLossPercentage: 12313
+            )
+        )
     }
 }

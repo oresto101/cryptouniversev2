@@ -50,10 +50,10 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
                 saveDataToUserDefaults(key: "BinanceData", data: result)
                 calculateTotalValueInUSD(exchange: "BinanceData") { historicData in
                     if newData {
-                        saveDataToUserDefaults(key: "BinanceHistoricData", data: historicData!)
+                        saveDataToUserDefaults(key: "BinanceHistoricData", data: historicData ?? 0)
                     }
                 }
-
+                storeChangesForCryptoInUsd()
                 completion(true)
             } else {
                 print("Binance - Error: Unable to parse JSON")
@@ -138,7 +138,7 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, newD
                 saveDataToUserDefaults(key: "OKXHistoricData", data: historicData!)
             }
         }
-
+        storeChangesForCryptoInUsd()
         completion(true)
     }
 
@@ -295,6 +295,7 @@ public func parseGemini(apiKey: String, secretKey: String, newData: Bool, comple
                         saveDataToUserDefaults(key: "GeminiHistoricData", data: historicData!)
                     }
                 }
+                storeChangesForCryptoInUsd()
                 completion(true)
             } else {
                 completion(false)
@@ -360,6 +361,7 @@ func parseKraken(apiKey: String, secretKey: String, newData: Bool, completion: @
                         saveDataToUserDefaults(key: "KrakenHistoricData", data: historicData!)
                     }
                 }
+                storeChangesForCryptoInUsd()
                 completion(true)
             }
         } catch {

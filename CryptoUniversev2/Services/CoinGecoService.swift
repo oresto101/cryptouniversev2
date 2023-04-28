@@ -82,17 +82,18 @@ public func calculateTotalValueInUSD(exchange: String, completion: @escaping (Do
                     let rates = try JSONDecoder().decode([String: [String: Double]].self, from: data)
                     var totalValue = 0.0
                     var newExchangeData: [String: [Double]] = [:]
-
+                    var prices: [String: Double] = [:]
                     for (symbol, amount) in cryptoAmounts! {
                         let id = ids[symbol] ?? ""
                         let rate = rates[id]?["usd"] ?? 0.0
                         let usdValue = amount * rate
-
+                        prices[symbol] = rate
                         newExchangeData[symbol] = [amount, usdValue]
                         totalValue += usdValue
                     }
                     print(newExchangeData)
                     print(totalValue)
+                    saveDataToUserDefaults(key: "CurrentPrices", data: prices)
                     saveDataToUserDefaults(key: exchange, data: newExchangeData)
                     completion(totalValue)
                 } catch {
@@ -103,3 +104,4 @@ public func calculateTotalValueInUSD(exchange: String, completion: @escaping (Do
         }
     }
 }
+

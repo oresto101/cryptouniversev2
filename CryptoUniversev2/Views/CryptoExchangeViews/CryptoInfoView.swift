@@ -29,10 +29,10 @@ struct CryptoInfoView: View {
                         }
                         HStack {
                             VStack(alignment: .leading) {
-                                Text("Total balance: ")
+                                Text("Total price: ")
                                 Text("Amount:  ")
                             }
-                            .offset(x: -20.0)
+                            .position(x: 70, y: 10)
                             VStack(alignment: .trailing) {
                                 Text(formatBalancePLAndPercentageToString(
                                     balance: cryptoInfo.balance,
@@ -40,7 +40,8 @@ struct CryptoInfoView: View {
                                 ))
                                 Text(String(cryptoInfo.amount))
                             }
-                            .offset(x: 20.0)
+                            .offset(x: -15, y: -10)
+//                            .position(x: 80, y: 10)
                         }
                         .font(.subheadline)
                     }
@@ -66,7 +67,7 @@ struct CryptoInfoView_Previews: PreviewProvider {
         CryptoInfoView(
             cryptoInfo: CryptoInfo(
                 name: "Ethereum",
-                balance: 10000.0,
+                balance: 1000.0,
                 amount: 1000.0,
                 price: 1000.0,
                 dailyProfitLoss: -100

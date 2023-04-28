@@ -61,6 +61,7 @@
 		1BD76252297DA8960044D8BC /* HomeView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD76251297DA8960044D8BC /* HomeView_UITests.swift */; };
 		1BFB9C5C29759E910097589E /* CryptoBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB9C5B29759E910097589E /* CryptoBoxView.swift */; };
 		CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA8295B90AA0038E0A2 /* Exchange.swift */; };
+		CB524D0029FB6C4200CD00C2 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = CB524CFF29FB6C4200CD00C2 /* SwiftyJSON */; };
 		CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253629469D4500FD5D11 /* CryptoInfo.swift */; };
 		CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */; };
 		CB65253C2946A40100FD5D11 /* CryptoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253B2946A40100FD5D11 /* CryptoInfoView.swift */; };
@@ -75,6 +76,7 @@
 		CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD2729451DEC0087534D /* InfoBox.swift */; };
 		CB77AF1C29749761006D711E /* AddCryptoCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */; };
 		CBAD25912946D0440062DF52 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD25902946D0440062DF52 /* HelpView.swift */; };
+		CBCEA83B29F2BA220006E19B /* CryptoCompareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */; };
 		CBE25A8F294E8C320010F712 /* AddCryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -99,9 +101,9 @@
 		1B038540296700BE00E76092 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B0385422967042500E76092 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1B03854629675ED400E76092 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoinGecoService.swift; path = /Users/kr1sel/Documents/Code/cryptouniversev2/CryptoUniversev2/Services/CoinGecoService.swift; sourceTree = "<absolute>"; };
+		1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoinGecoService.swift; path = /Users/oresthaman/Documents/cryptouniversev2/CryptoUniversev2/Services/CoinGecoService.swift; sourceTree = "<absolute>"; };
 		1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalculationsService.swift; path = CryptoUniversev2/Services/CalculationsService.swift; sourceTree = SOURCE_ROOT; };
-		1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = /Users/kr1sel/Documents/Code/cryptouniversev2/CryptoUniversev2/Services/NetworkService.swift; sourceTree = "<absolute>"; };
+		1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = /Users/oresthaman/Documents/cryptouniversev2/CryptoUniversev2/Services/NetworkService.swift; sourceTree = "<absolute>"; };
 		1BC7D50129E5C9EB00BB14A5 /* String Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String Formatter.swift"; path = "CryptoUniversev2/Utils/String Formatter.swift"; sourceTree = SOURCE_ROOT; };
 		1BC7D50529E5CA0700BB14A5 /* HideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HideView.swift; path = CryptoUniversev2/Utils/HideView.swift; sourceTree = SOURCE_ROOT; };
 		1BC7D50929E5CA2500BB14A5 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkUtils.swift; path = CryptoUniversev2/Utils/NetworkUtils.swift; sourceTree = SOURCE_ROOT; };
@@ -127,6 +129,7 @@
 		CB72DD2729451DEC0087534D /* InfoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBox.swift; sourceTree = "<group>"; };
 		CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoCurrencyView.swift; sourceTree = "<group>"; };
 		CBAD25902946D0440062DF52 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareService.swift; sourceTree = "<group>"; };
 		CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoExchangeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB524D0029FB6C4200CD00C2 /* SwiftyJSON in Frameworks */,
 				CB65253F2946A8CB00FD5D11 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +279,7 @@
 				1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */,
 				1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */,
 				1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */,
+				CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 			name = CryptoUniversev2;
 			packageProductDependencies = (
 				CB65253E2946A8CB00FD5D11 /* SwiftUIPager */,
+				CB524CFF29FB6C4200CD00C2 /* SwiftyJSON */,
 			);
 			productName = CryptoUniversev2;
 			productReference = CB72DCF7294516530087534D /* CryptoUniversev2.app */;
@@ -392,6 +398,7 @@
 			mainGroup = CB72DCEE294516520087534D;
 			packageReferences = (
 				CB65253D2946A8CB00FD5D11 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				CB524CFE29FB6C4200CD00C2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = CB72DCF8294516530087534D /* Products */;
 			projectDirPath = "";
@@ -465,6 +472,7 @@
 				1BFB9C5C29759E910097589E /* CryptoBoxView.swift in Sources */,
 				CBAD25912946D0440062DF52 /* HelpView.swift in Sources */,
 				CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */,
+				CBCEA83B29F2BA220006E19B /* CryptoCompareService.swift in Sources */,
 				CB65253C2946A40100FD5D11 /* CryptoInfoView.swift in Sources */,
 				CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */,
 				CB77AF1C29749761006D711E /* AddCryptoCurrencyView.swift in Sources */,
@@ -838,6 +846,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CB524CFE29FB6C4200CD00C2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		CB65253D2946A8CB00FD5D11 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
@@ -849,6 +865,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CB524CFF29FB6C4200CD00C2 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB524CFE29FB6C4200CD00C2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
 		CB65253E2946A8CB00FD5D11 /* SwiftUIPager */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CB65253D2946A8CB00FD5D11 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
