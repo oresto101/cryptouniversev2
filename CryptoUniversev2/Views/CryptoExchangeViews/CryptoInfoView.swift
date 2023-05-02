@@ -13,6 +13,11 @@ struct CryptoInfoView: View {
                 .overlay(
                     VStack {
                         HStack {
+                            Image(cryptoInfo.name.lowercased())
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 20, height: 20)
+                            
                             Text(cryptoInfo.name)
                                 .font(.headline)
                                 .fontWeight(.bold)
@@ -66,7 +71,7 @@ struct CryptoInfoView_Previews: PreviewProvider {
     static var previews: some View {
         CryptoInfoView(
             cryptoInfo: CryptoInfo(
-                name: "Ethereum",
+                name: "ETH",
                 balance: 1000.0,
                 amount: 1000.0,
                 price: 1000.0,

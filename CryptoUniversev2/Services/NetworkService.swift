@@ -28,6 +28,7 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
         }
 
         do {
+            print(data)
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
                let balances = json["balances"] as? [[String: Any]]
             {
@@ -38,6 +39,9 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
                        let freeString = balance["free"] as? String,
                        let free = Double(freeString), free > 0
                     {
+                        if asset.starts(with: "LD"){
+                            continue
+                        }
                         if asset == "BTTC" {
                             result["BTT"] = free
                         } else {

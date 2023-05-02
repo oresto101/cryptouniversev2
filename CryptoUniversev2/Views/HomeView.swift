@@ -74,7 +74,7 @@ struct HomeView: View {
             if infobox.name != "Overall", infobox.name != "Manual" {
                 Menu {
                     Button(action: {
-                        removeCryptoExchange(id: getExchangeByName(name: infobox.name).id, infobox: infobox)
+                        removeCryptoExchange(infobox: infobox)
                     }) {
                         Label("Delete", systemImage: "minus.circle")
                     }
@@ -100,7 +100,13 @@ struct HomeView: View {
             .background(RoundedRectangle(cornerRadius: 5).stroke(Color.white, lineWidth: 2))
     }
 
-    func removeCryptoExchange(id _: String, infobox _: InfoBox) {}
+    func removeCryptoExchange(infobox: InfoBox) {
+        UserDefaults.standard.removeObject(forKey: "\(infobox.name)API")
+        UserDefaults.standard.removeObject(forKey: "\(infobox.name)Secret")
+        UserDefaults.standard.removeObject(forKey: "\(infobox.name)Data")
+        UserDefaults.standard.removeObject(forKey: "\(infobox.name)HistoricData")
+        loadData()
+    }
 
     private func parseInfoBox(json: Data) -> [InfoBox] {
         let decoder = JSONDecoder()
@@ -134,6 +140,7 @@ struct HomeView: View {
     }
     private func updateData() {
         parseCredentials()
+        sleep(1)
         print("Updating")
         print(UserDefaults.standard.dictionary(forKey: "BinanceData") as Any)
         print(UserDefaults.standard.integer(forKey: "BinanceHistoricData") as Any)
@@ -188,7 +195,9 @@ struct HomeView: View {
         }
         let netProfitLossPercentage = ((overallSum-overallProfitLoss)/overallSum)-1
         let dailyProfitLossPercentage = ((overallSum-overallDailyProfitLoss)/overallSum)-1
-        infoBoxes?.insert(InfoBox(name: "Overall", totalBalance: overallSum, dailyProfitLoss: overallDailyProfitLoss, netProfitLoss: overallProfitLoss, dailyProfitLossPercentage: dailyProfitLossPercentage, netProfitLossPercentage: netProfitLossPercentage), at: 0)
+        if (overallSum != 0.0) {
+            infoBoxes?.insert(InfoBox(name: "Overall", totalBalance: overallSum, dailyProfitLoss: overallDailyProfitLoss, netProfitLoss: overallProfitLoss, dailyProfitLossPercentage: dailyProfitLossPercentage, netProfitLossPercentage: netProfitLossPercentage), at: 0)
+        }
     }
     
     private func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
