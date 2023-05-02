@@ -6,7 +6,7 @@ struct MenuView: View {
             Color("MainColor").ignoresSafeArea()
             VStack(alignment: .leading) {
                 HStack {
-                    NavigationLink(destination: AddCryptoExchangeView()) {
+                    NavigationLink(destination: ACEView().navigationBarBackButtonHidden(true)) {
                         Image(systemName: "plus.square")
                             .foregroundColor(Color("BackgroundColor"))
                             .imageScale(.large)
@@ -17,7 +17,7 @@ struct MenuView: View {
                 }
                 .padding(.top, 100)
                 HStack {
-                    NavigationLink(destination: AddCryptoCurrencyView()) {
+                    NavigationLink(destination: ACCYView().navigationBarBackButtonHidden(true)) {
                         Image(systemName: "plus.square")
                             .foregroundColor(Color("BackgroundColor"))
                             .imageScale(.large)
@@ -28,7 +28,18 @@ struct MenuView: View {
                 }
                 .padding(.top, 30)
                 HStack {
-                    NavigationLink(destination: HelpView()) {
+                    NavigationLink(destination: NewsView().navigationBarBackButtonHidden(true)) {
+                        Image(systemName: "plus.square")
+                            .foregroundColor(Color("BackgroundColor"))
+                            .imageScale(.large)
+                        Text("News")
+                            .foregroundColor(Color("BackgroundColor"))
+                            .font(.headline)
+                    }
+                }
+                .padding(.top, 30)
+                HStack {
+                    NavigationLink(destination: HView().navigationBarBackButtonHidden(true)) {
                         Image(systemName: "info.circle")
                             .foregroundColor(Color("BackgroundColor"))
                             .imageScale(.large)

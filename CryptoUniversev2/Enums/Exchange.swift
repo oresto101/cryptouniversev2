@@ -8,7 +8,7 @@ private var exchangeToIdDict: [Exchange: String] = [
     Exchange.gemini: "4",
     Exchange.kraken: "5",
 ]
- var exchangeToNameDict: [Exchange: String] = [
+var exchangeToNameDict: [Exchange: String] = [
     Exchange.binance: "Binance",
     Exchange.okx: "OKX",
     Exchange.whitebit: "WhiteBit",

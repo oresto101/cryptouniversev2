@@ -13,7 +13,6 @@ struct CryptoData: Codable {
     let display: [String: [String: [String: String]]]
 }
 
-
 public func storeChangesForCryptoInUsd() {
     var cryptos: Set<String> = []
     exchanges.forEach {
@@ -40,7 +39,7 @@ public func storeChangesForCryptoInUsd() {
         do {
             let json = try? JSON(data: data)
             var priceChanges: [String: Double] = [:]
-            cryptos.forEach{
+            cryptos.forEach {
                 crypto in
                 priceChanges[crypto] = json!["RAW"][crypto]["USD"]["CHANGEPCT24HOUR"].double
             }
@@ -51,4 +50,3 @@ public func storeChangesForCryptoInUsd() {
         }
     }.resume()
 }
-

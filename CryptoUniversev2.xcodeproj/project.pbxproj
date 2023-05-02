@@ -10,15 +10,48 @@
 		1B038541296700BE00E76092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B038540296700BE00E76092 /* ContentView.swift */; };
 		1B0385432967042500E76092 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0385422967042500E76092 /* HomeView.swift */; };
 		1B03854729675ED400E76092 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B03854629675ED400E76092 /* MainView.swift */; };
-		1B6D2CB229E73CED007100D7 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */; };
-		1B6D2CB329E73CED007100D7 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */; };
-		1B6D2CB429E73CED007100D7 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */; };
+		1B0521812A019D2400094BBD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521802A019D2400094BBD /* Helper.swift */; };
+		1B0521822A019D2400094BBD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521802A019D2400094BBD /* Helper.swift */; };
+		1B0521832A019D2400094BBD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521802A019D2400094BBD /* Helper.swift */; };
+		1B0521852A019D5000094BBD /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521842A019D5000094BBD /* News.swift */; };
+		1B0521862A019D5000094BBD /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521842A019D5000094BBD /* News.swift */; };
+		1B0521872A019D5000094BBD /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521842A019D5000094BBD /* News.swift */; };
+		1B0521892A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
+		1B05218A2A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
+		1B05218B2A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
+		1B5DE6F72A019ECE002795F9 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6F52A019ECE002795F9 /* CoinGecoService.swift */; };
+		1B5DE6F82A019ECE002795F9 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6F52A019ECE002795F9 /* CoinGecoService.swift */; };
+		1B5DE6F92A019ECE002795F9 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6F52A019ECE002795F9 /* CoinGecoService.swift */; };
+		1B5DE6FA2A019ECE002795F9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6F62A019ECE002795F9 /* NetworkService.swift */; };
+		1B5DE6FB2A019ECE002795F9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6F62A019ECE002795F9 /* NetworkService.swift */; };
+		1B5DE6FC2A019ECE002795F9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6F62A019ECE002795F9 /* NetworkService.swift */; };
+		1B5DE6FE2A019F4E002795F9 /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6FD2A019F4E002795F9 /* FileManagerService.swift */; };
+		1B5DE6FF2A019F4E002795F9 /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6FD2A019F4E002795F9 /* FileManagerService.swift */; };
+		1B5DE7002A019F4E002795F9 /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6FD2A019F4E002795F9 /* FileManagerService.swift */; };
+		1B5DE7022A019F7E002795F9 /* ManualDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7012A019F7E002795F9 /* ManualDataService.swift */; };
+		1B5DE7032A019F7E002795F9 /* ManualDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7012A019F7E002795F9 /* ManualDataService.swift */; };
+		1B5DE7042A019F7E002795F9 /* ManualDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7012A019F7E002795F9 /* ManualDataService.swift */; };
+		1B5DE7062A019FC4002795F9 /* ACCYView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7052A019FC4002795F9 /* ACCYView.swift */; };
+		1B5DE7072A019FC4002795F9 /* ACCYView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7052A019FC4002795F9 /* ACCYView.swift */; };
+		1B5DE7082A019FC4002795F9 /* ACCYView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7052A019FC4002795F9 /* ACCYView.swift */; };
+		1B5DE70A2A01A01B002795F9 /* ACEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7092A01A01B002795F9 /* ACEView.swift */; };
+		1B5DE70B2A01A01B002795F9 /* ACEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7092A01A01B002795F9 /* ACEView.swift */; };
+		1B5DE70C2A01A01B002795F9 /* ACEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7092A01A01B002795F9 /* ACEView.swift */; };
+		1B5DE70E2A01A03C002795F9 /* HView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE70D2A01A03C002795F9 /* HView.swift */; };
+		1B5DE70F2A01A03C002795F9 /* HView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE70D2A01A03C002795F9 /* HView.swift */; };
+		1B5DE7102A01A03C002795F9 /* HView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE70D2A01A03C002795F9 /* HView.swift */; };
+		1B5DE7172A01A0C5002795F9 /* NewsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7162A01A0C5002795F9 /* NewsItemView.swift */; };
+		1B5DE7182A01A0C5002795F9 /* NewsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7162A01A0C5002795F9 /* NewsItemView.swift */; };
+		1B5DE7192A01A0C5002795F9 /* NewsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE7162A01A0C5002795F9 /* NewsItemView.swift */; };
+		1B5DE71B2A01A0DB002795F9 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE71A2A01A0DB002795F9 /* NewsListView.swift */; };
+		1B5DE71C2A01A0DB002795F9 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE71A2A01A0DB002795F9 /* NewsListView.swift */; };
+		1B5DE71D2A01A0DB002795F9 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE71A2A01A0DB002795F9 /* NewsListView.swift */; };
+		1B5DE71F2A01A0F1002795F9 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE71E2A01A0F1002795F9 /* NewsView.swift */; };
+		1B5DE7202A01A0F1002795F9 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE71E2A01A0F1002795F9 /* NewsView.swift */; };
+		1B5DE7212A01A0F1002795F9 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE71E2A01A0F1002795F9 /* NewsView.swift */; };
 		1BC7D4DD29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
 		1BC7D4DE29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
 		1BC7D4DF29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
-		1BC7D4E229E5AB7900BB14A5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */; };
-		1BC7D4E329E5AB7900BB14A5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */; };
-		1BC7D4E429E5AB7900BB14A5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */; };
 		1BC7D50229E5C9EB00BB14A5 /* String Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D50129E5C9EB00BB14A5 /* String Formatter.swift */; };
 		1BC7D50329E5C9EB00BB14A5 /* String Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D50129E5C9EB00BB14A5 /* String Formatter.swift */; };
 		1BC7D50429E5C9EB00BB14A5 /* String Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D50129E5C9EB00BB14A5 /* String Formatter.swift */; };
@@ -101,9 +134,20 @@
 		1B038540296700BE00E76092 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B0385422967042500E76092 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1B03854629675ED400E76092 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoinGecoService.swift; path = /Users/oresthaman/Documents/cryptouniversev2/CryptoUniversev2/Services/CoinGecoService.swift; sourceTree = "<absolute>"; };
+		1B0521802A019D2400094BBD /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		1B0521842A019D5000094BBD /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		1B0521882A019D6A00094BBD /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		1B5DE6F52A019ECE002795F9 /* CoinGecoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoinGecoService.swift; path = CryptoUniversev2/Services/CoinGecoService.swift; sourceTree = SOURCE_ROOT; };
+		1B5DE6F62A019ECE002795F9 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		1B5DE6FD2A019F4E002795F9 /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
+		1B5DE7012A019F7E002795F9 /* ManualDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualDataService.swift; sourceTree = "<group>"; };
+		1B5DE7052A019FC4002795F9 /* ACCYView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCYView.swift; sourceTree = "<group>"; };
+		1B5DE7092A01A01B002795F9 /* ACEView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACEView.swift; sourceTree = "<group>"; };
+		1B5DE70D2A01A03C002795F9 /* HView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HView.swift; sourceTree = "<group>"; };
+		1B5DE7162A01A0C5002795F9 /* NewsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemView.swift; sourceTree = "<group>"; };
+		1B5DE71A2A01A0DB002795F9 /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
+		1B5DE71E2A01A0F1002795F9 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalculationsService.swift; path = CryptoUniversev2/Services/CalculationsService.swift; sourceTree = SOURCE_ROOT; };
-		1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = /Users/oresthaman/Documents/cryptouniversev2/CryptoUniversev2/Services/NetworkService.swift; sourceTree = "<absolute>"; };
 		1BC7D50129E5C9EB00BB14A5 /* String Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String Formatter.swift"; path = "CryptoUniversev2/Utils/String Formatter.swift"; sourceTree = SOURCE_ROOT; };
 		1BC7D50529E5CA0700BB14A5 /* HideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HideView.swift; path = CryptoUniversev2/Utils/HideView.swift; sourceTree = SOURCE_ROOT; };
 		1BC7D50929E5CA2500BB14A5 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkUtils.swift; path = CryptoUniversev2/Utils/NetworkUtils.swift; sourceTree = SOURCE_ROOT; };
@@ -160,6 +204,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B5DE7112A01A05C002795F9 /* NewsViews */ = {
+			isa = PBXGroup;
+			children = (
+				1B5DE7162A01A0C5002795F9 /* NewsItemView.swift */,
+				1B5DE71A2A01A0DB002795F9 /* NewsListView.swift */,
+				1B5DE71E2A01A0F1002795F9 /* NewsView.swift */,
+			);
+			path = NewsViews;
+			sourceTree = "<group>";
+		};
 		CB404EA5295B90610038E0A2 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +225,7 @@
 		CB65253A2946A36100FD5D11 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1B5DE7112A01A05C002795F9 /* NewsViews */,
 				CBE25A8D294E8C060010F712 /* AddCryptoExchangeViews */,
 				CBAD258F2946D0320062DF52 /* HelpViews */,
 				CB6525442946C1C500FD5D11 /* CryptoExchangeViews */,
@@ -261,6 +316,9 @@
 			children = (
 				CB72DD2729451DEC0087534D /* InfoBox.swift */,
 				CB65253629469D4500FD5D11 /* CryptoInfo.swift */,
+				1B0521802A019D2400094BBD /* Helper.swift */,
+				1B0521842A019D5000094BBD /* News.swift */,
+				1B0521882A019D6A00094BBD /* NewsViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -269,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				CBAD25902946D0440062DF52 /* HelpView.swift */,
+				1B5DE70D2A01A03C002795F9 /* HView.swift */,
 			);
 			path = HelpViews;
 			sourceTree = "<group>";
@@ -276,10 +335,12 @@
 		CBE25A85294E65AD0010F712 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1B5DE6F52A019ECE002795F9 /* CoinGecoService.swift */,
+				1B5DE6F62A019ECE002795F9 /* NetworkService.swift */,
 				1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */,
-				1BC7D4E129E5AB7900BB14A5 /* NetworkService.swift */,
-				1B6D2CB129E73CED007100D7 /* CoinGecoService.swift */,
 				CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */,
+				1B5DE6FD2A019F4E002795F9 /* FileManagerService.swift */,
+				1B5DE7012A019F7E002795F9 /* ManualDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -289,6 +350,8 @@
 			children = (
 				CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */,
 				CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */,
+				1B5DE7052A019FC4002795F9 /* ACCYView.swift */,
+				1B5DE7092A01A01B002795F9 /* ACEView.swift */,
 			);
 			path = AddCryptoExchangeViews;
 			sourceTree = "<group>";
@@ -463,25 +526,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B6D2CB229E73CED007100D7 /* CoinGecoService.swift in Sources */,
+				1B0521852A019D5000094BBD /* News.swift in Sources */,
+				1B5DE71F2A01A0F1002795F9 /* NewsView.swift in Sources */,
 				1B03854729675ED400E76092 /* MainView.swift in Sources */,
+				1B5DE6F72A019ECE002795F9 /* CoinGecoService.swift in Sources */,
 				1BC7D4DD29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
+				1B5DE70A2A01A01B002795F9 /* ACEView.swift in Sources */,
 				1B0385432967042500E76092 /* HomeView.swift in Sources */,
 				1B038541296700BE00E76092 /* ContentView.swift in Sources */,
-				1BC7D4E229E5AB7900BB14A5 /* NetworkService.swift in Sources */,
+				1B5DE7062A019FC4002795F9 /* ACCYView.swift in Sources */,
+				1B0521892A019D6A00094BBD /* NewsViewModel.swift in Sources */,
 				1BFB9C5C29759E910097589E /* CryptoBoxView.swift in Sources */,
 				CBAD25912946D0440062DF52 /* HelpView.swift in Sources */,
 				CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */,
+				1B5DE6FA2A019ECE002795F9 /* NetworkService.swift in Sources */,
 				CBCEA83B29F2BA220006E19B /* CryptoCompareService.swift in Sources */,
 				CB65253C2946A40100FD5D11 /* CryptoInfoView.swift in Sources */,
+				1B0521812A019D2400094BBD /* Helper.swift in Sources */,
 				CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */,
 				CB77AF1C29749761006D711E /* AddCryptoCurrencyView.swift in Sources */,
+				1B5DE70E2A01A03C002795F9 /* HView.swift in Sources */,
 				CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */,
+				1B5DE71B2A01A0DB002795F9 /* NewsListView.swift in Sources */,
+				1B5DE7172A01A0C5002795F9 /* NewsItemView.swift in Sources */,
 				1BC7D50A29E5CA2500BB14A5 /* NetworkUtils.swift in Sources */,
 				CB6525412946BC1800FD5D11 /* MenuView.swift in Sources */,
 				CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */,
+				1B5DE6FE2A019F4E002795F9 /* FileManagerService.swift in Sources */,
 				1BC7D50629E5CA0700BB14A5 /* HideView.swift in Sources */,
 				1BC7D50229E5C9EB00BB14A5 /* String Formatter.swift in Sources */,
+				1B5DE7022A019F7E002795F9 /* ManualDataService.swift in Sources */,
 				CBE25A8F294E8C320010F712 /* AddCryptoExchangeView.swift in Sources */,
 				CB72DCFB294516530087534D /* CryptoUniversev2App.swift in Sources */,
 			);
@@ -492,24 +566,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BC7D50329E5C9EB00BB14A5 /* String Formatter.swift in Sources */,
+				1B5DE7202A01A0F1002795F9 /* NewsView.swift in Sources */,
+				1B0521862A019D5000094BBD /* News.swift in Sources */,
+				1B5DE6F82A019ECE002795F9 /* CoinGecoService.swift in Sources */,
 				1BD7623B297D7DA60044D8BC /* CryptoInfo.swift in Sources */,
+				1B5DE70B2A01A01B002795F9 /* ACEView.swift in Sources */,
 				1BD76245297D7F450044D8BC /* MainView.swift in Sources */,
 				1BD76240297D7DB00044D8BC /* ContentView.swift in Sources */,
+				1B5DE7072A019FC4002795F9 /* ACCYView.swift in Sources */,
 				1BD7624D297D80900044D8BC /* MenuView.swift in Sources */,
 				1BD7623F297D7DAC0044D8BC /* CryptoUniversev2App.swift in Sources */,
+				1B05218A2A019D6A00094BBD /* NewsViewModel.swift in Sources */,
 				1BD76244297D7EF10044D8BC /* Exchange.swift in Sources */,
+				1B5DE6FB2A019ECE002795F9 /* NetworkService.swift in Sources */,
 				1BD7622B297D64A60044D8BC /* HomeView.swift in Sources */,
 				1BD7622C297D64D20044D8BC /* CryptoInfoView.swift in Sources */,
 				CB72DD0C294516550087534D /* CryptoUniversev2Tests.swift in Sources */,
 				1BD7622D297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */,
+				1B0521822A019D2400094BBD /* Helper.swift in Sources */,
+				1B5DE70F2A01A03C002795F9 /* HView.swift in Sources */,
 				1BD7622F297D65360044D8BC /* AddCryptoExchangeView.swift in Sources */,
+				1B5DE71C2A01A0DB002795F9 /* NewsListView.swift in Sources */,
+				1B5DE7182A01A0C5002795F9 /* NewsItemView.swift in Sources */,
 				1BC7D50B29E5CA2500BB14A5 /* NetworkUtils.swift in Sources */,
-				1B6D2CB329E73CED007100D7 /* CoinGecoService.swift in Sources */,
 				1BD7624C297D808D0044D8BC /* CryptoBoxView.swift in Sources */,
 				1BC7D50729E5CA0700BB14A5 /* HideView.swift in Sources */,
+				1B5DE6FF2A019F4E002795F9 /* FileManagerService.swift in Sources */,
 				1BD7624A297D80840044D8BC /* HelpView.swift in Sources */,
-				1BC7D4E329E5AB7900BB14A5 /* NetworkService.swift in Sources */,
 				1BD7623D297D7DA80044D8BC /* InfoBox.swift in Sources */,
+				1B5DE7032A019F7E002795F9 /* ManualDataService.swift in Sources */,
 				1BD7624B297D80870044D8BC /* CryptoExchangeView.swift in Sources */,
 				1BC7D4DE29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
 			);
@@ -521,29 +606,40 @@
 			files = (
 				CB72DD18294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift in Sources */,
 				1BD76237297D7D660044D8BC /* HelpView.swift in Sources */,
-				1BC7D4E429E5AB7900BB14A5 /* NetworkService.swift in Sources */,
 				1BD7623E297D7DAC0044D8BC /* CryptoUniversev2App.swift in Sources */,
+				1B5DE7082A019FC4002795F9 /* ACCYView.swift in Sources */,
 				1BC7D50429E5C9EB00BB14A5 /* String Formatter.swift in Sources */,
+				1B5DE6F92A019ECE002795F9 /* CoinGecoService.swift in Sources */,
 				1BD76229297D64990044D8BC /* MainView.swift in Sources */,
+				1B5DE7102A01A03C002795F9 /* HView.swift in Sources */,
+				1B5DE6FC2A019ECE002795F9 /* NetworkService.swift in Sources */,
 				1BD76232297D6D670044D8BC /* ContentView_UITests.swift in Sources */,
 				1BD76250297DA64C0044D8BC /* ContentView_Login_UITests.swift in Sources */,
 				1BC7D4DF29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
 				1BD76234297D7D5C0044D8BC /* CryptoBoxView.swift in Sources */,
+				1B5DE70C2A01A01B002795F9 /* ACEView.swift in Sources */,
 				CB72DD16294516550087534D /* CryptoUniversev2UITests.swift in Sources */,
+				1B05218B2A019D6A00094BBD /* NewsViewModel.swift in Sources */,
 				1BD76243297D7EE80044D8BC /* Exchange.swift in Sources */,
+				1B5DE71D2A01A0DB002795F9 /* NewsListView.swift in Sources */,
 				1BD76235297D7D5F0044D8BC /* CryptoInfoView.swift in Sources */,
 				1BD76252297DA8960044D8BC /* HomeView_UITests.swift in Sources */,
 				1BD7623A297D7DA50044D8BC /* CryptoInfo.swift in Sources */,
-				1B6D2CB429E73CED007100D7 /* CoinGecoService.swift in Sources */,
+				1B5DE7212A01A0F1002795F9 /* NewsView.swift in Sources */,
 				1BD76233297D7D590044D8BC /* MenuView.swift in Sources */,
 				1BC7D50C29E5CA2500BB14A5 /* NetworkUtils.swift in Sources */,
 				1BD7622A297D64A00044D8BC /* HomeView.swift in Sources */,
 				1BD7623C297D7DA80044D8BC /* InfoBox.swift in Sources */,
+				1B5DE7042A019F7E002795F9 /* ManualDataService.swift in Sources */,
 				1BD7622E297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */,
+				1B0521872A019D5000094BBD /* News.swift in Sources */,
 				1BD76230297D65360044D8BC /* AddCryptoExchangeView.swift in Sources */,
 				1BD76236297D7D610044D8BC /* CryptoExchangeView.swift in Sources */,
+				1B0521832A019D2400094BBD /* Helper.swift in Sources */,
+				1B5DE7192A01A0C5002795F9 /* NewsItemView.swift in Sources */,
 				1BC7D50829E5CA0700BB14A5 /* HideView.swift in Sources */,
 				1BD76228297D64630044D8BC /* ContentView.swift in Sources */,
+				1B5DE7002A019F4E002795F9 /* FileManagerService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

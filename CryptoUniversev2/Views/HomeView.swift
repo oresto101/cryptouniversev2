@@ -135,9 +135,9 @@ struct HomeView: View {
             parseCryptoInfo()
         }
     }
-    
-    private func getData() {
-    }
+
+    private func getData() {}
+
     private func updateData() {
         parseCredentials()
         sleep(1)
@@ -145,61 +145,77 @@ struct HomeView: View {
         print(UserDefaults.standard.dictionary(forKey: "BinanceData") as Any)
         print(UserDefaults.standard.integer(forKey: "BinanceHistoricData") as Any)
         parseCryptoInfo()
-        
     }
-    
+
     private func parseCryptoInfo() {
         let cryptoPrices = UserDefaults.standard.dictionary(forKey: "CurrentPrices")!
         let priceChanges = UserDefaults.standard.dictionary(forKey: "PriceChanges")!
-        var exchangeTotals:[String: Double] = [:]
+        var exchangeTotals: [String: Double] = [:]
         var exchangeDailyPL: [String: Double] = [:]
-        var overalls:[String: Double] = [:]
+        var overalls: [String: Double] = [:]
         exchanges.forEach {
             exchangeName in
-            if let data = (UserDefaults.standard.dictionary(forKey: "\(exchangeName)Data")){
+            if let data = (UserDefaults.standard.dictionary(forKey: "\(exchangeName)Data")) {
                 var totalForExchange = 0.0
                 var dailyPLForExchange = 0.0
-                cryptoInfo![exchangeName] = data.compactMap { (symbol, values) in
+                cryptoInfo![exchangeName] = data.compactMap { symbol, values in
                     let arr = values as! [Double]
                     overalls[symbol] = overalls[symbol] ?? 0 + arr[0]
                     totalForExchange += arr[1]
-                    if ((priceChanges[symbol]as! Double) != 0.0){
-                        dailyPLForExchange += arr[1]/(priceChanges[symbol] as! Double)
+                    if (priceChanges[symbol] as! Double) != 0.0 {
+                        dailyPLForExchange += arr[1] / (priceChanges[symbol] as! Double)
                     }
-                    let cryptoIn = CryptoInfo(name: symbol, balance: roundDoubles(val: arr[1]), amount: roundDoubles(val: arr[0]), price: cryptoPrices[symbol] as! Double, dailyProfitLoss: priceChanges[symbol] as! Double)
+                    let cryptoIn = CryptoInfo(
+                        name: symbol,
+                        balance: roundDoubles(val: arr[1]),
+                        amount: roundDoubles(val: arr[0]),
+                        price: cryptoPrices[symbol] as! Double,
+                        dailyProfitLoss: priceChanges[symbol] as! Double
+                    )
                     return cryptoIn
                 }
                 exchangeDailyPL[exchangeName] = dailyPLForExchange
                 exchangeTotals[exchangeName] = totalForExchange
             }
         }
-        cryptoInfo!["Overall"] = overalls.compactMap{(symbol, values) in
-            return CryptoInfo(name: symbol, balance: cryptoPrices[symbol] as! Double * values, amount: values, price: cryptoPrices[symbol] as! Double, dailyProfitLoss: priceChanges[symbol] as! Double)
+        cryptoInfo!["Overall"] = overalls.compactMap { symbol, values in
+            CryptoInfo(name: symbol, balance: cryptoPrices[symbol] as! Double * values, amount: values, price: cryptoPrices[symbol] as! Double, dailyProfitLoss: priceChanges[symbol] as! Double)
         }
-        infoBoxes = exchangeTotals.compactMap{
-            (name, value ) in
+        infoBoxes = exchangeTotals.compactMap {
+            name, value in
             let netprofitLoss = Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData")) - value
-            let netProfitLossPercentage = (Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData"))/value) - 1
-            let dailyProfitLossPercentage = ((value - exchangeDailyPL[name]!)/value)-1
+            let netProfitLossPercentage = (Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData")) / value) - 1
+            let dailyProfitLossPercentage = ((value - exchangeDailyPL[name]!) / value) - 1
             print(dailyProfitLossPercentage)
-            return InfoBox(name: name, totalBalance: value, dailyProfitLoss: exchangeDailyPL[name]!, netProfitLoss: netprofitLoss, dailyProfitLossPercentage: dailyProfitLossPercentage, netProfitLossPercentage: netProfitLossPercentage)
+            return InfoBox(
+                name: name,
+                totalBalance: value,
+                dailyProfitLoss: exchangeDailyPL[name]!,
+                netProfitLoss: netprofitLoss,
+                dailyProfitLossPercentage: dailyProfitLossPercentage,
+                netProfitLossPercentage: netProfitLossPercentage
+            )
         }
         var overallProfitLoss = 0.0
         var overallDailyProfitLoss = 0.0
         var overallSum = 0.0
-        infoBoxes?.forEach{
+        infoBoxes?.forEach {
             infobox in
             overallProfitLoss += infobox.netProfitLoss
             overallSum += infobox.totalBalance
             overallDailyProfitLoss += infobox.dailyProfitLoss
         }
-        let netProfitLossPercentage = ((overallSum-overallProfitLoss)/overallSum)-1
-        let dailyProfitLossPercentage = ((overallSum-overallDailyProfitLoss)/overallSum)-1
-        if (overallSum != 0.0) {
-            infoBoxes?.insert(InfoBox(name: "Overall", totalBalance: overallSum, dailyProfitLoss: overallDailyProfitLoss, netProfitLoss: overallProfitLoss, dailyProfitLossPercentage: dailyProfitLossPercentage, netProfitLossPercentage: netProfitLossPercentage), at: 0)
+        let netProfitLossPercentage = ((overallSum - overallProfitLoss) / overallSum) - 1
+        let dailyProfitLossPercentage = ((overallSum - overallDailyProfitLoss) / overallSum) - 1
+        if overallSum != 0.0 {
+            infoBoxes?.insert(
+                InfoBox(name: "Overall", totalBalance: overallSum, dailyProfitLoss: overallDailyProfitLoss, netProfitLoss: overallProfitLoss, dailyProfitLossPercentage: dailyProfitLossPercentage,
+                        netProfitLossPercentage: netProfitLossPercentage),
+                at: 0
+            )
         }
     }
-    
+
     private func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
         var info = cryptoInfo![exchange]
         while info == nil {

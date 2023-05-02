@@ -105,3 +105,21 @@ public func calculateTotalValueInUSD(exchange: String, completion: @escaping (Do
     }
 }
 
+public func fetchCoinList(completion: @escaping (Data?, Error?) -> Void) {
+    let url = URL(string: "https://api.coingecko.com/api/v3/coins/list")!
+
+    URLSession.shared.dataTask(with: url) { data, _, error in
+        if let error {
+            print("fetchError")
+            completion(nil, error)
+            return
+        }
+
+        if let data {
+            saveJSONDataToFile(data)
+            completion(data, nil)
+        } else {
+            completion(nil, nil)
+        }
+    }.resume()
+}

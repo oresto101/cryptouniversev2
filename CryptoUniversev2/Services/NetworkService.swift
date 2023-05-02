@@ -39,7 +39,7 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
                        let freeString = balance["free"] as? String,
                        let free = Double(freeString), free > 0
                     {
-                        if asset.starts(with: "LD"){
+                        if asset.starts(with: "LD") {
                             continue
                         }
                         if asset == "BTTC" {

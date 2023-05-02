@@ -4,7 +4,6 @@ struct CryptoBoxView: View {
     var infobox: InfoBox
 
     var body: some View {
-        
         HStack {
             VStack(alignment: .leading) {
                 Text("Total balance")
@@ -31,8 +30,7 @@ struct CryptoBoxView: View {
 struct CryptoBoxView_Previews: PreviewProvider {
     static var previews: some View {
         CryptoBoxView(
-            infobox: InfoBox(name: "Binance", totalBalance: 123123123, dailyProfitLoss: 12313, netProfitLoss: 123123123, dailyProfitLossPercentage: 123312, netProfitLossPercentage: 12313
-            )
+            infobox: InfoBox(name: "Binance", totalBalance: 123_123_123, dailyProfitLoss: 12313, netProfitLoss: 123_123_123, dailyProfitLossPercentage: 123_312, netProfitLossPercentage: 12313)
         )
     }
 }
