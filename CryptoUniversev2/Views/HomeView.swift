@@ -129,6 +129,9 @@ struct HomeView: View {
     }
 
     private func loadData() {
+        if UserDefaults.standard.dictionary(forKey: "CurrentPrices") == nil || UserDefaults.standard.dictionary(forKey: "PriceChanges") == nil {
+            return
+        }
         if infoBoxes == nil || cryptoInfo == nil {
             cryptoInfo = [:]
             infoBoxes = []
