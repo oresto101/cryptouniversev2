@@ -49,8 +49,8 @@ struct AddCryptoCurrencyView: View {
         convertCoinToUSD(name: cryptoCode, amount: Double(quantity)!) {
             coinData in
             if coinData != -1.0 {
-                addManualHistoryRecord(key: cryptoCode, value: coinData)
-                addManualRecord(key: cryptoCode, value: [Double(quantity)!, coinData])
+                addManualHistoryRecord(key: cryptoCode.uppercased(), value: coinData)
+                addManualRecord(key: cryptoCode.uppercased(), value: [Double(quantity)!, coinData])
                 loaded = true
             }
             loadedWithError = true
