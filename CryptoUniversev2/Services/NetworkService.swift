@@ -406,34 +406,34 @@ func parseKraken(apiKey: String, secretKey: String, newData: Bool, completion: @
 //    task.resume()
 // }
 
-// public func convertCoinToUSD(name: String, amount: Double, completion: @escaping (Double) -> Void) {
-//    let apiKey = "8add797c9e72bef06bde41650b18ece2cb3a547c34f44ba6b32775ee769fac9a"
-//    let url = "https://min-api.cryptocompare.com/data/price?fsym=\(name)&tsyms=USD"
-//    var request = URLRequest(url: URL(string: url)!)
-//    request.setValue(apiKey, forHTTPHeaderField: "Apikey")
-//
-//    let task = URLSession.shared.dataTask(with: request) { data, _, error in
-//        guard let data, error == nil else {
-//            print("Error: \(error?.localizedDescription ?? "Unknown error")")
-//            completion(-1.0)
-//            return
-//        }
-//
-//        if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Double] {
-//            if let price = jsonResponse["USD"] {
-//                completion(round(price * amount * 100) / 100)
-//            } else {
-//                print("coinToUSD - Error: Unable to get price for \(name)")
-//                completion(-1.0)
-//            }
-//        } else {
-//            if let content = String(data: data, encoding: .utf8) {
-//                print(content)
-//            }
-//            print("coinToUSD - Error: Cannot parse JSON response")
-//            completion(-1.0)
-//        }
-//    }
-//
-//    task.resume()
-// }
+public func convertCoinToUSD(name: String, amount: Double, completion: @escaping (Double) -> Void) {
+    let apiKey = "8add797c9e72bef06bde41650b18ece2cb3a547c34f44ba6b32775ee769fac9a"
+    let url = "https://min-api.cryptocompare.com/data/price?fsym=\(name)&tsyms=USD"
+    var request = URLRequest(url: URL(string: url)!)
+    request.setValue(apiKey, forHTTPHeaderField: "Apikey")
+
+    let task = URLSession.shared.dataTask(with: request) { data, _, error in
+        guard let data, error == nil else {
+            print("Error: \(error?.localizedDescription ?? "Unknown error")")
+            completion(-1.0)
+            return
+        }
+
+        if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Double] {
+            if let price = jsonResponse["USD"] {
+                completion(round(price * amount * 100) / 100)
+            } else {
+                print("coinToUSD - Error: Unable to get price for \(name)")
+                completion(-1.0)
+            }
+        } else {
+            if let content = String(data: data, encoding: .utf8) {
+                print(content)
+            }
+            print("coinToUSD - Error: Cannot parse JSON response")
+            completion(-1.0)
+        }
+    }
+
+    task.resume()
+}

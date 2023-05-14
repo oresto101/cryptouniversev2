@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ACCYView: View {
+struct HHView: View {
     @State var showMenu = false
 
     var body: some View {
@@ -18,7 +18,7 @@ struct ACCYView: View {
             NavigationView {
                 GeometryReader { geometry in
                     ZStack(alignment: .leading) {
-                        AddCryptoCurrencyView()
+                        HomeView()
                             .frame(width: geometry.size.width, height: geometry.size.height)
                             .offset(x: showMenu ? geometry.size.width * 3 / 4 : 0)
                             .disabled(showMenu ? true : false)
@@ -36,11 +36,8 @@ struct ACCYView: View {
                 .navigationBarTitle("Crypto Universe", displayMode: .inline)
                 .navigationBarItems(leading: (
                     Button(action: {
-                        // Wrap the state update in a DispatchQueue.main.async block
-                        DispatchQueue.main.async {
-                            withAnimation {
-                                showMenu.toggle()
-                            }
+                        withAnimation {
+                            showMenu.toggle()
                         }
                     }) {
                         Image(systemName: "line.horizontal.3")

@@ -18,7 +18,7 @@ struct HView: View {
             NavigationView {
                 GeometryReader { geometry in
                     ZStack(alignment: .leading) {
-                        AddCryptoCurrencyView()
+                        HelpView()
                             .frame(width: geometry.size.width, height: geometry.size.height)
                             .offset(x: showMenu ? geometry.size.width * 3 / 4 : 0)
                             .disabled(showMenu ? true : false)

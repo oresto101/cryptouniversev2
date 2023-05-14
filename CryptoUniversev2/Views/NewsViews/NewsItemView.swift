@@ -34,7 +34,7 @@ struct NewsItemView: View {
                     .font(.headline)
                     .fontWeight(.bold)
                     .padding(.bottom, 2)
-                Text(news.body)
+                Text(truncatedBody(from: news.body))
                     .font(.body)
                 Text(Helper.format(timeInterval: news.timePublished))
                     .font(.footnote)
@@ -51,6 +51,15 @@ struct NewsItemView: View {
         }
         .sheet(isPresented: $showSafariView) {
             SafariView(url: URL(string: news.sourceURL))
+        }
+    }
+
+    private func truncatedBody(from body: String) -> String {
+        if body.count > 300 {
+            let index = body.index(body.startIndex, offsetBy: 300)
+            return String(body[..<index]) + "..."
+        } else {
+            return body
         }
     }
 

@@ -6,6 +6,17 @@ struct MenuView: View {
             Color("MainColor").ignoresSafeArea()
             VStack(alignment: .leading) {
                 HStack {
+                    NavigationLink(destination: HHView().navigationBarBackButtonHidden(true)) {
+                        Image(systemName: "homekit")
+                            .foregroundColor(Color("BackgroundColor"))
+                            .imageScale(.large)
+                        Text("Home")
+                            .foregroundColor(Color("BackgroundColor"))
+                            .font(.headline)
+                    }
+                }
+                .padding(.top, 100)
+                HStack {
                     NavigationLink(destination: ACEView().navigationBarBackButtonHidden(true)) {
                         Image(systemName: "plus.square")
                             .foregroundColor(Color("BackgroundColor"))
@@ -15,7 +26,7 @@ struct MenuView: View {
                             .font(.headline)
                     }
                 }
-                .padding(.top, 100)
+                .padding(.top, 30)
                 HStack {
                     NavigationLink(destination: ACCYView().navigationBarBackButtonHidden(true)) {
                         Image(systemName: "plus.square")
@@ -29,7 +40,7 @@ struct MenuView: View {
                 .padding(.top, 30)
                 HStack {
                     NavigationLink(destination: NewsView().navigationBarBackButtonHidden(true)) {
-                        Image(systemName: "plus.square")
+                        Image(systemName: "newspaper")
                             .foregroundColor(Color("BackgroundColor"))
                             .imageScale(.large)
                         Text("News")

@@ -8,17 +8,16 @@ import SwiftUI
 struct AddCryptoCurrencyView: View {
     @State private var cryptoCode: String = ""
     @State private var quantity: String = "0"
-    @State private var loading = false
     @State private var loaded = false
     @State private var loadedWithError = false
 
     var body: some View {
         if loaded {
-            MainView().navigationBarBackButtonHidden(true)
+            HomeView().navigationBarBackButtonHidden(true)
         } else {
             ZStack {
                 Color("BackgroundColor").ignoresSafeArea()
-                List {
+                Form {
                     Section {
                         TextField(
                             "Cryptocurrency code",
@@ -36,7 +35,7 @@ struct AddCryptoCurrencyView: View {
                         addCryptocurrency(cryptoCode: cryptoCode, quantity: quantity)
                     }
 
-                    .disabled(quantity.isEmpty || cryptoCode.isEmpty)
+                    .disabled(quantity.isEmpty || cryptoCode.isEmpty || Double(quantity) == 0)
                 }
                 .scrollContentBackground(.hidden)
             }
@@ -46,21 +45,16 @@ struct AddCryptoCurrencyView: View {
         }
     }
 
-    func addCryptocurrency(cryptoCode: String, quantity: String) { let
-        parameters = [
-            [
-                "key": "coin",
-                "value": cryptoCode,
-                "type": "text",
-            ],
-            [
-                "key": "quantity",
-                "value": quantity,
-                "type": "text",
-            ],
-        ] as [[String: Any]]
-
-        print(parameters)
+    func addCryptocurrency(cryptoCode: String, quantity: String) {
+        convertCoinToUSD(name: cryptoCode, amount: Double(quantity)!) {
+            coinData in
+            if coinData != -1.0 {
+                addManualHistoryRecord(key: cryptoCode, value: coinData)
+                addManualRecord(key: cryptoCode, value: [Double(quantity)!, coinData])
+                loaded = true
+            }
+            loadedWithError = true
+        }
     }
 }
 

@@ -7,7 +7,8 @@ import Foundation
 import SwiftUI
 
 struct AddCryptoExchangeView: View {
-    @State private var selectedExchange: Exchange = .binance
+//    @State private var selectedExchange: Exchange = .binance
+    @State public var selectedExchange: Exchange
     @State private var exchangeAPI: String = ""
     @State private var exchangeSecret: String = ""
     @State private var exchangePassphrase: String = ""
@@ -16,58 +17,62 @@ struct AddCryptoExchangeView: View {
 
     var body: some View {
         if loaded {
-            MainView().navigationBarBackButtonHidden(true)
+            HomeView().navigationBarBackButtonHidden(true)
         } else {
             ZStack {
                 Color("BackgroundColor").ignoresSafeArea()
-                List {
-                    Section {
-                        Picker("Exchange", selection: $selectedExchange) {
-                            ForEach(Exchange.allCases, id: \.self) { exchange in Text(exchange.name).tag(exchange)
-                            }
-                        }
-                        .accessibility(identifier: "picker")
-                        TextField(
-                            "Exchange API",
-                            text: $exchangeAPI
-                        )
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                        TextField(
-                            "Exchange Secret",
-                            text: $exchangeSecret
-                        )
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                        if selectedExchange.requiresPassphrase {
+                VStack {
+                    Text(selectedExchange.name)
+                        .font(.system(size: 25))
+                        .foregroundColor(.white)
+                    Form {
+                        Section {
+                            //                        Picker("Exchange", selection: $selectedExchange) {
+                            //
+                            //                        }
+                            //                        .accessibility(identifier: "picker")
                             TextField(
-                                "Exchange Passphrase",
-                                text: $exchangePassphrase
+                                "Exchange API",
+                                text: $exchangeAPI
                             )
                             .autocapitalization(.none)
                             .disableAutocorrection(true)
+                            TextField(
+                                "Exchange Secret",
+                                text: $exchangeSecret
+                            )
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
+                            if selectedExchange.requiresPassphrase {
+                                TextField(
+                                    "Exchange Passphrase",
+                                    text: $exchangePassphrase
+                                )
+                                .autocapitalization(.none)
+                                .disableAutocorrection(true)
+                            }
+                            //                        .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
                         }
-//                        .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
-                    }
-                    Button("Add cryptoexchange") {
-                        addCryptoExchange(
-                            exchangeID: selectedExchange.id,
-                            exchangeAPI: exchangeAPI,
-                            exchangeSecret: exchangeSecret,
-                            exchangePassphrase: exchangePassphrase
+                        Button("Add cryptoexchange") {
+                            addCryptoExchange(
+                                exchangeID: selectedExchange.id,
+                                exchangeAPI: exchangeAPI,
+                                exchangeSecret: exchangeSecret,
+                                exchangePassphrase: exchangePassphrase
+                            )
+                        }
+
+                        .disabled(
+                            exchangeAPI.isEmpty || exchangeSecret
+                                .isEmpty || (exchangePassphrase.isEmpty && selectedExchange.requiresPassphrase) ||
+                                (!exchangePassphrase.isEmpty && !selectedExchange.requiresPassphrase)
                         )
                     }
-
-                    .disabled(
-                        exchangeAPI.isEmpty || exchangeSecret
-                            .isEmpty || (exchangePassphrase.isEmpty && selectedExchange.requiresPassphrase) ||
-                            (!exchangePassphrase.isEmpty && !selectedExchange.requiresPassphrase)
-                    )
+                    .scrollContentBackground(.hidden)
                 }
-                .scrollContentBackground(.hidden)
-            }
-            .alert("Fake credentials", isPresented: $loadedWithError) {
-                Button("Dismiss") {}
+                .alert("Fake credentials", isPresented: $loadedWithError) {
+                    Button("Dismiss") {}
+                }
             }
         }
     }
@@ -131,6 +136,6 @@ struct AddCryptoExchangeView: View {
 
 struct AddCryptoExchangeView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCryptoExchangeView()
+        AddCryptoExchangeView(selectedExchange: getExchangeByName(name: "Binance"))
     }
 }

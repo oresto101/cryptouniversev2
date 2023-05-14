@@ -19,6 +19,9 @@
 		1B0521892A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
 		1B05218A2A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
 		1B05218B2A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
+		1B4B957F2A0E9E4F00D277F0 /* HHView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B957E2A0E9E4F00D277F0 /* HHView.swift */; };
+		1B4B95802A0E9E4F00D277F0 /* HHView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B957E2A0E9E4F00D277F0 /* HHView.swift */; };
+		1B4B95812A0E9E4F00D277F0 /* HHView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B957E2A0E9E4F00D277F0 /* HHView.swift */; };
 		1B5DE6F72A019ECE002795F9 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6F52A019ECE002795F9 /* CoinGecoService.swift */; };
 		1B5DE6F82A019ECE002795F9 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6F52A019ECE002795F9 /* CoinGecoService.swift */; };
 		1B5DE6F92A019ECE002795F9 /* CoinGecoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE6F52A019ECE002795F9 /* CoinGecoService.swift */; };
@@ -49,6 +52,9 @@
 		1B5DE71F2A01A0F1002795F9 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE71E2A01A0F1002795F9 /* NewsView.swift */; };
 		1B5DE7202A01A0F1002795F9 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE71E2A01A0F1002795F9 /* NewsView.swift */; };
 		1B5DE7212A01A0F1002795F9 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DE71E2A01A0F1002795F9 /* NewsView.swift */; };
+		1B820D7E2A11401A0050F741 /* ExchangeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B820D7D2A11401A0050F741 /* ExchangeListView.swift */; };
+		1B820D7F2A11401A0050F741 /* ExchangeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B820D7D2A11401A0050F741 /* ExchangeListView.swift */; };
+		1B820D802A11401A0050F741 /* ExchangeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B820D7D2A11401A0050F741 /* ExchangeListView.swift */; };
 		1BC7D4DD29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
 		1BC7D4DE29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
 		1BC7D4DF29E42CCE00BB14A5 /* CalculationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */; };
@@ -137,6 +143,7 @@
 		1B0521802A019D2400094BBD /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		1B0521842A019D5000094BBD /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		1B0521882A019D6A00094BBD /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		1B4B957E2A0E9E4F00D277F0 /* HHView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHView.swift; sourceTree = "<group>"; };
 		1B5DE6F52A019ECE002795F9 /* CoinGecoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoinGecoService.swift; path = CryptoUniversev2/Services/CoinGecoService.swift; sourceTree = SOURCE_ROOT; };
 		1B5DE6F62A019ECE002795F9 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		1B5DE6FD2A019F4E002795F9 /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
@@ -147,6 +154,7 @@
 		1B5DE7162A01A0C5002795F9 /* NewsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemView.swift; sourceTree = "<group>"; };
 		1B5DE71A2A01A0DB002795F9 /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
 		1B5DE71E2A01A0F1002795F9 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		1B820D7D2A11401A0050F741 /* ExchangeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeListView.swift; sourceTree = "<group>"; };
 		1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalculationsService.swift; path = CryptoUniversev2/Services/CalculationsService.swift; sourceTree = SOURCE_ROOT; };
 		1BC7D50129E5C9EB00BB14A5 /* String Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String Formatter.swift"; path = "CryptoUniversev2/Utils/String Formatter.swift"; sourceTree = SOURCE_ROOT; };
 		1BC7D50529E5CA0700BB14A5 /* HideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HideView.swift; path = CryptoUniversev2/Utils/HideView.swift; sourceTree = SOURCE_ROOT; };
@@ -319,6 +327,7 @@
 				1B0521802A019D2400094BBD /* Helper.swift */,
 				1B0521842A019D5000094BBD /* News.swift */,
 				1B0521882A019D6A00094BBD /* NewsViewModel.swift */,
+				1B4B957E2A0E9E4F00D277F0 /* HHView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -352,6 +361,7 @@
 				CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */,
 				1B5DE7052A019FC4002795F9 /* ACCYView.swift */,
 				1B5DE7092A01A01B002795F9 /* ACEView.swift */,
+				1B820D7D2A11401A0050F741 /* ExchangeListView.swift */,
 			);
 			path = AddCryptoExchangeViews;
 			sourceTree = "<group>";
@@ -527,7 +537,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B0521852A019D5000094BBD /* News.swift in Sources */,
+				1B4B957F2A0E9E4F00D277F0 /* HHView.swift in Sources */,
 				1B5DE71F2A01A0F1002795F9 /* NewsView.swift in Sources */,
+				1B820D7E2A11401A0050F741 /* ExchangeListView.swift in Sources */,
 				1B03854729675ED400E76092 /* MainView.swift in Sources */,
 				1B5DE6F72A019ECE002795F9 /* CoinGecoService.swift in Sources */,
 				1BC7D4DD29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
@@ -566,7 +578,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BC7D50329E5C9EB00BB14A5 /* String Formatter.swift in Sources */,
+				1B4B95802A0E9E4F00D277F0 /* HHView.swift in Sources */,
 				1B5DE7202A01A0F1002795F9 /* NewsView.swift in Sources */,
+				1B820D7F2A11401A0050F741 /* ExchangeListView.swift in Sources */,
 				1B0521862A019D5000094BBD /* News.swift in Sources */,
 				1B5DE6F82A019ECE002795F9 /* CoinGecoService.swift in Sources */,
 				1BD7623B297D7DA60044D8BC /* CryptoInfo.swift in Sources */,
@@ -619,6 +633,7 @@
 				1BD76234297D7D5C0044D8BC /* CryptoBoxView.swift in Sources */,
 				1B5DE70C2A01A01B002795F9 /* ACEView.swift in Sources */,
 				CB72DD16294516550087534D /* CryptoUniversev2UITests.swift in Sources */,
+				1B820D802A11401A0050F741 /* ExchangeListView.swift in Sources */,
 				1B05218B2A019D6A00094BBD /* NewsViewModel.swift in Sources */,
 				1BD76243297D7EE80044D8BC /* Exchange.swift in Sources */,
 				1B5DE71D2A01A0DB002795F9 /* NewsListView.swift in Sources */,
@@ -636,6 +651,7 @@
 				1BD76230297D65360044D8BC /* AddCryptoExchangeView.swift in Sources */,
 				1BD76236297D7D610044D8BC /* CryptoExchangeView.swift in Sources */,
 				1B0521832A019D2400094BBD /* Helper.swift in Sources */,
+				1B4B95812A0E9E4F00D277F0 /* HHView.swift in Sources */,
 				1B5DE7192A01A0C5002795F9 /* NewsItemView.swift in Sources */,
 				1BC7D50829E5CA0700BB14A5 /* HideView.swift in Sources */,
 				1BD76228297D64630044D8BC /* ContentView.swift in Sources */,
@@ -781,6 +797,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CryptoUniversev2/Preview Content\"";
+				DEVELOPMENT_TEAM = PCV2T7D8TL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -809,6 +826,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CryptoUniversev2/Preview Content\"";
+				DEVELOPMENT_TEAM = PCV2T7D8TL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

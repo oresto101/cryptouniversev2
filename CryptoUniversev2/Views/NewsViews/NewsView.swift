@@ -33,6 +33,7 @@ struct NewsView: View {
                     }
                     .gesture(drag)
                 }
+                .toolbarBackground(Color("BackgroundColor"), for: .navigationBar)
                 .navigationBarTitle("News", displayMode: .inline)
                 .navigationBarItems(leading: (
                     Button(action: {
