@@ -17,7 +17,7 @@ struct AddCryptoExchangeView: View {
 
     var body: some View {
         if loaded {
-            HomeView().navigationBarBackButtonHidden(true)
+            HHView().navigationBarBackButtonHidden(true)
         } else {
             ZStack {
                 Color("BackgroundColor").ignoresSafeArea()

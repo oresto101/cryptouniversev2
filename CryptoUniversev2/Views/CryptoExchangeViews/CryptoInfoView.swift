@@ -18,14 +18,13 @@ struct CryptoInfoView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 20, height: 20)
-                            }
-                            else {
+                            } else {
                                 Image(cryptoInfo.name.lowercased())
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 20, height: 20)
                             }
-                            
+
                             Text(cryptoInfo.name)
                                 .font(.headline)
                                 .fontWeight(.bold)

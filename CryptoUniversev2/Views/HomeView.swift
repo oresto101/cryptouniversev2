@@ -7,6 +7,7 @@ struct HomeView: View {
     @State private var cryptoInfo: [String: [CryptoInfo]]?
     @State private var loadingBoxes = false
     @State private var loadingInfo = false
+    @State private var noData = false
 
     var body: some View {
         ZStack {
@@ -23,7 +24,11 @@ struct HomeView: View {
                         updateData()
                     }
             } else {
-                loadingProgressView
+                if noData {
+                    noDataView
+                } else {
+                    loadingProgressView
+                }
             }
         }
         .tabViewStyle(PageTabViewStyle())
@@ -93,6 +98,20 @@ struct HomeView: View {
             .scaleEffect(2)
     }
 
+    var noDataView: some View {
+        VStack {
+            Text("Add a Crypto Exchange to see your data")
+                .font(.title)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .padding()
+        }
+        .frame(width: 300, height: 200)
+        .background(Color.gray)
+        .cornerRadius(10)
+        .padding()
+    }
+
     var loading_view: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 3).fill(Color.white.opacity(0.1))
@@ -131,7 +150,9 @@ struct HomeView: View {
     }
 
     private func loadData() {
+        print("Loading")
         if UserDefaults.standard.dictionary(forKey: "CurrentPrices") == nil || UserDefaults.standard.dictionary(forKey: "PriceChanges") == nil {
+            noData = true
             return
         }
         if infoBoxes == nil || cryptoInfo == nil {
@@ -140,7 +161,7 @@ struct HomeView: View {
             parseCredentials()
             dispatchGroup.notify(queue: .main) {
                 parseCryptoInfo()
-                }
+            }
 
             printDataDebug()
         }
@@ -157,13 +178,15 @@ struct HomeView: View {
     }
 
     private func updateData() {
+        print("Updating")
         parseCredentials()
         dispatchGroup.notify(queue: .main) {
             parseCryptoInfo()
-            }
+        }
     }
 
     private func parseCryptoInfo() {
+        print("Prasing")
         let cryptoPrices = UserDefaults.standard.dictionary(forKey: "Prices")!
         let priceChanges = UserDefaults.standard.dictionary(forKey: "PriceChanges")!
         var exchangeTotals: [String: Double] = [:]
@@ -202,7 +225,7 @@ struct HomeView: View {
         }
         infoBoxes = exchangeTotals.compactMap {
             name, value in
-            if (UserDefaults.standard.value(forKey: "\(name)HistoricData") == nil) {
+            if UserDefaults.standard.value(forKey: "\(name)HistoricData") == nil {
                 saveDataToUserDefaults(key: "\(name)HistoricData", data: value)
             }
             let netprofitLoss = Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData")) - value
