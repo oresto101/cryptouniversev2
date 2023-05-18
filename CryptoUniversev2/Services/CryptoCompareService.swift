@@ -27,7 +27,7 @@ public func storeChangesForCryptoInUsd() {
     request.setValue("8add797c9e72bef06bde41650b18ece2cb3a547c34f44ba6b32775ee769fac9a", forHTTPHeaderField: "Apikey")
     dispatchGroup.enter()
     URLSession.shared.dataTask(with: request) { data, _, error in
-        dispatchGroup.leave()
+
         if let error {
             print("cyptocompare - Error making request: \(error.localizedDescription)")
             return
@@ -51,6 +51,7 @@ public func storeChangesForCryptoInUsd() {
             saveDataToUserDefaults(key: "PriceChanges", data: priceChanges)
             saveDataToUserDefaults(key: "Prices", data: prices)
             print("Prices and price changes saved")
+            dispatchGroup.leave()
         } catch {
             print("cryptocompare - Error parsing response: \(error.localizedDescription)")
         }

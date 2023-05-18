@@ -4,7 +4,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-func parseBinance(apiKey: String, secretKey: String, newData _: Bool, completion: @escaping (Bool) -> Void) {
+func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: @escaping (Bool) -> Void) {
     let baseURL = "https://api.binance.com"
     let endpoint = "/api/v3/account"
 
@@ -53,7 +53,9 @@ func parseBinance(apiKey: String, secretKey: String, newData _: Bool, completion
                 saveDataToUserDefaults(key: "BinanceAPI", data: apiKey)
                 saveDataToUserDefaults(key: "BinanceSecret", data: secretKey)
                 saveDataToUserDefaults(key: "BinanceData", data: result)
-
+                if newData {
+                    storeChangesForCryptoInUsd()
+                }
                 completion(true)
             } else {
                 print("Binance - Error: Unable to parse JSON")
@@ -68,7 +70,7 @@ func parseBinance(apiKey: String, secretKey: String, newData _: Bool, completion
     task.resume()
 }
 
-public func parseOKX(apiKey: String, secretKey: String, passphrase: String, newData _: Bool, completion: @escaping (Bool) -> Void) {
+public func parseOKX(apiKey: String, secretKey: String, passphrase: String, newData: Bool, completion: @escaping (Bool) -> Void) {
     let dateFormatter = ISO8601DateFormatter()
     dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
     let timestamp = dateFormatter.string(from: Date())
@@ -245,7 +247,7 @@ func parseWhiteBit(apiKey: String, secretKey: String, newData: Bool, completion:
     }
 }
 
-public func parseGemini(apiKey: String, secretKey: String, newData _: Bool, completion: @escaping (Bool) -> Void) {
+public func parseGemini(apiKey: String, secretKey: String, newData: Bool, completion: @escaping (Bool) -> Void) {
     let url = URL(string: "https://api.gemini.com/v1/balances")!
     let payloadNonce = Int(Date().timeIntervalSince1970)
     let payload: [String: Any] = ["request": "/v1/balances", "nonce": payloadNonce]
@@ -300,7 +302,7 @@ public func parseGemini(apiKey: String, secretKey: String, newData _: Bool, comp
     task.resume()
 }
 
-func parseKraken(apiKey: String, secretKey: String, newData _: Bool, completion: @escaping (Bool) -> Void) {
+func parseKraken(apiKey: String, secretKey: String, newData: Bool, completion: @escaping (Bool) -> Void) {
     let url = URL(string: "https://api.kraken.com/0/private/Balance")!
     let urlPath = "/0/private/Balance"
     let payloadNonce = "\(Int(Date().timeIntervalSince1970 * 1000))"

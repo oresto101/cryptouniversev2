@@ -3,8 +3,8 @@ import SwiftUI
 let dispatchGroup = DispatchGroup()
 
 struct HomeView: View {
-    @State private var infoBoxes: [InfoBox]?
-    @State private var cryptoInfo: [String: [CryptoInfo]]?
+    @State private var infoBoxes: [InfoBox] = []
+    @State private var cryptoInfo: [String: [CryptoInfo]] = [:]
     @State private var loadingBoxes = false
     @State private var loadingInfo = false
     @State private var noData = false
@@ -18,7 +18,7 @@ struct HomeView: View {
 
     var mainTabView: some View {
         TabView {
-            if infoBoxes != nil, cryptoInfo != nil {
+            if !infoBoxes.isEmpty, !cryptoInfo.isEmpty {
                 contentForEachInfoBox
                     .refreshable {
                         updateData()
@@ -36,7 +36,7 @@ struct HomeView: View {
     }
 
     var contentForEachInfoBox: some View {
-        ForEach(infoBoxes!, id: \.self) { infobox in
+        ForEach(infoBoxes, id: \.self) { infobox in
             infoBoxContent(infobox: infobox)
         }
     }
@@ -151,30 +151,24 @@ struct HomeView: View {
 
     private func loadData() {
         print("Loading")
-        if UserDefaults.standard.dictionary(forKey: "Prices") == nil || UserDefaults.standard.dictionary(forKey: "PriceChanges") == nil {
+        if !areAnyCredentialsStored(){
             noData = true
-            return
         }
-        if infoBoxes == nil || cryptoInfo == nil {
-            cryptoInfo = [:]
-            infoBoxes = []
-            parseCredentials()
-            dispatchGroup.notify(queue: .main) {
-                parseCryptoInfo()
-            }
-
-            printDataDebug()
+        parseCredentials()
+        dispatchGroup.notify(queue: .main) {
+            parseCryptoInfo()
         }
     }
 
-    private func printDataDebug() {
+    private func areAnyCredentialsStored() -> Bool {
+        var atLeastOneStored = false
         exchanges.forEach {
             exchangeName in
             if let data = (UserDefaults.standard.dictionary(forKey: "\(exchangeName)Data")) {
-                print(exchangeName)
-                print(data)
+                atLeastOneStored = true
             }
         }
+        return atLeastOneStored
     }
 
     private func updateData() {
@@ -199,7 +193,7 @@ struct HomeView: View {
                 var dailyPLForExchange = 0.0
                 print(exchangeName)
                 print(data)
-                cryptoInfo![exchangeName] = data.compactMap { symbol, value in
+                cryptoInfo[exchangeName] = data.compactMap { symbol, value in
                     let val = value as! Double
                     let price = val * (cryptoPrices[symbol] as! Double)
                     overalls[symbol] = overalls[symbol] ?? 0 + val
@@ -220,7 +214,7 @@ struct HomeView: View {
                 exchangeTotals[exchangeName] = totalForExchange
             }
         }
-        cryptoInfo!["Overall"] = overalls.compactMap { symbol, values in
+        cryptoInfo["Overall"] = overalls.compactMap { symbol, values in
             CryptoInfo(name: symbol, balance: cryptoPrices[symbol] as! Double * values, amount: values, price: cryptoPrices[symbol] as! Double, dailyProfitLoss: priceChanges[symbol] as! Double)
         }
         infoBoxes = exchangeTotals.compactMap {
@@ -244,7 +238,7 @@ struct HomeView: View {
         var overallProfitLoss = 0.0
         var overallDailyProfitLoss = 0.0
         var overallSum = 0.0
-        infoBoxes?.forEach {
+        infoBoxes.forEach {
             infobox in
             overallProfitLoss += infobox.netProfitLoss
             overallSum += infobox.totalBalance
@@ -253,7 +247,7 @@ struct HomeView: View {
         let netProfitLossPercentage = ((overallSum - overallProfitLoss) / overallSum) - 1
         let dailyProfitLossPercentage = ((overallSum - overallDailyProfitLoss) / overallSum) - 1
         if overallSum != 0.0 {
-            infoBoxes?.insert(
+            infoBoxes.insert(
                 InfoBox(name: "Overall", totalBalance: overallSum, dailyProfitLoss: overallDailyProfitLoss, netProfitLoss: overallProfitLoss, dailyProfitLossPercentage: dailyProfitLossPercentage,
                         netProfitLossPercentage: netProfitLossPercentage),
                 at: 0
@@ -262,9 +256,9 @@ struct HomeView: View {
     }
 
     private func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
-        var info = cryptoInfo![exchange]
+        var info = cryptoInfo[exchange]
         while info == nil {
-            info = cryptoInfo![exchange]
+            info = cryptoInfo[exchange]
             sleep(1)
         }
         return info!
