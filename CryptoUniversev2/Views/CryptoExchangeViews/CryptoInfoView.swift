@@ -13,11 +13,19 @@ struct CryptoInfoView: View {
                 .overlay(
                     VStack {
                         HStack {
-                            Image(cryptoInfo.name.lowercased())
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 20, height: 20)
-
+                            if UIImage(named: cryptoInfo.name.lowercased()) == nil {
+                                Image("default")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 20, height: 20)
+                            }
+                            else {
+                                Image(cryptoInfo.name.lowercased())
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 20, height: 20)
+                            }
+                            
                             Text(cryptoInfo.name)
                                 .font(.headline)
                                 .fontWeight(.bold)

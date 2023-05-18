@@ -25,7 +25,9 @@ public func storeChangesForCryptoInUsd() {
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
     request.setValue("8add797c9e72bef06bde41650b18ece2cb3a547c34f44ba6b32775ee769fac9a", forHTTPHeaderField: "Apikey")
+    dispatchGroup.enter()
     URLSession.shared.dataTask(with: request) { data, _, error in
+        dispatchGroup.leave()
         if let error {
             print("cyptocompare - Error making request: \(error.localizedDescription)")
             return
@@ -39,12 +41,15 @@ public func storeChangesForCryptoInUsd() {
         do {
             let json = try? JSON(data: data)
             var priceChanges: [String: Double] = [:]
+            var prices: [String: Double] = [:]
             cryptos.forEach {
                 crypto in
                 priceChanges[crypto] = json!["RAW"][crypto]["USD"]["CHANGEPCT24HOUR"].double
+                prices[crypto] = json!["RAW"][crypto]["USD"]["PRICE"].double
             }
             print(priceChanges)
             saveDataToUserDefaults(key: "PriceChanges", data: priceChanges)
+            saveDataToUserDefaults(key: "Prices", data: prices)
         } catch {
             print("cryptocompare - Error parsing response: \(error.localizedDescription)")
         }
