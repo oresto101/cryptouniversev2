@@ -151,7 +151,7 @@ struct HomeView: View {
 
     private func loadData() {
         print("Loading")
-        if UserDefaults.standard.dictionary(forKey: "CurrentPrices") == nil || UserDefaults.standard.dictionary(forKey: "PriceChanges") == nil {
+        if UserDefaults.standard.dictionary(forKey: "Prices") == nil || UserDefaults.standard.dictionary(forKey: "PriceChanges") == nil {
             noData = true
             return
         }

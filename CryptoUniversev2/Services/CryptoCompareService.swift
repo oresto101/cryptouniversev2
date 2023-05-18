@@ -50,6 +50,7 @@ public func storeChangesForCryptoInUsd() {
             print(priceChanges)
             saveDataToUserDefaults(key: "PriceChanges", data: priceChanges)
             saveDataToUserDefaults(key: "Prices", data: prices)
+            print("Prices and price changes saved")
         } catch {
             print("cryptocompare - Error parsing response: \(error.localizedDescription)")
         }
