@@ -28,7 +28,7 @@ struct MenuView: View {
                 }
                 .padding(.top, 30)
                 HStack {
-                    NavigationLink(destination: ACCYView().navigationBarBackButtonHidden(true)) {
+                    NavigationLink(destination: AddCryptoCurrencyView()) {
                         Image(systemName: "plus.square")
                             .foregroundColor(Color("BackgroundColor"))
                             .imageScale(.large)
