@@ -53,7 +53,7 @@ struct AddCryptoExchangeView: View {
                             }
                             //                        .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
                         }
-                        Button("Add cryptoexchange") {
+                        Button("Add Cryptoexchange") {
                             addCryptoExchange(
                                 exchangeID: selectedExchange.id,
                                 exchangeAPI: exchangeAPI,
@@ -70,7 +70,7 @@ struct AddCryptoExchangeView: View {
                     }
                     .scrollContentBackground(.hidden)
                 }
-                .alert("Fake credentials", isPresented: $loadedWithError) {
+                .alert("Fake Credentials", isPresented: $loadedWithError) {
                     Button("Dismiss") {}
                 }
             }

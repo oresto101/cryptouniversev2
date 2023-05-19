@@ -20,7 +20,7 @@ struct AddCryptoCurrencyView: View {
                 Form {
                     Section {
                         TextField(
-                            "Cryptocurrency code",
+                            "Cryptocurrency Code",
                             text: $cryptoCode
                         )
                         .autocapitalization(.none)
@@ -31,7 +31,7 @@ struct AddCryptoCurrencyView: View {
                         )
                         .keyboardType(.decimalPad)
                     }
-                    Button("Add cryptocurrency") {
+                    Button("Add Cryptocurrency") {
                         addCryptocurrency(cryptoCode: cryptoCode, quantity: quantity)
                     }
 
@@ -50,7 +50,7 @@ struct AddCryptoCurrencyView: View {
             coinData in
             if coinData != -1.0 {
                 addManualHistoryRecord(key: cryptoCode.uppercased(), value: coinData)
-                addManualRecord(key: cryptoCode.uppercased(), value: [Double(quantity)!, coinData])
+                addManualRecord(key: cryptoCode.uppercased(), value: Double(quantity) ?? 0.0)
                 loaded = true
             }
             loadedWithError = true

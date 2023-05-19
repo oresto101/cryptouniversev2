@@ -65,7 +65,7 @@ struct HomeView: View {
                     }
                 )
             if !loadingBoxes, !loadingInfo {
-                CryptoExchangeView(
+                cryptoExchangeView(
                     cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name),
                     cryptoExchange: infobox.name
                 )
@@ -89,6 +89,85 @@ struct HomeView: View {
                     Image("RemoveExchange")
                 }
             }
+        }
+    }
+
+    func cryptoExchangeView(cryptoInfo: [CryptoInfo], cryptoExchange: String) -> some View {
+        AnyView(
+            LazyVStack(spacing: 10.0) {
+                ForEach(cryptoInfo, id: \.self) { cryptoInfo in
+                    cryptoInfoView(cryptoInfo: cryptoInfo, cryptoExchange: cryptoExchange)
+                }
+            }
+        )
+    }
+
+    func cryptoInfoView(cryptoInfo: CryptoInfo, cryptoExchange: String) -> some View {
+        func calculateColorForBox(profitLoss: Double) -> Color {
+            if profitLoss >= 0 {
+                return Color("ProfitColor")
+            } else {
+                return Color("LossColor")
+            }
+        }
+
+        func removeCryptocurrency(name: String) {
+            removeManualHistoryRecord(key: name)
+            removeManualRecord(key: name)
+            parseCryptoInfo()
+        }
+
+        return Group {
+            RoundedRectangle(cornerRadius: 14)
+                .frame(width: 320.0, height: 75.0)
+                .foregroundColor(calculateColorForBox(profitLoss: cryptoInfo.dailyProfitLoss))
+                .overlay(
+                    VStack {
+                        HStack {
+                            if UIImage(named: cryptoInfo.name.lowercased()) == nil {
+                                Image("default")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 20, height: 20)
+                            } else {
+                                Image(cryptoInfo.name.lowercased())
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 20, height: 20)
+                            }
+
+                            Text(cryptoInfo.name)
+                                .font(.headline)
+                                .fontWeight(.bold)
+                            if cryptoExchange == "Manual" {
+                                Menu {
+                                    Button(action: { removeCryptocurrency(name: cryptoInfo.name)
+                                    }) {
+                                        Label("Delete", systemImage: "minus.circle")
+                                    }
+                                } label: {
+                                    Image("RemoveExchange")
+                                }
+                            }
+                        }
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Total price: ")
+                                Text("Amount:  ")
+                            }
+                            .position(x: 70, y: 10)
+                            VStack(alignment: .trailing) {
+                                Text(formatBalancePLAndPercentageToString(
+                                    balance: cryptoInfo.balance,
+                                    percentage: cryptoInfo.dailyProfitLoss
+                                ))
+                                Text(String(cryptoInfo.amount))
+                            }
+                            .offset(x: -15, y: -10)
+                        }
+                        .font(.subheadline)
+                    }
+                )
         }
     }
 
@@ -151,7 +230,7 @@ struct HomeView: View {
 
     private func loadData() {
         print("Loading")
-        if !areAnyCredentialsStored(){
+        if !areAnyCredentialsStored() {
             noData = true
         }
         parseCredentials()
@@ -179,7 +258,10 @@ struct HomeView: View {
         }
     }
 
-    private func parseCryptoInfo() {
+    public func parseCryptoInfo() {
+//        let domain = Bundle.main.bundleIdentifier!
+//        UserDefaults.standard.removePersistentDomain(forName: domain)
+//        UserDefaults.standard.synchronize()
         print("Prasing")
         let cryptoPrices = UserDefaults.standard.dictionary(forKey: "Prices")!
         let priceChanges = UserDefaults.standard.dictionary(forKey: "PriceChanges")!
@@ -252,6 +334,9 @@ struct HomeView: View {
                         netProfitLossPercentage: netProfitLossPercentage),
                 at: 0
             )
+        } else {
+            noData = true
+            print("Sum is zero")
         }
     }
 
