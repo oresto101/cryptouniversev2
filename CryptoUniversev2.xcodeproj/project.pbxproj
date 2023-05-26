@@ -169,7 +169,7 @@
 		CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoExchangeView.swift; sourceTree = "<group>"; };
 		CB65253B2946A40100FD5D11 /* CryptoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoInfoView.swift; sourceTree = "<group>"; };
 		CB6525402946BC1800FD5D11 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		CB72DCF7294516530087534D /* CryptoUniversev2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoUniversev2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB72DCF7294516530087534D /* Crypto Universe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crypto Universe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB72DCFA294516530087534D /* CryptoUniversev2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUniversev2App.swift; sourceTree = "<group>"; };
 		CB72DCFE294516550087534D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB72DD01294516550087534D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 		CB72DCF8294516530087534D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CB72DCF7294516530087534D /* CryptoUniversev2.app */,
+				CB72DCF7294516530087534D /* Crypto Universe.app */,
 				CB72DD07294516550087534D /* CryptoUniversev2Tests.xctest */,
 				CB72DD11294516550087534D /* CryptoUniversev2UITests.xctest */,
 			);
@@ -398,7 +398,7 @@
 				CB524CFF29FB6C4200CD00C2 /* SwiftyJSON */,
 			);
 			productName = CryptoUniversev2;
-			productReference = CB72DCF7294516530087534D /* CryptoUniversev2.app */;
+			productReference = CB72DCF7294516530087534D /* Crypto Universe.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CB72DD06294516550087534D /* CryptoUniversev2Tests */ = {
@@ -810,7 +810,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = og.CryptoUniversev2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Crypto Universe";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -839,7 +839,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = og.CryptoUniversev2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Crypto Universe";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

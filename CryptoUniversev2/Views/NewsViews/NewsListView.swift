@@ -5,23 +5,24 @@ struct NewsListView: View {
 
     var body: some View {
         ZStack {
-            Color("BackgroundColor")
-                .edgesIgnoringSafeArea(.all)
-
-            ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(viewModel.newsItems) { news in
-                        NewsItemView(news: news)
-                            .padding()
-                            .background(Color("MainColor"))
-                            .cornerRadius(10)
+            Color("BackgroundColor").ignoresSafeArea()
+            TabView {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(viewModel.newsItems) { news in
+                            NewsItemView(news: news)
+                                .padding()
+                                .background(Color("MainColor"))
+                                .cornerRadius(10)
+                        }
                     }
+                    .padding()
                 }
-                .padding()
+                .onAppear {
+                    viewModel.fetchNews()
+                }
             }
-            .onAppear {
-                viewModel.fetchNews()
-            }
+            .tabViewStyle(PageTabViewStyle())
         }
     }
 }

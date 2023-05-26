@@ -17,30 +17,35 @@ struct AddCryptoCurrencyView: View {
         } else {
             ZStack {
                 Color("BackgroundColor").ignoresSafeArea()
-                Form {
-                    Section {
-                        TextField(
-                            "Cryptocurrency Code",
-                            text: $cryptoCode
-                        )
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                        TextField(
-                            "Quantity",
-                            text: $quantity
-                        )
-                        .keyboardType(.decimalPad)
-                    }
-                    Button("Add Cryptocurrency") {
-                        addCryptocurrency(cryptoCode: cryptoCode, quantity: quantity)
-                    }
+                TabView {
+                    VStack {
+                        Form {
+                            Section {
+                                TextField(
+                                    "Cryptocurrency Code",
+                                    text: $cryptoCode
+                                )
+                                .autocapitalization(.none)
+                                .disableAutocorrection(true)
+                                TextField(
+                                    "Quantity",
+                                    text: $quantity
+                                )
+                                .keyboardType(.decimalPad)
+                            }
+                            Button("Add Cryptocurrency") {
+                                addCryptocurrency(cryptoCode: cryptoCode, quantity: quantity)
+                            }
 
-                    .disabled(quantity.isEmpty || cryptoCode.isEmpty || Double(quantity) == 0)
+                            .disabled(quantity.isEmpty || cryptoCode.isEmpty || Double(quantity) == 0)
+                        }
+                        .scrollContentBackground(.hidden)
+                    }
+                    .alert("Cryptocurrency doesn't exist", isPresented: $loadedWithError) {
+                        Button("Dismiss") {}
+                    }
                 }
-                .scrollContentBackground(.hidden)
-            }
-            .alert("Cryptocurrency doesn't exist", isPresented: $loadedWithError) {
-                Button("Dismiss") {}
+                .tabViewStyle(PageTabViewStyle())
             }
         }
     }

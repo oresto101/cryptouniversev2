@@ -21,58 +21,61 @@ struct AddCryptoExchangeView: View {
         } else {
             ZStack {
                 Color("BackgroundColor").ignoresSafeArea()
-                VStack {
-                    Text(selectedExchange.name)
-                        .font(.system(size: 25))
-                        .foregroundColor(.white)
-                    Form {
-                        Section {
-                            //                        Picker("Exchange", selection: $selectedExchange) {
-                            //
-                            //                        }
-                            //                        .accessibility(identifier: "picker")
-                            TextField(
-                                "Exchange API",
-                                text: $exchangeAPI
-                            )
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
-                            TextField(
-                                "Exchange Secret",
-                                text: $exchangeSecret
-                            )
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
-                            if selectedExchange.requiresPassphrase {
+                TabView {
+                    VStack {
+                        Text(selectedExchange.name)
+                            .font(.system(size: 25))
+                            .foregroundColor(.white)
+                        Form {
+                            Section {
+                                //                        Picker("Exchange", selection: $selectedExchange) {
+                                //
+                                //                        }
+                                //                        .accessibility(identifier: "picker")
                                 TextField(
-                                    "Exchange Passphrase",
-                                    text: $exchangePassphrase
+                                    "Exchange API",
+                                    text: $exchangeAPI
                                 )
                                 .autocapitalization(.none)
                                 .disableAutocorrection(true)
+                                TextField(
+                                    "Exchange Secret",
+                                    text: $exchangeSecret
+                                )
+                                .autocapitalization(.none)
+                                .disableAutocorrection(true)
+                                if selectedExchange.requiresPassphrase {
+                                    TextField(
+                                        "Exchange Passphrase",
+                                        text: $exchangePassphrase
+                                    )
+                                    .autocapitalization(.none)
+                                    .disableAutocorrection(true)
+                                }
+                                //                        .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
                             }
-                            //                        .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
-                        }
-                        Button("Add Cryptoexchange") {
-                            addCryptoExchange(
-                                exchangeID: selectedExchange.id,
-                                exchangeAPI: exchangeAPI,
-                                exchangeSecret: exchangeSecret,
-                                exchangePassphrase: exchangePassphrase
+                            Button("Add Cryptoexchange") {
+                                addCryptoExchange(
+                                    exchangeID: selectedExchange.id,
+                                    exchangeAPI: exchangeAPI,
+                                    exchangeSecret: exchangeSecret,
+                                    exchangePassphrase: exchangePassphrase
+                                )
+                            }
+
+                            .disabled(
+                                exchangeAPI.isEmpty || exchangeSecret
+                                    .isEmpty || (exchangePassphrase.isEmpty && selectedExchange.requiresPassphrase) ||
+                                    (!exchangePassphrase.isEmpty && !selectedExchange.requiresPassphrase)
                             )
                         }
-
-                        .disabled(
-                            exchangeAPI.isEmpty || exchangeSecret
-                                .isEmpty || (exchangePassphrase.isEmpty && selectedExchange.requiresPassphrase) ||
-                                (!exchangePassphrase.isEmpty && !selectedExchange.requiresPassphrase)
-                        )
+                        .scrollContentBackground(.hidden)
                     }
-                    .scrollContentBackground(.hidden)
+                    .alert("Fake Credentials", isPresented: $loadedWithError) {
+                        Button("Dismiss") {}
+                    }
                 }
-                .alert("Fake Credentials", isPresented: $loadedWithError) {
-                    Button("Dismiss") {}
-                }
+                .tabViewStyle(PageTabViewStyle())
             }
         }
     }
