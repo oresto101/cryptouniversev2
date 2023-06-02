@@ -115,6 +115,7 @@
 		CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD2729451DEC0087534D /* InfoBox.swift */; };
 		CB77AF1C29749761006D711E /* AddCryptoCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */; };
 		CBAD25912946D0440062DF52 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD25902946D0440062DF52 /* HelpView.swift */; };
+		CBCEA5732A2A2A3300B50371 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA5722A2A2A3300B50371 /* HelpListView.swift */; };
 		CBCEA83B29F2BA220006E19B /* CryptoCompareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */; };
 		CBE25A8F294E8C320010F712 /* AddCryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */; };
 /* End PBXBuildFile section */
@@ -181,6 +182,7 @@
 		CB72DD2729451DEC0087534D /* InfoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBox.swift; sourceTree = "<group>"; };
 		CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoCurrencyView.swift; sourceTree = "<group>"; };
 		CBAD25902946D0440062DF52 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		CBCEA5722A2A2A3300B50371 /* HelpListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListView.swift; sourceTree = "<group>"; };
 		CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareService.swift; sourceTree = "<group>"; };
 		CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoExchangeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -337,6 +339,7 @@
 			children = (
 				CBAD25902946D0440062DF52 /* HelpView.swift */,
 				1B5DE70D2A01A03C002795F9 /* HView.swift */,
+				CBCEA5722A2A2A3300B50371 /* HelpListView.swift */,
 			);
 			path = HelpViews;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 				CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */,
 				1B5DE71B2A01A0DB002795F9 /* NewsListView.swift in Sources */,
 				1B5DE7172A01A0C5002795F9 /* NewsItemView.swift in Sources */,
+				CBCEA5732A2A2A3300B50371 /* HelpListView.swift in Sources */,
 				1BC7D50A29E5CA2500BB14A5 /* NetworkUtils.swift in Sources */,
 				CB6525412946BC1800FD5D11 /* MenuView.swift in Sources */,
 				CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */,
