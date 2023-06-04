@@ -208,36 +208,13 @@ struct HomeView: View {
         parseCryptoInfo()
     }
 
-    private func parseInfoBox(json: Data) -> [InfoBox] {
-        let decoder = JSONDecoder()
-        do {
-            let box = try decoder.decode([InfoBox].self, from: json)
-            return box
-        } catch {
-            return []
-        }
-    }
-
-    func parseCryptoInfo(json: Data) -> [String: [CryptoInfo]] {
-        let decoder = JSONDecoder()
-        do {
-            let info = try decoder.decode([String: [CryptoInfo]].self, from: json)
-            return info
-        } catch {
-            return [:]
-        }
-    }
-
     private func loadData() {
         print("Loading")
         if !areAnyCredentialsStored() {
             noData = true
         }
         else {
-            parseCredentials()
-            dispatchGroup.notify(queue: .main) {
-                parseCryptoInfo()
-            }
+            updateData()
         }
     }
 
@@ -245,7 +222,7 @@ struct HomeView: View {
         var atLeastOneStored = false
         exchanges.forEach {
             exchangeName in
-            if let data = (UserDefaults.standard.dictionary(forKey: "\(exchangeName)Data")) {
+            if let _ = (UserDefaults.standard.dictionary(forKey: "\(exchangeName)Data")) {
                 atLeastOneStored = true
             }
         }
