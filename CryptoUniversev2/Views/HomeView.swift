@@ -233,9 +233,11 @@ struct HomeView: View {
         if !areAnyCredentialsStored() {
             noData = true
         }
-        parseCredentials()
-        dispatchGroup.notify(queue: .main) {
-            parseCryptoInfo()
+        else {
+            parseCredentials()
+            dispatchGroup.notify(queue: .main) {
+                parseCryptoInfo()
+            }
         }
     }
 
@@ -297,7 +299,7 @@ struct HomeView: View {
             }
         }
         cryptoInfo["Overall"] = overalls.compactMap { symbol, values in
-            CryptoInfo(name: symbol, balance: cryptoPrices[symbol] as! Double * values, amount: values, price: cryptoPrices[symbol] as! Double, dailyProfitLoss: priceChanges[symbol] as! Double)
+            CryptoInfo(name: symbol, balance: roundDoubles(val: cryptoPrices[symbol] as! Double * values), amount: roundDoubles(val: values), price: cryptoPrices[symbol] as! Double, dailyProfitLoss: priceChanges[symbol] as! Double)
         }
         infoBoxes = exchangeTotals.compactMap {
             name, value in
