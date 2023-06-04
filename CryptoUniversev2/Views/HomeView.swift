@@ -1,6 +1,7 @@
 import SwiftUI
 
-let dispatchGroup = DispatchGroup()
+let exchangeDispatchGroup = DispatchGroup()
+let coinMarketCapDispatchGroup = DispatchGroup()
 
 struct HomeView: View {
     @State private var infoBoxes: [InfoBox] = []
@@ -232,8 +233,12 @@ struct HomeView: View {
     private func updateData() {
         print("Updating")
         parseCredentials()
-        dispatchGroup.notify(queue: .main) {
-            parseCryptoInfo()
+        exchangeDispatchGroup.notify(queue: .global()) {
+            storeChangesForCryptoInUsd()
+            coinMarketCapDispatchGroup.notify(queue: .main) {
+                parseCryptoInfo()
+            }
+
         }
     }
 

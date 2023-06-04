@@ -21,7 +21,7 @@ public func storeChangesForCryptoInUsd() {
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
     request.setValue("f1c18a18-2be4-455f-8d55-8a69e080aeaa", forHTTPHeaderField: "X-CMC_PRO_API_KEY")
-    dispatchGroup.enter()
+    coinMarketCapDispatchGroup.enter()
     URLSession.shared.dataTask(with: request) { data, _, error in
         if let error {
             print("cyptocompare - Error making request: \(error.localizedDescription)")
@@ -52,7 +52,7 @@ public func storeChangesForCryptoInUsd() {
             print(prices)
             saveDataToUserDefaults(key: "PriceChanges", data: priceChanges)
             saveDataToUserDefaults(key: "Prices", data: prices)
-            dispatchGroup.leave()
+            coinMarketCapDispatchGroup.leave()
             print("Prices and price changes saved")
 
         } catch {

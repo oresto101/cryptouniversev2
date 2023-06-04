@@ -19,9 +19,9 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
     var request = URLRequest(url: URL(string: signedURL)!)
     request.httpMethod = "GET"
     request.addValue(apiKey, forHTTPHeaderField: "X-MBX-APIKEY")
-    dispatchGroup.enter()
+    exchangeDispatchGroup.enter()
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
-        dispatchGroup.leave()
+
         guard let data, error == nil else {
             print("Error: \(error?.localizedDescription ?? "Unknown error")")
             completion(false)
@@ -56,6 +56,7 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
                 if newData {
                     storeChangesForCryptoInUsd()
                 }
+                exchangeDispatchGroup.leave()
                 completion(true)
             } else {
                 print("Binance - Error: Unable to parse JSON")
@@ -102,9 +103,9 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, newD
     request.addValue(signatureBase64, forHTTPHeaderField: "OK-ACCESS-SIGN")
     request.addValue(passphrase, forHTTPHeaderField: "OK-ACCESS-PASSPHRASE")
     request.addValue(timestamp, forHTTPHeaderField: "OK-ACCESS-TIMESTAMP")
-    dispatchGroup.enter()
+    exchangeDispatchGroup.enter()
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
-        dispatchGroup.leave()
+        
         if error != nil {
             print("Request error: ", error as Any)
             completion(false)
@@ -135,7 +136,7 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, newD
         saveDataToUserDefaults(key: "OKXSecret", data: secretKey)
         saveDataToUserDefaults(key: "OKXPassphrase", data: passphrase)
         saveDataToUserDefaults(key: "OKXData", data: result)
-        storeChangesForCryptoInUsd()
+        exchangeDispatchGroup.leave()
         completion(true)
     }
 
@@ -266,9 +267,9 @@ public func parseGemini(apiKey: String, secretKey: String, newData _: Bool, comp
     request.setValue(signatureHexString, forHTTPHeaderField: "X-GEMINI-SIGNATURE")
     request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
     request.httpMethod = "POST"
-    dispatchGroup.enter()
+    exchangeDispatchGroup.enter()
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
-        dispatchGroup.leave()
+
         if let error {
             print("Gemini - Request error: ", error)
             completion(false)
@@ -289,6 +290,7 @@ public func parseGemini(apiKey: String, secretKey: String, newData _: Bool, comp
                 saveDataToUserDefaults(key: "GeminiSecret", data: secretKey)
                 saveDataToUserDefaults(key: "GeminiData", data: res)
                 storeChangesForCryptoInUsd()
+                exchangeDispatchGroup.leave()
                 completion(true)
             } else {
                 completion(false)
@@ -328,9 +330,8 @@ func parseKraken(apiKey: String, secretKey: String, newData _: Bool, completion:
     request.setValue(signature, forHTTPHeaderField: "API-Sign")
     request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
     request.httpBody = postData.data(using: .utf8)
-    dispatchGroup.enter()
+    exchangeDispatchGroup.enter()
     URLSession.shared.dataTask(with: request) { data, _, error in
-        dispatchGroup.leave()
         guard let data, error == nil else {
             print("Error: \(error?.localizedDescription ?? "Unknown error")")
             completion(false)
@@ -351,6 +352,7 @@ func parseKraken(apiKey: String, secretKey: String, newData _: Bool, completion:
                 saveDataToUserDefaults(key: "KrakenSecret", data: secretKey)
                 saveDataToUserDefaults(key: "KrakenData", data: res)
                 storeChangesForCryptoInUsd()
+                exchangeDispatchGroup.leave()
                 completion(true)
             }
         } catch {
