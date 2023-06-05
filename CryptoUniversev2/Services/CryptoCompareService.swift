@@ -8,14 +8,25 @@
 import Foundation
 import SwiftyJSON
 
+private var stupidCoins = [
+    "IOTA": "MIOTA"
+]
+
+private var coinsStupid = [
+    "MIOTA": "IOTA"
+]
+
 public func storeChangesForCryptoInUsd() {
-    print("WTF")
     var cryptos: Set<String> = []
     exchanges.forEach {
         exchange in
         if let cryptosForCryptoExchange = UserDefaults.standard.dictionary(forKey: "\(exchange)Data") {
             cryptos.formUnion(cryptosForCryptoExchange.keys)
         }
+    }
+    for (normalCoin, stupidCoin) in stupidCoins {
+        cryptos.remove(normalCoin)
+        cryptos.insert(stupidCoin)
     }
     let url = URL(string: "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=\(cryptos.joined(separator: ","))")!
     var request = URLRequest(url: url)
@@ -32,7 +43,6 @@ public func storeChangesForCryptoInUsd() {
             return
         }
         do {
-            let json = try? JSON(data: data)
             var priceChanges: [String: Double] = [:]
             var prices: [String: Double] = [:]
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
@@ -43,8 +53,14 @@ public func storeChangesForCryptoInUsd() {
                                    let quote = firstCurrency["quote"] as? [String: Any],
                                    let usd = quote["USD"] as? [String: Any],
                                    let price = usd["price"] as? Double, let priceChange = usd["percent_change_24h"] as? Double {
-                                    prices[key] = price
-                                    priceChanges[key] = priceChange
+                                    if coinsStupid.keys.contains(key) {
+                                        prices[coinsStupid[key]!] = price
+                                        priceChanges[coinsStupid[key]!] = price
+                                    }
+                                    else {
+                                        prices[key] = price
+                                        priceChanges[key] = priceChange
+                                    }
                                 }
                             }
             }

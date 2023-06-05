@@ -261,7 +261,7 @@ struct HomeView: View {
                 print(data)
                 cryptoInfo[exchangeName] = data.compactMap { symbol, value in
                     let val = value as! Double
-                    let price = val * (cryptoPrices[symbol, default: 0.0] as! Double)
+                    let price = val * (cryptoPrices[symbol] as! Double)
                     overalls[symbol] = overalls[symbol] ?? 0 + val
                     totalForExchange += price
                     if (priceChanges[symbol] as! Double) != 0.0 {
@@ -271,8 +271,8 @@ struct HomeView: View {
                         name: symbol,
                         balance: roundDoubles(val: price),
                         amount: roundDoubles(val: val),
-                        price: cryptoPrices[symbol, default: 0.0] as! Double,
-                        dailyProfitLoss: priceChanges[symbol, default: 0.0] as! Double
+                        price: cryptoPrices[symbol] as! Double,
+                        dailyProfitLoss: priceChanges[symbol] as! Double
                     )
                     return cryptoIn
                 }
