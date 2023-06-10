@@ -4,6 +4,7 @@ let exchangeDispatchGroup = DispatchGroup()
 let coinMarketCapDispatchGroup = DispatchGroup()
 
 struct HomeView: View {
+    @StateObject var networkMonitor = NetworkMonitor()
     @State private var infoBoxes: [InfoBox] = []
     @State private var cryptoInfo: [String: [CryptoInfo]] = [:]
     @State private var loadingBoxes = false
@@ -25,6 +26,8 @@ struct HomeView: View {
                         updateData()
                     }
             } else {
+                let _ = print(infoBoxes)
+                let _ = print(cryptoInfo)
                 if noData {
                     noDataView
                 } else {
@@ -173,9 +176,14 @@ struct HomeView: View {
     }
 
     var loadingProgressView: some View {
-        ProgressView()
+        let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+
+        return ProgressView()
             .progressViewStyle(CircularProgressViewStyle(tint: .white))
             .scaleEffect(2)
+            .onReceive(timer) { _ in
+                loadData()
+            }
     }
 
     var noDataView: some View {
@@ -210,11 +218,9 @@ struct HomeView: View {
     }
 
     private func loadData() {
-        print("Loading")
         if !areAnyCredentialsStored() {
             noData = true
-        }
-        else {
+        } else {
             updateData()
         }
     }
@@ -231,14 +237,12 @@ struct HomeView: View {
     }
 
     private func updateData() {
-        print("Updating")
         parseCredentials()
         exchangeDispatchGroup.notify(queue: .global()) {
             storeChangesForCryptoInUsd()
             coinMarketCapDispatchGroup.notify(queue: .main) {
                 parseCryptoInfo()
             }
-
         }
     }
 
@@ -246,7 +250,6 @@ struct HomeView: View {
 //        let domain = Bundle.main.bundleIdentifier!
 //        UserDefaults.standard.removePersistentDomain(forName: domain)
 //        UserDefaults.standard.synchronize()
-        print("Prasing")
         let cryptoPrices = UserDefaults.standard.dictionary(forKey: "Prices")!
         let priceChanges = UserDefaults.standard.dictionary(forKey: "PriceChanges")!
         var exchangeTotals: [String: Double] = [:]
@@ -257,8 +260,6 @@ struct HomeView: View {
             if let data = (UserDefaults.standard.dictionary(forKey: "\(exchangeName)Data")) {
                 var totalForExchange = 0.0
                 var dailyPLForExchange = 0.0
-                print(exchangeName)
-                print(data)
                 cryptoInfo[exchangeName] = data.compactMap { symbol, value in
                     let val = value as! Double
                     let price = val * (cryptoPrices[symbol] as! Double)
@@ -281,7 +282,16 @@ struct HomeView: View {
             }
         }
         cryptoInfo["Overall"] = overalls.compactMap { symbol, values in
-            CryptoInfo(name: symbol, balance: roundDoubles(val: cryptoPrices[symbol] as! Double * values), amount: roundDoubles(val: values), price: cryptoPrices[symbol] as! Double, dailyProfitLoss: priceChanges[symbol] as! Double)
+            CryptoInfo(
+                name: symbol,
+                balance: roundDoubles(val: cryptoPrices[symbol] as! Double * values),
+                amount: roundDoubles(val: values),
+                price: cryptoPrices[symbol] as! Double,
+                dailyProfitLoss: priceChanges[symbol] as! Double
+            )
+        }
+        for (exchangeName, cryptoInfos) in cryptoInfo {
+            cryptoInfo[exchangeName] = cryptoInfos.sorted { $0.balance > $1.balance }
         }
         infoBoxes = exchangeTotals.compactMap {
             name, value in
@@ -291,7 +301,6 @@ struct HomeView: View {
             let netprofitLoss = Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData")) - value
             let netProfitLossPercentage = (Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData")) / value) - 1
             let dailyProfitLossPercentage = ((value - exchangeDailyPL[name]!) / value) - 1
-            print(dailyProfitLossPercentage)
             return InfoBox(
                 name: name,
                 totalBalance: value,
@@ -321,6 +330,11 @@ struct HomeView: View {
         } else {
             noData = true
             print("Sum is zero")
+        }
+        if infoBoxes.count > 0 {
+            let overall = infoBoxes.removeFirst()
+            infoBoxes = infoBoxes.sorted { $0.totalBalance > $1.totalBalance }
+            infoBoxes.insert(overall, at: 0)
         }
     }
 

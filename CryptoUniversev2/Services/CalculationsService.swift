@@ -22,6 +22,7 @@ public func parseCredentials() {
             if isValid {
                 print("Binance Data Loaded")
             } else {
+                print("Removing credentials")
                 UserDefaults.standard.removeObject(forKey: "BinanceAPI")
                 UserDefaults.standard.removeObject(forKey: "BinanceSecret")
                 UserDefaults.standard.removeObject(forKey: "BinanceData")

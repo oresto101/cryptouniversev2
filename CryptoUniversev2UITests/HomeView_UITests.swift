@@ -10,13 +10,6 @@ import XCTest
 final class HomeView_UITests: XCTestCase {
     let app = XCUIApplication()
 
-    override func tearDownWithError() throws {
-        app.navigationBars["Crypto Universe"]/*@START_MENU_TOKEN@*/
-            .buttons["Перетянуть"]/*[[".otherElements[\"Перетянуть\"].buttons[\"Перетянуть\"]",".buttons[\"Перетянуть\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-            .tap()
-        app.buttons["Log Out"].tap()
-    }
-
     override func setUp() {
         super.setUp()
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
@@ -25,27 +18,6 @@ final class HomeView_UITests: XCTestCase {
     }
 
     func test_HomeView_Page_ShouldLoadData() {
-        app.textFields["Username"].tap()
-
-        let rKey = app/*@START_MENU_TOKEN@*/
-            .keys["r"]/*[[".keyboards.keys[\"r\"]",".keys[\"r\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        rKey.tap()
-
-        let oKey = app/*@START_MENU_TOKEN@*/
-            .keys["o"]/*[[".keyboards.keys[\"o\"]",".keys[\"o\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        oKey.tap()
-        oKey.tap()
-
-        let tKey = app/*@START_MENU_TOKEN@*/
-            .keys["t"]/*[[".keyboards.keys[\"t\"]",".keys[\"t\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        tKey.tap()
-        app.secureTextFields["Password"].tap()
-        rKey.tap()
-        oKey.tap()
-        oKey.tap()
-        tKey.tap()
-        app.buttons["Log In"].tap()
-
         let data = app.collectionViews/*@START_MENU_TOKEN@*/
             .scrollViews/*[[".cells.scrollViews",".scrollViews"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .otherElements
             .scrollViews.otherElements.containing(
@@ -57,27 +29,6 @@ final class HomeView_UITests: XCTestCase {
     }
 
     func test_HomeView_Action_ShouldCloseHelp() {
-        app.textFields["Username"].tap()
-
-        let rKey = app/*@START_MENU_TOKEN@*/
-            .keys["r"]/*[[".keyboards.keys[\"r\"]",".keys[\"r\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        rKey.tap()
-
-        let oKey = app/*@START_MENU_TOKEN@*/
-            .keys["o"]/*[[".keyboards.keys[\"o\"]",".keys[\"o\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        oKey.tap()
-        oKey.tap()
-
-        let tKey = app/*@START_MENU_TOKEN@*/
-            .keys["t"]/*[[".keyboards.keys[\"t\"]",".keys[\"t\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        tKey.tap()
-        app.secureTextFields["Password"].tap()
-        rKey.tap()
-        oKey.tap()
-        oKey.tap()
-        tKey.tap()
-        app.buttons["Log In"].tap()
-
         let cryptoUniverseNavigationBar = app.navigationBars["Crypto Universe"]
         let button = cryptoUniverseNavigationBar/*@START_MENU_TOKEN@*/
             .buttons["Перетянуть"]/*[[".otherElements[\"Перетянуть\"].buttons[\"Перетянуть\"]",".buttons[\"Перетянуть\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
@@ -93,27 +44,6 @@ final class HomeView_UITests: XCTestCase {
     }
 
     func test_HomeView_Action_ExchangeAction() {
-        app.textFields["Username"].tap()
-
-        let rKey = app/*@START_MENU_TOKEN@*/
-            .keys["r"]/*[[".keyboards.keys[\"r\"]",".keys[\"r\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        rKey.tap()
-
-        let oKey = app/*@START_MENU_TOKEN@*/
-            .keys["o"]/*[[".keyboards.keys[\"o\"]",".keys[\"o\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        oKey.tap()
-        oKey.tap()
-
-        let tKey = app/*@START_MENU_TOKEN@*/
-            .keys["t"]/*[[".keyboards.keys[\"t\"]",".keys[\"t\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        tKey.tap()
-        app.secureTextFields["Password"].tap()
-        rKey.tap()
-        oKey.tap()
-        oKey.tap()
-        tKey.tap()
-        app.buttons["Log In"].tap()
-
         app.navigationBars["Crypto Universe"]/*@START_MENU_TOKEN@*/
             .buttons["Перетянуть"]/*[[".otherElements[\"Перетянуть\"].buttons[\"Перетянуть\"]",".buttons[\"Перетянуть\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
             .tap()
@@ -164,27 +94,6 @@ final class HomeView_UITests: XCTestCase {
     }
 
     func test_HomeView_Action_FailExchangeAction() {
-        app.textFields["Username"].tap()
-
-        let rKey = app/*@START_MENU_TOKEN@*/
-            .keys["r"]/*[[".keyboards.keys[\"r\"]",".keys[\"r\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        rKey.tap()
-
-        let oKey = app/*@START_MENU_TOKEN@*/
-            .keys["o"]/*[[".keyboards.keys[\"o\"]",".keys[\"o\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        oKey.tap()
-        oKey.tap()
-
-        let tKey = app/*@START_MENU_TOKEN@*/
-            .keys["t"]/*[[".keyboards.keys[\"t\"]",".keys[\"t\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        tKey.tap()
-        app.secureTextFields["Password"].tap()
-        rKey.tap()
-        oKey.tap()
-        oKey.tap()
-        tKey.tap()
-        app.buttons["Log In"].tap()
-
         app.navigationBars["Crypto Universe"]/*@START_MENU_TOKEN@*/
             .buttons["Перетянуть"]/*[[".otherElements[\"Перетянуть\"].buttons[\"Перетянуть\"]",".buttons[\"Перетянуть\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
             .tap()
@@ -221,27 +130,6 @@ final class HomeView_UITests: XCTestCase {
     }
 
     func test_HomeView_Action_FailManualCcy() {
-        app.textFields["Username"].tap()
-
-        let rKey = app/*@START_MENU_TOKEN@*/
-            .keys["r"]/*[[".keyboards.keys[\"r\"]",".keys[\"r\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        rKey.tap()
-
-        let oKey = app/*@START_MENU_TOKEN@*/
-            .keys["o"]/*[[".keyboards.keys[\"o\"]",".keys[\"o\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        oKey.tap()
-        oKey.tap()
-
-        let tKey = app/*@START_MENU_TOKEN@*/
-            .keys["t"]/*[[".keyboards.keys[\"t\"]",".keys[\"t\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        tKey.tap()
-        app.secureTextFields["Password"].tap()
-        rKey.tap()
-        oKey.tap()
-        oKey.tap()
-        tKey.tap()
-        app.buttons["Log In"].tap()
-
         app.navigationBars["Crypto Universe"]/*@START_MENU_TOKEN@*/
             .buttons["Перетянуть"]/*[[".otherElements[\"Перетянуть\"].buttons[\"Перетянуть\"]",".buttons[\"Перетянуть\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
             .tap()
@@ -287,27 +175,6 @@ final class HomeView_UITests: XCTestCase {
     }
 
     func test_HomeView_Action_ManualCcy() {
-        app.textFields["Username"].tap()
-
-        let rKey = app/*@START_MENU_TOKEN@*/
-            .keys["r"]/*[[".keyboards.keys[\"r\"]",".keys[\"r\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        rKey.tap()
-
-        let oKey = app/*@START_MENU_TOKEN@*/
-            .keys["o"]/*[[".keyboards.keys[\"o\"]",".keys[\"o\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        oKey.tap()
-        oKey.tap()
-
-        let tKey = app/*@START_MENU_TOKEN@*/
-            .keys["t"]/*[[".keyboards.keys[\"t\"]",".keys[\"t\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        tKey.tap()
-        app.secureTextFields["Password"].tap()
-        rKey.tap()
-        oKey.tap()
-        oKey.tap()
-        tKey.tap()
-        app.buttons["Log In"].tap()
-
         _ = app.collectionViews/*@START_MENU_TOKEN@*/
             .scrollViews/*[[".cells.scrollViews",".scrollViews"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .otherElements
             .scrollViews.otherElements.containing(

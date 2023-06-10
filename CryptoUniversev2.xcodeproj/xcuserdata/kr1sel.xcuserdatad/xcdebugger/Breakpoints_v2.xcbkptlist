@@ -14,8 +14,8 @@
             filePath = "CryptoUniversev2/Services/NetworkService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "parseBinance(apiKey:secretKey:newData:completion:)"
             landmarkType = "9">
             <Locations>

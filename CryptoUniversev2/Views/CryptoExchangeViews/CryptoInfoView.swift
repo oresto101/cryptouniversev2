@@ -1,6 +1,6 @@
- import SwiftUI
+import SwiftUI
 
- struct CryptoInfoView: View {
+struct CryptoInfoView: View {
     var cryptoInfo: CryptoInfo
     var cryptoExchange: String
     @State private var disabled = false
@@ -46,13 +46,12 @@
                             }
                             .position(x: 70, y: 10)
                             VStack(alignment: .trailing) {
-                                if (cryptoInfo.price != 0.0) {
+                                if cryptoInfo.price != 0.0 {
                                     Text(formatBalancePLAndPercentageToString(
                                         balance: cryptoInfo.balance,
                                         percentage: cryptoInfo.dailyProfitLoss
                                     ))
-                                }
-                                else {
+                                } else {
                                     Text("N/A (N/A)")
                                 }
                                 Text(String(cryptoInfo.amount))
@@ -78,9 +77,9 @@
         removeManualHistoryRecord(key: name)
         removeManualRecord(key: name)
     }
- }
+}
 
- struct CryptoInfoView_Previews: PreviewProvider {
+struct CryptoInfoView_Previews: PreviewProvider {
     static var previews: some View {
         CryptoInfoView(
             cryptoInfo: CryptoInfo(
@@ -93,4 +92,4 @@
             cryptoExchange: ""
         )
     }
- }
+}

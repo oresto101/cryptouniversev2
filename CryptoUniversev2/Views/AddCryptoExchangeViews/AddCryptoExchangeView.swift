@@ -3,17 +3,24 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-
+import SafariServices
 import SwiftUI
 
 struct AddCryptoExchangeView: View {
-//    @State private var selectedExchange: Exchange = .binance
     @State public var selectedExchange: Exchange
+    @State private var showingVideo = false
     @State private var exchangeAPI: String = ""
     @State private var exchangeSecret: String = ""
     @State private var exchangePassphrase: String = ""
     @State private var loaded = false
     @State private var loadedWithError = false
+
+    let videoURLs = [
+        "Binance": URL(string: "https://youtu.be/_AJ-QYyqIR8"),
+        "OKX": URL(string: "https://youtu.be/GkkM4aBwmFM"),
+        "Gemini": URL(string: "https://youtu.be/e1zROVaQzoI"),
+        "Kraken": URL(string: "https://youtu.be/BzqhWVTgwr8"),
+    ]
 
     var body: some View {
         if loaded {
@@ -28,31 +35,26 @@ struct AddCryptoExchangeView: View {
                             .foregroundColor(.white)
                         Form {
                             Section {
-                                //                        Picker("Exchange", selection: $selectedExchange) {
-                                //
-                                //                        }
-                                //                        .accessibility(identifier: "picker")
-                                TextField(
+                                SecureField(
                                     "Exchange API",
                                     text: $exchangeAPI
                                 )
                                 .autocapitalization(.none)
                                 .disableAutocorrection(true)
-                                TextField(
+                                SecureField(
                                     "Exchange Secret",
                                     text: $exchangeSecret
                                 )
                                 .autocapitalization(.none)
                                 .disableAutocorrection(true)
                                 if selectedExchange.requiresPassphrase {
-                                    TextField(
+                                    SecureField(
                                         "Exchange Passphrase",
                                         text: $exchangePassphrase
                                     )
                                     .autocapitalization(.none)
                                     .disableAutocorrection(true)
                                 }
-                                //                        .isHidden(!selectedExchange.requiresPassphrase, remove: !selectedExchange.requiresPassphrase)
                             }
                             Button("Add Cryptoexchange") {
                                 addCryptoExchange(
@@ -70,6 +72,22 @@ struct AddCryptoExchangeView: View {
                             )
                         }
                         .scrollContentBackground(.hidden)
+                        Spacer()
+                        Button(action: {
+                            showingVideo = true
+                        }) {
+                            Image(systemName: "questionmark.circle")
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .foregroundColor(.white)
+                                .padding()
+                        }
+                        .sheet(isPresented: $showingVideo) {
+                            SafariView(
+                                url: videoURLs[selectedExchange.name] ?? URL(string: "https://youtube.com")!
+                            )
+                        }
+                        Spacer()
                     }
                     .alert("Fake Credentials", isPresented: $loadedWithError) {
                         Button("Dismiss") {}

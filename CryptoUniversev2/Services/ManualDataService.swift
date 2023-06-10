@@ -1,9 +1,7 @@
 import Foundation
 
 public func removeManualHistoryRecord(key: String) {
-    print("Call remove manual hist")
     var manualHistory = UserDefaults.standard.double(forKey: "ManualHistoricData")
-    print(manualHistory)
     if var manualHistoricDict = UserDefaults.standard.dictionary(forKey: "manualHistoricDict") as? [String: Double] {
         let valueToRemove = manualHistoricDict[key]
         manualHistory = manualHistory - valueToRemove!
@@ -18,7 +16,6 @@ public func removeManualHistoryRecord(key: String) {
         } else {
             UserDefaults.standard.set(manualHistoricDict, forKey: "manualHistoricDict")
         }
-        print("Manual history removed")
     }
 }
 

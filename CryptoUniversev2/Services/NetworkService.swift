@@ -23,9 +23,15 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
 
         guard let data, error == nil else {
-            print("Error: \(error?.localizedDescription ?? "Unknown error")")
-            completion(false)
-            return
+            if error?.localizedDescription == "The Internet connection appears to be offline." {
+                print("No Internet")
+                completion(true)
+                return
+            } else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                completion(false)
+                return
+            }
         }
 
         do {
@@ -63,8 +69,13 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
                 completion(false)
             }
         } catch {
-            print("Error: \(error.localizedDescription)")
-            completion(false)
+            if error.localizedDescription == "The Internet connection appears to be offline." {
+                print("No Internet")
+                completion(true)
+            } else {
+                print("Error: \(error.localizedDescription)")
+                completion(false)
+            }
         }
     }
 
@@ -105,15 +116,20 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, newD
     request.addValue(timestamp, forHTTPHeaderField: "OK-ACCESS-TIMESTAMP")
     exchangeDispatchGroup.enter()
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
-        
-        if error != nil {
-            print("Request error: ", error as Any)
-            completion(false)
-            return
+
+        guard let data, error == nil else {
+            if error?.localizedDescription == "The Internet connection appears to be offline." {
+                print("No Internet")
+                completion(true)
+                return
+            } else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                completion(false)
+                return
+            }
         }
 
-        guard let data,
-              let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
               let responseData = json["data"] as? [[String: Any]],
               let details = responseData.first?["details"] as? [[String: Any]]
         else {
@@ -270,13 +286,17 @@ public func parseGemini(apiKey: String, secretKey: String, newData _: Bool, comp
     exchangeDispatchGroup.enter()
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
 
-        if let error {
-            print("Gemini - Request error: ", error)
-            completion(false)
-            return
+        guard let data, error == nil else {
+            if error?.localizedDescription == "The Internet connection appears to be offline." {
+                print("No Internet")
+                completion(true)
+                return
+            } else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                completion(false)
+                return
+            }
         }
-
-        guard let data else { return }
 
         do {
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
@@ -333,9 +353,15 @@ func parseKraken(apiKey: String, secretKey: String, newData _: Bool, completion:
     exchangeDispatchGroup.enter()
     URLSession.shared.dataTask(with: request) { data, _, error in
         guard let data, error == nil else {
-            print("Error: \(error?.localizedDescription ?? "Unknown error")")
-            completion(false)
-            return
+            if error?.localizedDescription == "The Internet connection appears to be offline." {
+                print("No Internet")
+                completion(true)
+                return
+            } else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                completion(false)
+                return
+            }
         }
 
         do {
@@ -356,42 +382,16 @@ func parseKraken(apiKey: String, secretKey: String, newData _: Bool, completion:
                 completion(true)
             }
         } catch {
-            print("Kraken - Error: \(error.localizedDescription)")
-            completion(false)
+            if error.localizedDescription == "The Internet connection appears to be offline." {
+                print("No Internet")
+                completion(true)
+            } else {
+                print("Error: \(error.localizedDescription)")
+                completion(false)
+            }
         }
     }.resume()
 }
-
-// public func coinIsValid(name: String, completion: @escaping (Bool) -> Void) {
-//    let apiKey = "50e5b41c-ec5c-47f5-88fd-9ab5f51ed210"
-//    let urlString = "https://pro-api.coinmarketcap.com/v2/tools/price-conversion?symbol=\(name)&amount=1&convert=USD"
-//
-//    guard let url = URL(string: urlString) else {
-//        print("Error creating URL")
-//        return
-//    }
-//
-//    var request = URLRequest(url: url)
-//    request.httpMethod = "GET"
-//    request.addValue(apiKey, forHTTPHeaderField: "X-CMC_PRO_API_KEY")
-//    request.addValue("application/json", forHTTPHeaderField: "Accept")
-//
-//    let task = URLSession.shared.dataTask(with: request) { _, response, error in
-//        if let error {
-//            print("coinIsValid - Error making request: \(error.localizedDescription)")
-//            completion(false)
-//            return
-//        }
-//
-//        if let httpResponse = response as? HTTPURLResponse {
-//            completion(httpResponse.statusCode != 400)
-//        } else {
-//            completion(false)
-//        }
-//    }
-//
-//    task.resume()
-// }
 
 public func convertCoinToUSD(name: String, amount: Double, completion: @escaping (Double) -> Void) {
     let apiKey = "8add797c9e72bef06bde41650b18ece2cb3a547c34f44ba6b32775ee769fac9a"

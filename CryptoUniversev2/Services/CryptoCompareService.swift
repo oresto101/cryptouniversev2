@@ -9,11 +9,11 @@ import Foundation
 import SwiftyJSON
 
 private var stupidCoins = [
-    "IOTA": "MIOTA"
+    "IOTA": "MIOTA",
 ]
 
 private var coinsStupid = [
-    "MIOTA": "IOTA"
+    "MIOTA": "IOTA",
 ]
 
 public func storeChangesForCryptoInUsd() {
@@ -46,23 +46,24 @@ public func storeChangesForCryptoInUsd() {
             var priceChanges: [String: Double] = [:]
             var prices: [String: Double] = [:]
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-               let data = json["data"] as? [String: Any]{
+               let data = json["data"] as? [String: Any]
+            {
                 for (key, value) in data {
-                                if let currencyArray = value as? [[String: Any]],
-                                   let firstCurrency = currencyArray.first,
-                                   let quote = firstCurrency["quote"] as? [String: Any],
-                                   let usd = quote["USD"] as? [String: Any],
-                                   let price = usd["price"] as? Double, let priceChange = usd["percent_change_24h"] as? Double {
-                                    if coinsStupid.keys.contains(key) {
-                                        prices[coinsStupid[key]!] = price
-                                        priceChanges[coinsStupid[key]!] = price
-                                    }
-                                    else {
-                                        prices[key] = price
-                                        priceChanges[key] = priceChange
-                                    }
-                                }
-                            }
+                    if let currencyArray = value as? [[String: Any]],
+                       let firstCurrency = currencyArray.first,
+                       let quote = firstCurrency["quote"] as? [String: Any],
+                       let usd = quote["USD"] as? [String: Any],
+                       let price = usd["price"] as? Double, let priceChange = usd["percent_change_24h"] as? Double
+                    {
+                        if coinsStupid.keys.contains(key) {
+                            prices[coinsStupid[key]!] = price
+                            priceChanges[coinsStupid[key]!] = price
+                        } else {
+                            prices[key] = price
+                            priceChanges[key] = priceChange
+                        }
+                    }
+                }
             }
             print(priceChanges)
             print(prices)

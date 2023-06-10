@@ -1,25 +1,26 @@
+import Combine
 import Network
 import SwiftUI
 
-class NetworkMonitor {
+class NetworkMonitor: ObservableObject {
     private let monitor: NWPathMonitor
     private let queue = DispatchQueue(label: "NetworkMonitor")
 
-    var isConnected: Bool {
-        monitor.currentPath.status == .satisfied
-    }
+    @Published var isConnected: Bool = false
 
     init() {
         monitor = NWPathMonitor()
-        monitor.pathUpdateHandler = { _ in
-            // add NotificationCenter
+        monitor.pathUpdateHandler = { [weak self] path in
+            DispatchQueue.main.async {
+                self?.isConnected = path.status == .satisfied
+            }
         }
         monitor.start(queue: queue)
     }
 }
 
 struct ContentView: View {
-    let networkMonitor = NetworkMonitor()
+    @StateObject var networkMonitor = NetworkMonitor()
 
     var body: some View {
         if networkMonitor.isConnected {
