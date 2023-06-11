@@ -4,8 +4,6 @@
 //
 //  Created by Orest Haman on 10/12/2022.
 //
-
-@testable import CryptoUniversev2
 import XCTest
 
 final class CryptoUniversev2Tests: XCTestCase {

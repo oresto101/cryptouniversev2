@@ -26,8 +26,7 @@ struct HomeView: View {
                         updateData()
                     }
             } else {
-                let _ = print(infoBoxes)
-                let _ = print(cryptoInfo)
+
                 if noData {
                     noDataView
                 } else {
@@ -70,7 +69,7 @@ struct HomeView: View {
                 )
             if !loadingBoxes, !loadingInfo {
                 cryptoExchangeView(
-                    cryptoInfo: getCryptoInfoForExchange(exchange: infobox.name),
+                    cryptoInfo: cryptoInfo[infobox.name]!,
                     cryptoExchange: infobox.name
                 )
             }
@@ -100,13 +99,13 @@ struct HomeView: View {
         AnyView(
             LazyVStack(spacing: 10.0) {
                 ForEach(cryptoInfo, id: \.self) { cryptoInfo in
-                    cryptoInfoView(cryptoInfo: cryptoInfo, cryptoExchange: cryptoExchange)
+                    cryptoInfoView(cryptoInfoBox: cryptoInfo, cryptoExchange: cryptoExchange)
                 }
             }
         )
     }
 
-    func cryptoInfoView(cryptoInfo: CryptoInfo, cryptoExchange: String) -> some View {
+    func cryptoInfoView(cryptoInfoBox: CryptoInfo, cryptoExchange: String) -> some View {
         func calculateColorForBox(profitLoss: Double) -> Color {
             if profitLoss >= 0 {
                 return Color("ProfitColor")
@@ -118,34 +117,34 @@ struct HomeView: View {
         func removeCryptocurrency(name: String) {
             removeManualHistoryRecord(key: name)
             removeManualRecord(key: name)
-            parseCryptoInfo()
+            (infoBoxes, cryptoInfo, noData) = retrieveDataAndParseCryptoInfo()
         }
 
         return Group {
             RoundedRectangle(cornerRadius: 14)
                 .frame(width: 320.0, height: 75.0)
-                .foregroundColor(calculateColorForBox(profitLoss: cryptoInfo.dailyProfitLoss))
+                .foregroundColor(calculateColorForBox(profitLoss: cryptoInfoBox.dailyProfitLoss))
                 .overlay(
                     VStack {
                         HStack {
-                            if UIImage(named: cryptoInfo.name.lowercased()) == nil {
+                            if UIImage(named: cryptoInfoBox.name.lowercased()) == nil {
                                 Image("default")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 20, height: 20)
                             } else {
-                                Image(cryptoInfo.name.lowercased())
+                                Image(cryptoInfoBox.name.lowercased())
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 20, height: 20)
                             }
 
-                            Text(cryptoInfo.name)
+                            Text(cryptoInfoBox.name)
                                 .font(.headline)
                                 .fontWeight(.bold)
                             if cryptoExchange == "Manual" {
                                 Menu {
-                                    Button(action: { removeCryptocurrency(name: cryptoInfo.name)
+                                    Button(action: { removeCryptocurrency(name: cryptoInfoBox.name)
                                     }) {
                                         Label("Delete", systemImage: "minus.circle")
                                     }
@@ -162,10 +161,10 @@ struct HomeView: View {
                             .position(x: 70, y: 10)
                             VStack(alignment: .trailing) {
                                 Text(formatBalancePLAndPercentageToString(
-                                    balance: cryptoInfo.balance,
-                                    percentage: cryptoInfo.dailyProfitLoss
+                                    balance: cryptoInfoBox.balance,
+                                    percentage: cryptoInfoBox.dailyProfitLoss
                                 ))
-                                Text(String(cryptoInfo.amount))
+                                Text(String(cryptoInfoBox.amount))
                             }
                             .offset(x: -15, y: -10)
                         }
@@ -214,7 +213,7 @@ struct HomeView: View {
         UserDefaults.standard.removeObject(forKey: "\(infobox.name)Secret")
         UserDefaults.standard.removeObject(forKey: "\(infobox.name)Data")
         UserDefaults.standard.removeObject(forKey: "\(infobox.name)HistoricData")
-        parseCryptoInfo()
+        (infoBoxes, cryptoInfo, noData) = retrieveDataAndParseCryptoInfo()
     }
 
     private func loadData() {
@@ -241,109 +240,10 @@ struct HomeView: View {
         exchangeDispatchGroup.notify(queue: .global()) {
             storeChangesForCryptoInUsd()
             coinMarketCapDispatchGroup.notify(queue: .main) {
-                parseCryptoInfo()
+                (infoBoxes, cryptoInfo, noData) = retrieveDataAndParseCryptoInfo()
+                print(infoBoxes)
             }
         }
     }
 
-    public func parseCryptoInfo() {
-//        let domain = Bundle.main.bundleIdentifier!
-//        UserDefaults.standard.removePersistentDomain(forName: domain)
-//        UserDefaults.standard.synchronize()
-        let cryptoPrices = UserDefaults.standard.dictionary(forKey: "Prices")!
-        let priceChanges = UserDefaults.standard.dictionary(forKey: "PriceChanges")!
-        var exchangeTotals: [String: Double] = [:]
-        var exchangeDailyPL: [String: Double] = [:]
-        var overalls: [String: Double] = [:]
-        exchanges.forEach {
-            exchangeName in
-            if let data = (UserDefaults.standard.dictionary(forKey: "\(exchangeName)Data")) {
-                var totalForExchange = 0.0
-                var dailyPLForExchange = 0.0
-                cryptoInfo[exchangeName] = data.compactMap { symbol, value in
-                    let val = value as! Double
-                    let price = val * (cryptoPrices[symbol] as! Double)
-                    overalls[symbol] = overalls[symbol] ?? 0 + val
-                    totalForExchange += price
-                    if (priceChanges[symbol] as! Double) != 0.0 {
-                        dailyPLForExchange += price * (priceChanges[symbol, default: 0.0] as! Double) / 100
-                    }
-                    let cryptoIn = CryptoInfo(
-                        name: symbol,
-                        balance: roundDoubles(val: price),
-                        amount: roundDoubles(val: val),
-                        price: cryptoPrices[symbol] as! Double,
-                        dailyProfitLoss: priceChanges[symbol] as! Double
-                    )
-                    return cryptoIn
-                }
-                exchangeDailyPL[exchangeName] = dailyPLForExchange
-                exchangeTotals[exchangeName] = totalForExchange
-            }
-        }
-        cryptoInfo["Overall"] = overalls.compactMap { symbol, values in
-            CryptoInfo(
-                name: symbol,
-                balance: roundDoubles(val: cryptoPrices[symbol] as! Double * values),
-                amount: roundDoubles(val: values),
-                price: cryptoPrices[symbol] as! Double,
-                dailyProfitLoss: priceChanges[symbol] as! Double
-            )
-        }
-        for (exchangeName, cryptoInfos) in cryptoInfo {
-            cryptoInfo[exchangeName] = cryptoInfos.sorted { $0.balance > $1.balance }
-        }
-        infoBoxes = exchangeTotals.compactMap {
-            name, value in
-            if UserDefaults.standard.value(forKey: "\(name)HistoricData") == nil {
-                saveDataToUserDefaults(key: "\(name)HistoricData", data: value)
-            }
-            let netprofitLoss = Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData")) - value
-            let netProfitLossPercentage = (Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData")) / value) - 1
-            let dailyProfitLossPercentage = ((value - exchangeDailyPL[name]!) / value) - 1
-            return InfoBox(
-                name: name,
-                totalBalance: value,
-                dailyProfitLoss: exchangeDailyPL[name]!,
-                netProfitLoss: netprofitLoss,
-                dailyProfitLossPercentage: dailyProfitLossPercentage,
-                netProfitLossPercentage: netProfitLossPercentage
-            )
-        }
-        var overallProfitLoss = 0.0
-        var overallDailyProfitLoss = 0.0
-        var overallSum = 0.0
-        infoBoxes.forEach {
-            infobox in
-            overallProfitLoss += infobox.netProfitLoss
-            overallSum += infobox.totalBalance
-            overallDailyProfitLoss += infobox.dailyProfitLoss
-        }
-        let netProfitLossPercentage = ((overallSum - overallProfitLoss) / overallSum) - 1
-        let dailyProfitLossPercentage = ((overallSum - overallDailyProfitLoss) / overallSum) - 1
-        if overallSum != 0.0 {
-            infoBoxes.insert(
-                InfoBox(name: "Overall", totalBalance: overallSum, dailyProfitLoss: overallDailyProfitLoss, netProfitLoss: overallProfitLoss, dailyProfitLossPercentage: dailyProfitLossPercentage,
-                        netProfitLossPercentage: netProfitLossPercentage),
-                at: 0
-            )
-        } else {
-            noData = true
-            print("Sum is zero")
-        }
-        if infoBoxes.count > 0 {
-            let overall = infoBoxes.removeFirst()
-            infoBoxes = infoBoxes.sorted { $0.totalBalance > $1.totalBalance }
-            infoBoxes.insert(overall, at: 0)
-        }
-    }
-
-    private func getCryptoInfoForExchange(exchange: String) -> [CryptoInfo] {
-        var info = cryptoInfo[exchange]
-        while info == nil {
-            info = cryptoInfo[exchange]
-            sleep(1)
-        }
-        return info!
-    }
 }

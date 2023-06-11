@@ -114,6 +114,8 @@
 		CB72DD18294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD17294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift */; };
 		CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD2729451DEC0087534D /* InfoBox.swift */; };
 		CB77AF1C29749761006D711E /* AddCryptoCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */; };
+		CBA67BB72A361A5100E92C41 /* CryptoInfoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA67BB62A361A5100E92C41 /* CryptoInfoParser.swift */; };
+		CBA67BBA2A36355200E92C41 /* StringFormatterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA67BB92A36355200E92C41 /* StringFormatterTest.swift */; };
 		CBAD25912946D0440062DF52 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD25902946D0440062DF52 /* HelpView.swift */; };
 		CBCEA5732A2A2A3300B50371 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA5722A2A2A3300B50371 /* HelpListView.swift */; };
 		CBCEA83B29F2BA220006E19B /* CryptoCompareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */; };
@@ -181,6 +183,8 @@
 		CB72DD17294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUniversev2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CB72DD2729451DEC0087534D /* InfoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBox.swift; sourceTree = "<group>"; };
 		CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoCurrencyView.swift; sourceTree = "<group>"; };
+		CBA67BB62A361A5100E92C41 /* CryptoInfoParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoInfoParser.swift; sourceTree = "<group>"; };
+		CBA67BB92A36355200E92C41 /* StringFormatterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormatterTest.swift; sourceTree = "<group>"; };
 		CBAD25902946D0440062DF52 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		CBCEA5722A2A2A3300B50371 /* HelpListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListView.swift; sourceTree = "<group>"; };
 		CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareService.swift; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 		CB72DD0A294516550087534D /* CryptoUniversev2Tests */ = {
 			isa = PBXGroup;
 			children = (
+				CBA67BB82A36352B00E92C41 /* Utils */,
 				CB72DD0B294516550087534D /* CryptoUniversev2Tests.swift */,
 			);
 			path = CryptoUniversev2Tests;
@@ -332,6 +337,14 @@
 				1B4B957E2A0E9E4F00D277F0 /* HHView.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CBA67BB82A36352B00E92C41 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CBA67BB92A36355200E92C41 /* StringFormatterTest.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		CBAD258F2946D0320062DF52 /* HelpViews */ = {
@@ -375,6 +388,7 @@
 				1BC7D50129E5C9EB00BB14A5 /* String Formatter.swift */,
 				1BC7D50529E5CA0700BB14A5 /* HideView.swift */,
 				1BC7D50929E5CA2500BB14A5 /* NetworkUtils.swift */,
+				CBA67BB62A361A5100E92C41 /* CryptoInfoParser.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -546,6 +560,7 @@
 				1B03854729675ED400E76092 /* MainView.swift in Sources */,
 				1B5DE6F72A019ECE002795F9 /* CoinGecoService.swift in Sources */,
 				1BC7D4DD29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
+				CBA67BB72A361A5100E92C41 /* CryptoInfoParser.swift in Sources */,
 				1B5DE70A2A01A01B002795F9 /* ACEView.swift in Sources */,
 				1B0385432967042500E76092 /* HomeView.swift in Sources */,
 				1B038541296700BE00E76092 /* ContentView.swift in Sources */,
@@ -612,6 +627,7 @@
 				1B5DE6FF2A019F4E002795F9 /* FileManagerService.swift in Sources */,
 				1BD7624A297D80840044D8BC /* HelpView.swift in Sources */,
 				1BD7623D297D7DA80044D8BC /* InfoBox.swift in Sources */,
+				CBA67BBA2A36355200E92C41 /* StringFormatterTest.swift in Sources */,
 				1B5DE7032A019F7E002795F9 /* ManualDataService.swift in Sources */,
 				1BD7624B297D80870044D8BC /* CryptoExchangeView.swift in Sources */,
 				1BC7D4DE29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
