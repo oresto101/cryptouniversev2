@@ -1,10 +1,3 @@
-//
-//  ContentView_UITests.swift
-//  CryptoUniversev2UITests
-//
-//  Created by Kirill Kostakov on 22.01.2023.
-//
-
 import XCTest
 
 final class ContentView_UITests: XCTestCase {

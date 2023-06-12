@@ -7,14 +7,14 @@
 
 import Foundation
 
-func retrieveDataAndParseCryptoInfo() -> ([InfoBox], [String: [CryptoInfo]], Bool){
+func retrieveDataAndParseCryptoInfo() -> ([InfoBox], [String: [CryptoInfo]], Bool) {
     let cryptoPrices = UserDefaults.standard.dictionary(forKey: "Prices")! as! [String: Double]
     let priceChanges = UserDefaults.standard.dictionary(forKey: "PriceChanges")! as! [String: Double]
     let exchangesToBeParsed = getExchangesToBeParsed()
     return parseCryptoInfo(cryptoPrices: cryptoPrices, priceChanges: priceChanges, exchangesToBeParsed: exchangesToBeParsed)
 }
 
-func parseCryptoInfo(cryptoPrices: [String: Double], priceChanges: [String: Double], exchangesToBeParsed: [String: [String: Double]]) -> ([InfoBox], [String: [CryptoInfo]], Bool){
+func parseCryptoInfo(cryptoPrices: [String: Double], priceChanges: [String: Double], exchangesToBeParsed: [String: [String: Double]]) -> ([InfoBox], [String: [CryptoInfo]], Bool) {
     var infoBoxes: [InfoBox] = []
     var cryptoInfo: [String: [CryptoInfo]] = [:]
     var exchangeTotals: [String: Double] = [:]
@@ -47,6 +47,7 @@ func storeHistoricDataIfNotStoredYet(name: String, totalValue: Double) {
         saveDataToUserDefaults(key: "\(name)HistoricData", data: totalValue)
     }
 }
+
 func getInfoBox(name: String, totalValue: Double, exchangeDailyPL: [String: Double]) -> InfoBox {
     let netprofitLoss = Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData")) - totalValue
     let netProfitLossPercentage = (Double(UserDefaults.standard.integer(forKey: "\(name)HistoricData")) / totalValue) - 1
@@ -60,7 +61,6 @@ func getInfoBox(name: String, totalValue: Double, exchangeDailyPL: [String: Doub
         netProfitLossPercentage: netProfitLossPercentage
     )
 }
-
 
 func calculateOveralls(infoBoxes: [InfoBox]) -> InfoBox {
     var overallProfitLoss = 0.0
@@ -78,7 +78,9 @@ func calculateOveralls(infoBoxes: [InfoBox]) -> InfoBox {
                    netProfitLossPercentage: netProfitLossPercentage)
 }
 
-func parseCryptoInfoByExchange(exchangesToBeParsed: [String: [String: Double]], cryptoPrices: [String: Double], priceChanges: [String: Double]) -> ([String: [CryptoInfo]], [String: Double], [String: Double]) {
+func parseCryptoInfoByExchange(exchangesToBeParsed: [String: [String: Double]], cryptoPrices: [String: Double],
+                               priceChanges: [String: Double]) -> ([String: [CryptoInfo]], [String: Double], [String: Double])
+{
     var cryptoInfo: [String: [CryptoInfo]] = [:]
     var exchangeDailyPL: [String: Double] = [:]
     var exchangeTotals: [String: Double] = [:]
@@ -89,11 +91,11 @@ func parseCryptoInfoByExchange(exchangesToBeParsed: [String: [String: Double]], 
         var dailyPLForExchange = 0.0
         cryptoInfo[exchangeName] = data.compactMap { symbol, value in
             let val = value
-            let price = val * (cryptoPrices[symbol]!)
+            let price = val * cryptoPrices[symbol]!
             overalls[symbol] = overalls[symbol, default: 0.0] + val
             totalForExchange += price
-            if (priceChanges[symbol]!) != 0.0 {
-                dailyPLForExchange += price * (priceChanges[symbol]!) / 100
+            if priceChanges[symbol]! != 0.0 {
+                dailyPLForExchange += price * priceChanges[symbol]! / 100
             }
             return CryptoInfo(
                 name: symbol,

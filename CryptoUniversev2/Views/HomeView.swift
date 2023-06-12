@@ -26,7 +26,6 @@ struct HomeView: View {
                         updateData()
                     }
             } else {
-
                 if noData {
                     noDataView
                 } else {
@@ -245,5 +244,4 @@ struct HomeView: View {
             }
         }
     }
-
 }

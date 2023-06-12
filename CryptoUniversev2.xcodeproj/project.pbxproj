@@ -19,6 +19,14 @@
 		1B0521892A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
 		1B05218A2A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
 		1B05218B2A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
+		1B2C8A5E2A374FBC00A57776 /* CryptoCompareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */; };
+		1B2C8A5F2A374FBD00A57776 /* CryptoCompareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */; };
+		1B2C8A602A374FCB00A57776 /* CryptoInfoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA67BB62A361A5100E92C41 /* CryptoInfoParser.swift */; };
+		1B2C8A612A374FCC00A57776 /* CryptoInfoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA67BB62A361A5100E92C41 /* CryptoInfoParser.swift */; };
+		1B2C8A6E2A37500800A57776 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA5722A2A2A3300B50371 /* HelpListView.swift */; };
+		1B2C8A6F2A37500900A57776 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA5722A2A2A3300B50371 /* HelpListView.swift */; };
+		1B2C8A702A37505800A57776 /* CryptoUniversev2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD0B294516550087534D /* CryptoUniversev2Tests.swift */; };
+		1B2C8A722A37541200A57776 /* CryptoUniversev2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD15294516550087534D /* CryptoUniversev2UITests.swift */; };
 		1B4B957F2A0E9E4F00D277F0 /* HHView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B957E2A0E9E4F00D277F0 /* HHView.swift */; };
 		1B4B95802A0E9E4F00D277F0 /* HHView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B957E2A0E9E4F00D277F0 /* HHView.swift */; };
 		1B4B95812A0E9E4F00D277F0 /* HHView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B957E2A0E9E4F00D277F0 /* HHView.swift */; };
@@ -96,7 +104,6 @@
 		1BD7624B297D80870044D8BC /* CryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */; };
 		1BD7624C297D808D0044D8BC /* CryptoBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB9C5B29759E910097589E /* CryptoBoxView.swift */; };
 		1BD7624D297D80900044D8BC /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525402946BC1800FD5D11 /* MenuView.swift */; };
-		1BD76250297DA64C0044D8BC /* ContentView_Login_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD7624F297DA64C0044D8BC /* ContentView_Login_UITests.swift */; };
 		1BD76252297DA8960044D8BC /* HomeView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD76251297DA8960044D8BC /* HomeView_UITests.swift */; };
 		1BFB9C5C29759E910097589E /* CryptoBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB9C5B29759E910097589E /* CryptoBoxView.swift */; };
 		CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA8295B90AA0038E0A2 /* Exchange.swift */; };
@@ -109,8 +116,6 @@
 		CB72DCFB294516530087534D /* CryptoUniversev2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DCFA294516530087534D /* CryptoUniversev2App.swift */; };
 		CB72DCFF294516550087534D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB72DCFE294516550087534D /* Assets.xcassets */; };
 		CB72DD02294516550087534D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB72DD01294516550087534D /* Preview Assets.xcassets */; };
-		CB72DD0C294516550087534D /* CryptoUniversev2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD0B294516550087534D /* CryptoUniversev2Tests.swift */; };
-		CB72DD16294516550087534D /* CryptoUniversev2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD15294516550087534D /* CryptoUniversev2UITests.swift */; };
 		CB72DD18294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD17294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift */; };
 		CB72DD2829451DEC0087534D /* InfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72DD2729451DEC0087534D /* InfoBox.swift */; };
 		CB77AF1C29749761006D711E /* AddCryptoCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB77AF1B29749761006D711E /* AddCryptoCurrencyView.swift */; };
@@ -164,7 +169,6 @@
 		1BC7D50929E5CA2500BB14A5 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkUtils.swift; path = CryptoUniversev2/Utils/NetworkUtils.swift; sourceTree = SOURCE_ROOT; };
 		1BD76231297D6D670044D8BC /* ContentView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_UITests.swift; sourceTree = "<group>"; };
 		1BD7624E297D9F830044D8BC /* CryptoUniversev2Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CryptoUniversev2Release.entitlements; sourceTree = "<group>"; };
-		1BD7624F297DA64C0044D8BC /* ContentView_Login_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_Login_UITests.swift; sourceTree = "<group>"; };
 		1BD76251297DA8960044D8BC /* HomeView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView_UITests.swift; sourceTree = "<group>"; };
 		1BFB9C5B29759E910097589E /* CryptoBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoBoxView.swift; sourceTree = "<group>"; };
 		CB404EA8295B90AA0038E0A2 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Exchange.swift; path = CryptoUniversev2/Enums/Exchange.swift; sourceTree = SOURCE_ROOT; };
@@ -320,7 +324,6 @@
 				CB72DD15294516550087534D /* CryptoUniversev2UITests.swift */,
 				CB72DD17294516550087534D /* CryptoUniversev2UITestsLaunchTests.swift */,
 				1BD76231297D6D670044D8BC /* ContentView_UITests.swift */,
-				1BD7624F297DA64C0044D8BC /* ContentView_Login_UITests.swift */,
 				1BD76251297DA8960044D8BC /* HomeView_UITests.swift */,
 			);
 			path = CryptoUniversev2UITests;
@@ -602,6 +605,7 @@
 				1B820D7F2A11401A0050F741 /* ExchangeListView.swift in Sources */,
 				1B0521862A019D5000094BBD /* News.swift in Sources */,
 				1B5DE6F82A019ECE002795F9 /* CoinGecoService.swift in Sources */,
+				1B2C8A5E2A374FBC00A57776 /* CryptoCompareService.swift in Sources */,
 				1BD7623B297D7DA60044D8BC /* CryptoInfo.swift in Sources */,
 				1B5DE70B2A01A01B002795F9 /* ACEView.swift in Sources */,
 				1BD76245297D7F450044D8BC /* MainView.swift in Sources */,
@@ -614,7 +618,7 @@
 				1B5DE6FB2A019ECE002795F9 /* NetworkService.swift in Sources */,
 				1BD7622B297D64A60044D8BC /* HomeView.swift in Sources */,
 				1BD7622C297D64D20044D8BC /* CryptoInfoView.swift in Sources */,
-				CB72DD0C294516550087534D /* CryptoUniversev2Tests.swift in Sources */,
+				1B2C8A602A374FCB00A57776 /* CryptoInfoParser.swift in Sources */,
 				1BD7622D297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */,
 				1B0521822A019D2400094BBD /* Helper.swift in Sources */,
 				1B5DE70F2A01A03C002795F9 /* HView.swift in Sources */,
@@ -626,9 +630,11 @@
 				1BC7D50729E5CA0700BB14A5 /* HideView.swift in Sources */,
 				1B5DE6FF2A019F4E002795F9 /* FileManagerService.swift in Sources */,
 				1BD7624A297D80840044D8BC /* HelpView.swift in Sources */,
+				1B2C8A6E2A37500800A57776 /* HelpListView.swift in Sources */,
 				1BD7623D297D7DA80044D8BC /* InfoBox.swift in Sources */,
 				CBA67BBA2A36355200E92C41 /* StringFormatterTest.swift in Sources */,
 				1B5DE7032A019F7E002795F9 /* ManualDataService.swift in Sources */,
+				1B2C8A702A37505800A57776 /* CryptoUniversev2Tests.swift in Sources */,
 				1BD7624B297D80870044D8BC /* CryptoExchangeView.swift in Sources */,
 				1BC7D4DE29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
 			);
@@ -648,11 +654,10 @@
 				1B5DE7102A01A03C002795F9 /* HView.swift in Sources */,
 				1B5DE6FC2A019ECE002795F9 /* NetworkService.swift in Sources */,
 				1BD76232297D6D670044D8BC /* ContentView_UITests.swift in Sources */,
-				1BD76250297DA64C0044D8BC /* ContentView_Login_UITests.swift in Sources */,
 				1BC7D4DF29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
+				1B2C8A5F2A374FBD00A57776 /* CryptoCompareService.swift in Sources */,
 				1BD76234297D7D5C0044D8BC /* CryptoBoxView.swift in Sources */,
 				1B5DE70C2A01A01B002795F9 /* ACEView.swift in Sources */,
-				CB72DD16294516550087534D /* CryptoUniversev2UITests.swift in Sources */,
 				1B820D802A11401A0050F741 /* ExchangeListView.swift in Sources */,
 				1B05218B2A019D6A00094BBD /* NewsViewModel.swift in Sources */,
 				1BD76243297D7EE80044D8BC /* Exchange.swift in Sources */,
@@ -661,12 +666,15 @@
 				1BD76252297DA8960044D8BC /* HomeView_UITests.swift in Sources */,
 				1BD7623A297D7DA50044D8BC /* CryptoInfo.swift in Sources */,
 				1B5DE7212A01A0F1002795F9 /* NewsView.swift in Sources */,
+				1B2C8A6F2A37500900A57776 /* HelpListView.swift in Sources */,
 				1BD76233297D7D590044D8BC /* MenuView.swift in Sources */,
 				1BC7D50C29E5CA2500BB14A5 /* NetworkUtils.swift in Sources */,
 				1BD7622A297D64A00044D8BC /* HomeView.swift in Sources */,
+				1B2C8A612A374FCC00A57776 /* CryptoInfoParser.swift in Sources */,
 				1BD7623C297D7DA80044D8BC /* InfoBox.swift in Sources */,
 				1B5DE7042A019F7E002795F9 /* ManualDataService.swift in Sources */,
 				1BD7622E297D651C0044D8BC /* AddCryptoCurrencyView.swift in Sources */,
+				1B2C8A722A37541200A57776 /* CryptoUniversev2UITests.swift in Sources */,
 				1B0521872A019D5000094BBD /* News.swift in Sources */,
 				1BD76230297D65360044D8BC /* AddCryptoExchangeView.swift in Sources */,
 				1BD76236297D7D610044D8BC /* CryptoExchangeView.swift in Sources */,
@@ -873,15 +881,19 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = og.CryptoUniversev2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoUniversev2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoUniversev2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Crypto Universe.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Crypto Universe";
 			};
 			name = Debug;
 		};
@@ -892,15 +904,19 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = og.CryptoUniversev2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoUniversev2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoUniversev2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Crypto Universe.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Crypto Universe";
 			};
 			name = Release;
 		};
@@ -914,6 +930,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = og.CryptoUniversev2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -931,6 +950,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = og.CryptoUniversev2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
