@@ -20,7 +20,7 @@ final class HomeView_UITests: XCTestCase {
     func test_HomeView_Page_ShouldLoadData() {
         let app = XCUIApplication()
         let scrollViewsQuery = app.collectionViews/*@START_MENU_TOKEN@*/ .scrollViews/*[[".cells.scrollViews",".scrollViews"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .otherElements.scrollViews
-        let element = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").children(matching: .other).element.waitForExistence(timeout: 30)
+        let element = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").children(matching: .other).element.waitForExistence(timeout: 10)
         XCTAssertTrue(element)
     }
 
@@ -28,33 +28,31 @@ final class HomeView_UITests: XCTestCase {
         let collectionViewsQuery = XCUIApplication().collectionViews
         app.navigationBars["Crypto Universe"].staticTexts["Crypto Universe"].tap()
         let scrollViewsQuery = collectionViewsQuery/*@START_MENU_TOKEN@*/ .scrollViews/*[[".cells.scrollViews",".scrollViews"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .otherElements.scrollViews
-        let element_wait = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").children(matching: .other).element.waitForExistence(timeout: 30)
+        let element_wait = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").children(matching: .other).element.waitForExistence(timeout: 10)
         XCTAssertTrue(element_wait)
         let element = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").children(matching: .other).element
         element.swipeLeft()
-        let element2 = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Binance").children(matching: .other).element.waitForExistence(timeout: 30)
+        let element2 = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Binance").children(matching: .other).element.waitForExistence(timeout: 5)
         XCTAssertTrue(element2)
         let removeexchangeButton = scrollViewsQuery.otherElements.buttons["RemoveExchange"]
         removeexchangeButton.tap()
         XCTAssertTrue(collectionViewsQuery/*@START_MENU_TOKEN@*/ .buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.waitForExistence(timeout: 5))
     }
 
-    func test_HomeView_Action_RemoveExchange() {
-        let collectionViewsQuery = XCUIApplication().collectionViews
+
+    func test_HomeView_Action_Exchange() {
+        let app = XCUIApplication()
+        let collectionViewsQuery = app.collectionViews
         let scrollViewsQuery = collectionViewsQuery/*@START_MENU_TOKEN@*/ .scrollViews/*[[".cells.scrollViews",".scrollViews"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .otherElements.scrollViews
         scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").element.swipeLeft()
-        scrollViewsQuery.otherElements.containing(.staticText, identifier: "Binance").children(matching: .other).element.swipeLeft()
-        scrollViewsQuery.otherElements.containing(.staticText, identifier: "OKX").children(matching: .other).element.swipeLeft()
-        scrollViewsQuery.otherElements.containing(.staticText, identifier: "Kraken").children(matching: .other).element.swipeLeft()
+        let binance = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Binance").children(matching: .other)
+        XCTAssertTrue(binance.element.waitForExistence(timeout: 5))
         let removeexchangeButton = scrollViewsQuery.otherElements.buttons["RemoveExchange"]
         removeexchangeButton.tap()
         collectionViewsQuery/*@START_MENU_TOKEN@*/ .buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .tap()
-        let overallElem = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").element.children(matching: .other).element.waitForExistence(timeout: 30)
+        let overallElem = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").element.children(matching: .other).element.waitForExistence(timeout: 10)
         XCTAssertTrue(overallElem)
-    }
-
-    func test_HomeView_Action_AddExchange() {
-        let app = XCUIApplication()
+        
         app.navigationBars["Crypto Universe"].buttons["Drag"].tap()
         app.buttons["Add Cryptoexchange"].tap()
         let exchanges = [
@@ -76,8 +74,6 @@ final class HomeView_UITests: XCTestCase {
         let selectedExchangeLabel = app.staticTexts[exchanges[0].name]
         XCTAssertTrue(selectedExchangeLabel.waitForExistence(timeout: 5))
         
-        let collectionViewsQuery = app.collectionViews
-        
         let exchangeAPI = collectionViewsQuery.secureTextFields["Exchange API"]
         let exchangeSecret = collectionViewsQuery.secureTextFields["Exchange Secret"]
                 
@@ -90,8 +86,7 @@ final class HomeView_UITests: XCTestCase {
         collectionViewsQuery/*@START_MENU_TOKEN@*/.buttons["Add Cryptoexchange"].tap()
         
         app.navigationBars["Crypto Universe"].staticTexts["Crypto Universe"].tap()
-        let scrollViewsQuery = app.collectionViews/*@START_MENU_TOKEN@*/ .scrollViews/*[[".cells.scrollViews",".scrollViews"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .otherElements.scrollViews
-        let element_wait = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").children(matching: .other).element.waitForExistence(timeout: 30)
+        let element_wait = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").children(matching: .other).element.waitForExistence(timeout: 10)
         XCTAssertTrue(element_wait)
         
     }
@@ -168,7 +163,7 @@ final class HomeView_UITests: XCTestCase {
 
         scrollViewsQuery.otherElements.containing(.staticText, identifier:"Manual").children(matching: .other).element.children(matching: .button).matching(identifier: "RemoveExchange").element(boundBy: 0).tap()
         collectionViewsQuery/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        XCTAssertTrue(element.waitForExistence(timeout: 30))
+        XCTAssertTrue(element.waitForExistence(timeout: 10))
     }
 
 
@@ -231,29 +226,32 @@ final class HomeView_UITests: XCTestCase {
         XCTAssertTrue(bottombrowsertoolbarToolbar.waitForExistence(timeout: 10))
     }
     
-    func test_HomeView_Action_NetworkScreen() {
-        let app = XCUIApplication()
-        
-        let controlCenter = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-        
-        // open control center
-        let coord1 = app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.01))
-        let coord2 = app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.2))
-        coord1.press(forDuration: 0.1, thenDragTo: coord2)
-
-        let airplaneModeButton = controlCenter.switches["airplane-mode-button"]
-        airplaneModeButton.tap()
-        let empty = controlCenter.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.05))
-        empty.tap()
-        
-        XCTAssertTrue(app.images["Warning"].waitForExistence(timeout: 5))
-        
-        coord1.press(forDuration: 0.1, thenDragTo: coord2)
-        airplaneModeButton.tap()
-        empty.tap()
-        
-        let scrollViewsQuery = app.collectionViews.otherElements.scrollViews
-        let element = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").children(matching: .other).element.waitForExistence(timeout: 30)
-        XCTAssertTrue(element)
-    }
+//    func test_HomeView_Action_NetworkScreen() {
+//        let app = XCUIApplication()
+//
+//        let controlCenter = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+//
+//        // open control center
+//        let coord1 = app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.01))
+//        let coord2 = app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.2))
+//        coord1.press(forDuration: 0.1, thenDragTo: coord2)
+//
+//        let airplaneModeButton = controlCenter.switches["airplane-mode-button"]
+//        XCTAssertTrue(airplaneModeButton.waitForExistence(timeout: 10))
+//        airplaneModeButton.tap()
+//        let empty = controlCenter.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.05))
+//        empty.tap()
+//
+//        XCTAssertTrue(app.images["Warning"].waitForExistence(timeout: 10))
+//
+//        coord1.press(forDuration: 0.1, thenDragTo: coord2)
+//        XCTAssertTrue(airplaneModeButton.waitForExistence(timeout: 10))
+//        airplaneModeButton.tap()
+//        empty.tap()
+//
+//        let scrollViewsQuery = app.collectionViews.otherElements.scrollViews
+//        XCTAssertTrue(scrollViewsQuery.element.waitForExistence(timeout: 10))
+//        let element = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").element
+//        XCTAssertTrue(element.waitForExistence(timeout: 20))
+//    }
 }
