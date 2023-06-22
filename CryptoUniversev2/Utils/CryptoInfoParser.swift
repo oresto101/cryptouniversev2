@@ -29,7 +29,6 @@ func parseCryptoInfo(cryptoPrices: [String: Double], priceChanges: [String: Doub
         storeHistoricDataIfNotStoredYet(name: name, totalValue: value)
         return getInfoBox(name: name, totalValue: value, exchangeDailyPL: exchangeDailyPL)
     }
-    print(infoBoxes)
     infoBoxes = infoBoxes.sorted { $0.totalBalance > $1.totalBalance }
     if infoBoxes.count > 0 {
         infoBoxes.insert(
@@ -39,6 +38,9 @@ func parseCryptoInfo(cryptoPrices: [String: Double], priceChanges: [String: Doub
     } else {
         noData = true
     }
+    print(infoBoxes)
+    print(cryptoInfo)
+    print(noData)
     return (infoBoxes, cryptoInfo, noData)
 }
 

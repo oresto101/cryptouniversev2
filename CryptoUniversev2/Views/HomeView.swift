@@ -1,8 +1,5 @@
 import SwiftUI
 
-let exchangeDispatchGroup = DispatchGroup()
-let coinMarketCapDispatchGroup = DispatchGroup()
-
 struct HomeView: View {
     @StateObject var networkMonitor = NetworkMonitor()
     @State private var infoBoxes: [InfoBox] = []
@@ -174,7 +171,7 @@ struct HomeView: View {
     }
 
     var loadingProgressView: some View {
-        let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+        let timer = Timer.publish(every: 300, on: .main, in: .common).autoconnect()
 
         return ProgressView()
             .progressViewStyle(CircularProgressViewStyle(tint: .white))
@@ -236,12 +233,13 @@ struct HomeView: View {
 
     private func updateData() {
         parseCredentials()
-        exchangeDispatchGroup.notify(queue: .global()) {
-            storeChangesForCryptoInUsd()
-            coinMarketCapDispatchGroup.notify(queue: .main) {
+        storeChangesForCryptoInUsd {
+            isStored in
+            if isStored {
+                print("isStored")
                 (infoBoxes, cryptoInfo, noData) = retrieveDataAndParseCryptoInfo()
-                print(infoBoxes)
-                print(cryptoInfo)
+            } else {
+                noData = true
             }
         }
     }

@@ -19,7 +19,6 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
     var request = URLRequest(url: URL(string: signedURL)!)
     request.httpMethod = "GET"
     request.addValue(apiKey, forHTTPHeaderField: "X-MBX-APIKEY")
-    exchangeDispatchGroup.enter()
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
 
         guard let data, error == nil else {
@@ -60,9 +59,15 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
                 saveDataToUserDefaults(key: "BinanceSecret", data: secretKey)
                 saveDataToUserDefaults(key: "BinanceData", data: result)
                 if newData {
-                    storeChangesForCryptoInUsd()
+                    storeChangesForCryptoInUsd {
+                        isStored in
+                        if isStored {
+                            print("Data for binace stored succesfully")
+                        } else {
+                            print("Error: Data for binace was not stored!")
+                        }
+                    }
                 }
-                exchangeDispatchGroup.leave()
                 completion(true)
             } else {
                 print("Binance - Error: Unable to parse JSON")
@@ -114,7 +119,6 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, newD
     request.addValue(signatureBase64, forHTTPHeaderField: "OK-ACCESS-SIGN")
     request.addValue(passphrase, forHTTPHeaderField: "OK-ACCESS-PASSPHRASE")
     request.addValue(timestamp, forHTTPHeaderField: "OK-ACCESS-TIMESTAMP")
-    exchangeDispatchGroup.enter()
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
 
         guard let data, error == nil else {
@@ -152,7 +156,6 @@ public func parseOKX(apiKey: String, secretKey: String, passphrase: String, newD
         saveDataToUserDefaults(key: "OKXSecret", data: secretKey)
         saveDataToUserDefaults(key: "OKXPassphrase", data: passphrase)
         saveDataToUserDefaults(key: "OKXData", data: result)
-        exchangeDispatchGroup.leave()
         completion(true)
     }
 
@@ -283,7 +286,6 @@ public func parseGemini(apiKey: String, secretKey: String, newData _: Bool, comp
     request.setValue(signatureHexString, forHTTPHeaderField: "X-GEMINI-SIGNATURE")
     request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
     request.httpMethod = "POST"
-    exchangeDispatchGroup.enter()
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
 
         guard let data, error == nil else {
@@ -309,8 +311,14 @@ public func parseGemini(apiKey: String, secretKey: String, newData _: Bool, comp
                 saveDataToUserDefaults(key: "GeminiAPI", data: apiKey)
                 saveDataToUserDefaults(key: "GeminiSecret", data: secretKey)
                 saveDataToUserDefaults(key: "GeminiData", data: res)
-                storeChangesForCryptoInUsd()
-                exchangeDispatchGroup.leave()
+                storeChangesForCryptoInUsd {
+                    isStored in
+                    if isStored {
+                        print("Data for gemini stored succesfully")
+                    } else {
+                        print("Error: Data for gemini was not stored!")
+                    }
+                }
                 completion(true)
             } else {
                 completion(false)
@@ -350,7 +358,6 @@ func parseKraken(apiKey: String, secretKey: String, newData _: Bool, completion:
     request.setValue(signature, forHTTPHeaderField: "API-Sign")
     request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
     request.httpBody = postData.data(using: .utf8)
-    exchangeDispatchGroup.enter()
     URLSession.shared.dataTask(with: request) { data, _, error in
         guard let data, error == nil else {
             if error?.localizedDescription == "The Internet connection appears to be offline." {
@@ -377,8 +384,14 @@ func parseKraken(apiKey: String, secretKey: String, newData _: Bool, completion:
                 saveDataToUserDefaults(key: "KrakenAPI", data: apiKey)
                 saveDataToUserDefaults(key: "KrakenSecret", data: secretKey)
                 saveDataToUserDefaults(key: "KrakenData", data: res)
-                storeChangesForCryptoInUsd()
-                exchangeDispatchGroup.leave()
+                storeChangesForCryptoInUsd {
+                    isStored in
+                    if isStored {
+                        print("Data for kraken stored succesfully")
+                    } else {
+                        print("Error: Data for kraken was not stored!")
+                    }
+                }
                 completion(true)
             }
         } catch {
