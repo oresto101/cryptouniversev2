@@ -241,6 +241,7 @@ struct HomeView: View {
             coinMarketCapDispatchGroup.notify(queue: .main) {
                 (infoBoxes, cryptoInfo, noData) = retrieveDataAndParseCryptoInfo()
                 print(infoBoxes)
+                print(cryptoInfo)
             }
         }
     }
