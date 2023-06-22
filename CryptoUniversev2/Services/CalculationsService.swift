@@ -3,7 +3,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-public func parseCredentials() {
+public func parseCredentials(completion: @escaping (Bool) -> Void) {
     let binanceAPI = UserDefaults.standard.string(forKey: "BinanceAPI")
     let binancePassphrase = UserDefaults.standard.string(forKey: "BinanceSecret")
     let okxAPI = UserDefaults.standard.string(forKey: "OKXAPI")
@@ -80,6 +80,7 @@ public func parseCredentials() {
             }
         }
     }
+    completion(true)
 }
 
 public func parseExchanges(username _: String, password _: String) {}

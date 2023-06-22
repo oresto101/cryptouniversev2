@@ -38,9 +38,6 @@ func parseCryptoInfo(cryptoPrices: [String: Double], priceChanges: [String: Doub
     } else {
         noData = true
     }
-    print(infoBoxes)
-    print(cryptoInfo)
-    print(noData)
     return (infoBoxes, cryptoInfo, noData)
 }
 

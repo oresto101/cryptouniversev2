@@ -7,7 +7,7 @@ import SwiftUI
 
 struct AddCryptoCurrencyView: View {
     @State private var cryptoCode: String = ""
-    @State private var quantity: String = "0"
+    @State private var quantity: String = ""
     @State private var loaded = false
     @State private var loadedWithError = false
 

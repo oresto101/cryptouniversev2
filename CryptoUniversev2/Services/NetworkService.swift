@@ -58,16 +58,6 @@ func parseBinance(apiKey: String, secretKey: String, newData: Bool, completion: 
                 saveDataToUserDefaults(key: "BinanceAPI", data: apiKey)
                 saveDataToUserDefaults(key: "BinanceSecret", data: secretKey)
                 saveDataToUserDefaults(key: "BinanceData", data: result)
-                if newData {
-                    storeChangesForCryptoInUsd {
-                        isStored in
-                        if isStored {
-                            print("Data for binace stored succesfully")
-                        } else {
-                            print("Error: Data for binace was not stored!")
-                        }
-                    }
-                }
                 completion(true)
             } else {
                 print("Binance - Error: Unable to parse JSON")
@@ -311,14 +301,6 @@ public func parseGemini(apiKey: String, secretKey: String, newData _: Bool, comp
                 saveDataToUserDefaults(key: "GeminiAPI", data: apiKey)
                 saveDataToUserDefaults(key: "GeminiSecret", data: secretKey)
                 saveDataToUserDefaults(key: "GeminiData", data: res)
-                storeChangesForCryptoInUsd {
-                    isStored in
-                    if isStored {
-                        print("Data for gemini stored succesfully")
-                    } else {
-                        print("Error: Data for gemini was not stored!")
-                    }
-                }
                 completion(true)
             } else {
                 completion(false)
@@ -384,14 +366,6 @@ func parseKraken(apiKey: String, secretKey: String, newData _: Bool, completion:
                 saveDataToUserDefaults(key: "KrakenAPI", data: apiKey)
                 saveDataToUserDefaults(key: "KrakenSecret", data: secretKey)
                 saveDataToUserDefaults(key: "KrakenData", data: res)
-                storeChangesForCryptoInUsd {
-                    isStored in
-                    if isStored {
-                        print("Data for kraken stored succesfully")
-                    } else {
-                        print("Error: Data for kraken was not stored!")
-                    }
-                }
                 completion(true)
             }
         } catch {

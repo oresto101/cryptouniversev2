@@ -232,15 +232,22 @@ struct HomeView: View {
     }
 
     private func updateData() {
-        parseCredentials()
-        storeChangesForCryptoInUsd {
-            isStored in
-            if isStored {
-                print("isStored")
-                (infoBoxes, cryptoInfo, noData) = retrieveDataAndParseCryptoInfo()
-            } else {
-                noData = true
-            }
+        parseCredentials(){
+            isParsed in
+                if isParsed{
+                    storeChangesForCryptoInUsd {
+                        isStored in
+                        if isStored {
+                            print("isStored")
+                            (infoBoxes, cryptoInfo, noData) = retrieveDataAndParseCryptoInfo()
+                        } else {
+                            noData = true
+                        }
+                    }
+                }else{
+                    print("Credentials are not parsed")
+                }
+            
         }
     }
 }
