@@ -19,8 +19,8 @@
 		1B0521892A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
 		1B05218A2A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
 		1B05218B2A019D6A00094BBD /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0521882A019D6A00094BBD /* NewsViewModel.swift */; };
-		1B2C8A5E2A374FBC00A57776 /* CryptoCompareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */; };
-		1B2C8A5F2A374FBD00A57776 /* CryptoCompareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */; };
+		1B2C8A5E2A374FBC00A57776 /* CoinMarketCapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CoinMarketCapService.swift */; };
+		1B2C8A5F2A374FBD00A57776 /* CoinMarketCapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CoinMarketCapService.swift */; };
 		1B2C8A602A374FCB00A57776 /* CryptoInfoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA67BB62A361A5100E92C41 /* CryptoInfoParser.swift */; };
 		1B2C8A612A374FCC00A57776 /* CryptoInfoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA67BB62A361A5100E92C41 /* CryptoInfoParser.swift */; };
 		1B2C8A6E2A37500800A57776 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA5722A2A2A3300B50371 /* HelpListView.swift */; };
@@ -100,6 +100,7 @@
 		CB404EA9295B90AA0038E0A2 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB404EA8295B90AA0038E0A2 /* Exchange.swift */; };
 		CB4AD75D2A447A7A00F8BFA1 /* CryptoInfoParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4AD75C2A447A7A00F8BFA1 /* CryptoInfoParserTest.swift */; };
 		CB4AD7602A449A5400F8BFA1 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4AD75F2A449A5400F8BFA1 /* NetworkServiceTest.swift */; };
+		CB4AD7622A44A0C600F8BFA1 /* CoinMarketCapServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4AD7612A44A0C600F8BFA1 /* CoinMarketCapServiceTest.swift */; };
 		CB524D0029FB6C4200CD00C2 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = CB524CFF29FB6C4200CD00C2 /* SwiftyJSON */; };
 		CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65253629469D4500FD5D11 /* CryptoInfo.swift */; };
 		CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */; };
@@ -115,7 +116,7 @@
 		CBA67BB72A361A5100E92C41 /* CryptoInfoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA67BB62A361A5100E92C41 /* CryptoInfoParser.swift */; };
 		CBA67BBA2A36355200E92C41 /* StringFormatterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA67BB92A36355200E92C41 /* StringFormatterTest.swift */; };
 		CBCEA5732A2A2A3300B50371 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA5722A2A2A3300B50371 /* HelpListView.swift */; };
-		CBCEA83B29F2BA220006E19B /* CryptoCompareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */; };
+		CBCEA83B29F2BA220006E19B /* CoinMarketCapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCEA83A29F2BA220006E19B /* CoinMarketCapService.swift */; };
 		CBE25A8F294E8C320010F712 /* AddCryptoExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +164,7 @@
 		CB404EA8295B90AA0038E0A2 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Exchange.swift; path = CryptoUniversev2/Enums/Exchange.swift; sourceTree = SOURCE_ROOT; };
 		CB4AD75C2A447A7A00F8BFA1 /* CryptoInfoParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoInfoParserTest.swift; sourceTree = "<group>"; };
 		CB4AD75F2A449A5400F8BFA1 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
+		CB4AD7612A44A0C600F8BFA1 /* CoinMarketCapServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinMarketCapServiceTest.swift; sourceTree = "<group>"; };
 		CB65253629469D4500FD5D11 /* CryptoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoInfo.swift; sourceTree = "<group>"; };
 		CB6525382946A22B00FD5D11 /* CryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoExchangeView.swift; sourceTree = "<group>"; };
 		CB65253B2946A40100FD5D11 /* CryptoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoInfoView.swift; sourceTree = "<group>"; };
@@ -181,7 +183,7 @@
 		CBA67BB62A361A5100E92C41 /* CryptoInfoParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoInfoParser.swift; sourceTree = "<group>"; };
 		CBA67BB92A36355200E92C41 /* StringFormatterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormatterTest.swift; sourceTree = "<group>"; };
 		CBCEA5722A2A2A3300B50371 /* HelpListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListView.swift; sourceTree = "<group>"; };
-		CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareService.swift; sourceTree = "<group>"; };
+		CBCEA83A29F2BA220006E19B /* CoinMarketCapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinMarketCapService.swift; sourceTree = "<group>"; };
 		CBE25A8E294E8C320010F712 /* AddCryptoExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCryptoExchangeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				CB4AD75F2A449A5400F8BFA1 /* NetworkServiceTest.swift */,
+				CB4AD7612A44A0C600F8BFA1 /* CoinMarketCapServiceTest.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -363,7 +366,7 @@
 			children = (
 				1B5DE6F62A019ECE002795F9 /* NetworkService.swift */,
 				1BC7D4DC29E42CCE00BB14A5 /* CalculationsService.swift */,
-				CBCEA83A29F2BA220006E19B /* CryptoCompareService.swift */,
+				CBCEA83A29F2BA220006E19B /* CoinMarketCapService.swift */,
 				1B5DE7012A019F7E002795F9 /* ManualDataService.swift */,
 			);
 			path = Services;
@@ -567,7 +570,7 @@
 				1BFB9C5C29759E910097589E /* CryptoBoxView.swift in Sources */,
 				CB65253729469D4600FD5D11 /* CryptoInfo.swift in Sources */,
 				1B5DE6FA2A019ECE002795F9 /* NetworkService.swift in Sources */,
-				CBCEA83B29F2BA220006E19B /* CryptoCompareService.swift in Sources */,
+				CBCEA83B29F2BA220006E19B /* CoinMarketCapService.swift in Sources */,
 				CB65253C2946A40100FD5D11 /* CryptoInfoView.swift in Sources */,
 				1B0521812A019D2400094BBD /* Helper.swift in Sources */,
 				CB6525392946A22B00FD5D11 /* CryptoExchangeView.swift in Sources */,
@@ -598,7 +601,7 @@
 				1B5DE7202A01A0F1002795F9 /* NewsView.swift in Sources */,
 				1B820D7F2A11401A0050F741 /* ExchangeListView.swift in Sources */,
 				1B0521862A019D5000094BBD /* News.swift in Sources */,
-				1B2C8A5E2A374FBC00A57776 /* CryptoCompareService.swift in Sources */,
+				1B2C8A5E2A374FBC00A57776 /* CoinMarketCapService.swift in Sources */,
 				1BD7623B297D7DA60044D8BC /* CryptoInfo.swift in Sources */,
 				1B5DE70B2A01A01B002795F9 /* ACEView.swift in Sources */,
 				1BD76245297D7F450044D8BC /* MainView.swift in Sources */,
@@ -627,6 +630,7 @@
 				1BD7623D297D7DA80044D8BC /* InfoBox.swift in Sources */,
 				CBA67BBA2A36355200E92C41 /* StringFormatterTest.swift in Sources */,
 				1B5DE7032A019F7E002795F9 /* ManualDataService.swift in Sources */,
+				CB4AD7622A44A0C600F8BFA1 /* CoinMarketCapServiceTest.swift in Sources */,
 				1B2C8A702A37505800A57776 /* CryptoUniversev2Tests.swift in Sources */,
 				1BD7624B297D80870044D8BC /* CryptoExchangeView.swift in Sources */,
 				1BC7D4DE29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
@@ -645,7 +649,7 @@
 				1B5DE7102A01A03C002795F9 /* HView.swift in Sources */,
 				1B5DE6FC2A019ECE002795F9 /* NetworkService.swift in Sources */,
 				1BC7D4DF29E42CCE00BB14A5 /* CalculationsService.swift in Sources */,
-				1B2C8A5F2A374FBD00A57776 /* CryptoCompareService.swift in Sources */,
+				1B2C8A5F2A374FBD00A57776 /* CoinMarketCapService.swift in Sources */,
 				1BD76234297D7D5C0044D8BC /* CryptoBoxView.swift in Sources */,
 				1B5DE70C2A01A01B002795F9 /* ACEView.swift in Sources */,
 				1B820D802A11401A0050F741 /* ExchangeListView.swift in Sources */,
