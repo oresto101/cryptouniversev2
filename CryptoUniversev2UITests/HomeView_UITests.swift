@@ -78,10 +78,10 @@ final class HomeView_UITests: XCTestCase {
         let exchangeSecret = collectionViewsQuery.secureTextFields["Exchange Secret"]
                 
         exchangeAPI.tap()
-        exchangeAPI.typeText("WAMuw1z4yyTnFAEAuZgAAkCGJzwoCwYsp09XV1odgRiNDEwpx0nAt6fCjM5KEP1B")
+        exchangeAPI.typeText("*")
                 
         exchangeSecret.tap()
-        exchangeSecret.typeText("XcDz4ttqZZh1qPMwV44QRyeIiQAPGk0du7qJbCGdxG6iY1c1R82jmtPom1fOe7K2")
+        exchangeSecret.typeText("*")
 
         collectionViewsQuery/*@START_MENU_TOKEN@*/.buttons["Add Cryptoexchange"].tap()
         
@@ -155,8 +155,10 @@ final class HomeView_UITests: XCTestCase {
         collectionViewsQuery/*@START_MENU_TOKEN@*/.collectionViews.buttons["Add Cryptocurrency"]/*[[".cells.collectionViews",".cells.buttons[\"Add Cryptocurrency\"]",".buttons[\"Add Cryptocurrency\"]",".collectionViews"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/.tap()
         let scrollViewsQuery = collectionViewsQuery/*@START_MENU_TOKEN@*/.scrollViews/*[[".cells.scrollViews",".scrollViews"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.otherElements.scrollViews
         let element = scrollViewsQuery.otherElements.containing(.staticText, identifier:"Overall").children(matching: .other).element
+        XCTAssertTrue(element.waitForExistence(timeout: 10))
         element.swipeLeft()
         let element2 = scrollViewsQuery.otherElements.containing(.staticText, identifier:"Binance").children(matching: .other).element
+        XCTAssertTrue(element2.waitForExistence(timeout: 10))
         element2.swipeLeft()
         let element3 = scrollViewsQuery.otherElements.containing(.staticText, identifier:"Manual").children(matching: .other).element.exists
         XCTAssertTrue(element3)
@@ -182,7 +184,7 @@ final class HomeView_UITests: XCTestCase {
         key.tap()
         collectionViewsQuery/*@START_MENU_TOKEN@*/.collectionViews.buttons["Add Cryptocurrency"]/*[[".cells.collectionViews",".cells.buttons[\"Add Cryptocurrency\"]",".buttons[\"Add Cryptocurrency\"]",".collectionViews"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/.tap()
         let elementsQuery = app.alerts["Cryptocurrency doesn't exist"].scrollViews.otherElements
-        XCTAssertTrue(elementsQuery.staticTexts["Cryptocurrency doesn't exist"].exists)
+        XCTAssertTrue(elementsQuery.staticTexts["Cryptocurrency doesn't exist"].waitForExistence(timeout: 5))
         elementsQuery.buttons["Dismiss"].tap()
     }
 
@@ -226,32 +228,4 @@ final class HomeView_UITests: XCTestCase {
         XCTAssertTrue(bottombrowsertoolbarToolbar.waitForExistence(timeout: 10))
     }
     
-//    func test_HomeView_Action_NetworkScreen() {
-//        let app = XCUIApplication()
-//
-//        let controlCenter = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-//
-//        // open control center
-//        let coord1 = app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.01))
-//        let coord2 = app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.2))
-//        coord1.press(forDuration: 0.1, thenDragTo: coord2)
-//
-//        let airplaneModeButton = controlCenter.switches["airplane-mode-button"]
-//        XCTAssertTrue(airplaneModeButton.waitForExistence(timeout: 10))
-//        airplaneModeButton.tap()
-//        let empty = controlCenter.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.05))
-//        empty.tap()
-//
-//        XCTAssertTrue(app.images["Warning"].waitForExistence(timeout: 10))
-//
-//        coord1.press(forDuration: 0.1, thenDragTo: coord2)
-//        XCTAssertTrue(airplaneModeButton.waitForExistence(timeout: 10))
-//        airplaneModeButton.tap()
-//        empty.tap()
-//
-//        let scrollViewsQuery = app.collectionViews.otherElements.scrollViews
-//        XCTAssertTrue(scrollViewsQuery.element.waitForExistence(timeout: 10))
-//        let element = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Overall").element
-//        XCTAssertTrue(element.waitForExistence(timeout: 20))
-//    }
 }
